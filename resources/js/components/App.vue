@@ -1,3 +1,5 @@
 <template>
-    <div>TEST</div>
+    <div class="w-full">
+        
+    </div>
 </template>
