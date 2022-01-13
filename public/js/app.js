@@ -2123,6 +2123,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2249,7 +2254,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#users-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#video-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#users-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#video-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n.user:hover .video-icon[data-v-332fccf4] {\n    display: block;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20187,7 +20192,7 @@ var render = function () {
                 {
                   key: i,
                   staticClass:
-                    "flex items-center justify-between py-3 border-b cursor-pointer",
+                    "flex items-center justify-between py-3 border-b user",
                 },
                 [
                   _c("div", { staticClass: "flex gap-2" }, [
@@ -20214,7 +20219,7 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("span", [
+                    _c("span", { staticClass: "truncate" }, [
                       _vm._v(
                         "\n                            " +
                           _vm._s(user.name) +
@@ -20224,7 +20229,33 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   user.online
-                    ? _c("div", [
+                    ? _c("div", { staticClass: "flex items-center gap-2" }, [
+                        _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "h-5 w-5 cursor-pointer hidden video-icon",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                fill: "none",
+                                viewBox: "0 0 24 24",
+                                stroke: "currentColor",
+                              },
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                  "stroke-width": "2",
+                                  d: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+                                },
+                              }),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
                         _c("div", {
                           staticClass: "w-1.5 h-1.5 bg-green-500 rounded-full",
                         }),
