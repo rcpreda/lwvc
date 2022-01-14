@@ -16,3 +16,19 @@ export const REMOVE_ONLINE_USER = (state, user) => {
     const index = state.onlineUsers.findIndex( item => item.id === user.id );
     state.onlineUsers.splice(index, 1)
 }
+
+export const START_CALL = (state, {user, stream}) => {
+    state.callingUser = user
+    state.myStream = stream
+}
+
+export const END_CALL = (state) => {
+    state.myStream.getTracks().forEach(function(track) {
+        track.stop();
+    });
+    state.myStream = null
+}
+
+export const TOGGLE_MIC = (state, status) => {
+    state.myStream.getAudioTracks()[0].enabled = status
+}

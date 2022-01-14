@@ -1,4 +1,6 @@
 export default {
-    authUser: {},
+    authUser: null,
     onlineUsers: [],
+    callingUser: null,
+    myStream: null
 }
