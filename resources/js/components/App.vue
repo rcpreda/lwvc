@@ -83,7 +83,14 @@ export default {
                 { "name": "Valerie Jacobson", "online": true },
             ]
         }
+    },
+    props: {
+        name:{
+            type: Object,
+            required: true
+        }
     }
+
 }
 </script>
 

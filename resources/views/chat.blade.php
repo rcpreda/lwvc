@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app" class="w-full min-h-screen overflow-auto">
-            <App/>
+           <App user="{{ auth()->user() }}"/>
         </div>
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>

@@ -2178,6 +2178,12 @@ __webpack_require__.r(__webpack_exports__);
         "online": true
       }]
     };
+  },
+  props: {
+    name: {
+      type: Object,
+      required: true
+    }
   }
 });
 
