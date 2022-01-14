@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('chat');
     })->name('chat');
+
+    Route::get('/users', [UserController::class, 'index']);
 });
 
 
@@ -28,3 +31,4 @@ Route::get('/signup', [AuthController::class, 'signupForm'])->name('signup');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

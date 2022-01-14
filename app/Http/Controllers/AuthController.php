@@ -42,7 +42,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('chat');
+        return redirect()->route('login');
     }
 
     public function login(Request $request){
