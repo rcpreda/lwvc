@@ -28,7 +28,7 @@
     export default {
         data(){
             return {
-                mic: false
+                mic: true
             }
         },
         computed: {

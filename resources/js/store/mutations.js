@@ -22,6 +22,11 @@ export const START_CALL = (state, {user, stream}) => {
     state.myStream = stream
 }
 
+export const ACCEPT_CALL = (state, {user, stream}) => {
+    state.callingUser = user
+    state.myStream = stream
+}
+
 export const END_CALL = (state) => {
     state.myStream.getTracks().forEach(function(track) {
         track.stop();
@@ -31,4 +36,8 @@ export const END_CALL = (state) => {
 
 export const TOGGLE_MIC = (state, status) => {
     state.myStream.getAudioTracks()[0].enabled = status
+}
+
+export const SET_PEER = (state, peer) => {
+    state.peer = peer
 }

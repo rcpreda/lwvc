@@ -23,3 +23,7 @@ Broadcast::channel('Laravel-video-chat', function ($user) {
         return $user;
     }
 });
+
+Broadcast::channel('video-call.{receiverId}', function ($user, $receiverId) {
+    return auth()->check();
+});
