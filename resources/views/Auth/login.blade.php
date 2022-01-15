@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div class="w-full min-h-screen flex flex-col justify-center items-center bg-gray-50">
@@ -15,10 +15,10 @@
                 @csrf
                 <input autofocus
                     class="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
-                    id="email" name="email" placeholder="Email" type="text" value="debarshi121@gmail.com" required>
+                    id="email" name="email" placeholder="Email" type="text" required>
                 <input autofocus
                     class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
-                    id="password" name="password" placeholder="Password" type="password" value="123456" required>
+                    id="password" name="password" placeholder="Password" type="password" required>
                 <div class="flex gap-1.5 mb-4 items-center text-xs text-gray-500">
                     <input type="checkbox" name="remember">
                     <span class="-mt-0.5">Remember me</span>

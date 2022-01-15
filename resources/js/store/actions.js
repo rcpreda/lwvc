@@ -34,7 +34,7 @@ export const startCall = ({commit, state}, user) => {
                     fromUser: state.authUser,
                     signalData: data
                 });
-            }, 500);
+            }, 1000);
         })
         commit('SET_PEER', peer1)
         commit('START_CALL', { user: user, stream: stream })
@@ -58,7 +58,7 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
                     fromUser: state.authUser,
                     signalData: data
                 });
-            }, 500);
+            }, 1000);
         })
 
         peer2.on('stream', stream => {
