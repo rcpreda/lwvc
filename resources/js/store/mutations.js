@@ -27,6 +27,10 @@ export const ACCEPT_CALL = (state, {user, stream}) => {
     state.myStream = stream
 }
 
+export const CALL_ACCEPTED = (state, {otherStream}) => {
+    state.otherStream = otherStream
+}
+
 export const END_CALL = (state) => {
     state.myStream.getTracks().forEach(function(track) {
         track.stop();

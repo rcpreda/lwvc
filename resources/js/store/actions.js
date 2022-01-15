@@ -1,4 +1,3 @@
-import { stream } from 'browser-sync'
 import Peer from 'simple-peer'
 import MediaHander from '../MediaHandler'
 
@@ -22,13 +21,13 @@ export const startCall = ({commit, state}, user) => {
     const mediaHandler = new MediaHander;
     
     mediaHandler.getPermissions().then((stream) => {
-        const peer = new Peer({
+        const peer1 = new Peer({
             initiator: true, 
             trickle: false,
             stream: stream
         })
         
-        peer.on("signal", data => {
+        peer1.on("signal", data => {
             const channel = Echo.private(`video-call.${user.id}`)
             setTimeout(() => {
                 channel.whisper('incomingVideoCall', {
@@ -37,7 +36,7 @@ export const startCall = ({commit, state}, user) => {
                 });
             }, 500);
         })
-        commit('SET_PEER', peer)
+        commit('SET_PEER', peer1)
         commit('START_CALL', { user: user, stream: stream })
     })
 }
@@ -46,9 +45,13 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
     const mediaHandler = new MediaHander;
     mediaHandler.getPermissions().then((stream) => {
 
-        const peer = new Peer()
+        const peer2 = new Peer({
+            trickle: false, 
+            stream: stream 
+        })
 
-        peer.on("signal", data => {
+        peer2.signal(signalData)
+        peer2.on("signal", data => {
             const channel = Echo.private(`video-call.${fromUser.id}`)
             setTimeout(() => {
                 channel.whisper('videoCallAccepted', {
@@ -58,25 +61,26 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
             }, 500);
         })
 
-        peer.signal(signalData)
+        peer2.on('stream', stream => {
+            commit('CALL_ACCEPTED', { otherStream: stream })
+        })
 
-        commit('SET_PEER', peer)
+        commit('SET_PEER', peer2)
         commit('ACCEPT_CALL', { user: fromUser, stream: stream })
     })
 }
 
-export const callAccepted = ({ state}, {signalData}) => {
-    const peer = state.peer
-    peer.signal(signalData)
-    peer.on('stream', stream => {
-        console.log(stream)
+export const callAccepted = ({commit, state}, {signalData}) => {
+    const peer1 = state.peer
+    peer1.signal(signalData)
+    peer1.on('stream', stream => {
+        commit('CALL_ACCEPTED', { otherStream: stream })
     })
 }
 
 export const endCall = ({commit}) => {
     commit('END_CALL')
 }
-
 
 export const toggleMic = ({commit}, status) => {
     commit('TOGGLE_MIC', status)

@@ -92,7 +92,7 @@ export default {
             })
             .listenForWhisper('videoCallAccepted', (e) => {
                 console.log("Call Accepted")
-                this.$store.dispatch("callAcceped", { fromUser: e.fromUser, signalData: e.signalData});
+                this.$store.dispatch("callAccepted", { signalData: e.signalData});
             })
     }
 
