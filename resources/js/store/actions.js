@@ -116,5 +116,6 @@ export const callRejected = ({commit}) => {
 }
 
 export const callEnded = ({commit}) => {
+    commit('SET_CALL_REQUEST_POPUP', false)
     commit('DESTROY_MYSTREAM')
 }

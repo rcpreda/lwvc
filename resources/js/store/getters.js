@@ -2,6 +2,14 @@ export const onlineUsers = (state) => {
     return state.onlineUsers
 }
 
+export const onlineUsersCount = (state) => {
+    return state.onlineUsers.length
+}
+
+export const peer = (state) => {
+    return state.peer
+}
+
 export const myStream = (state) => {
     return state.myStream
 }

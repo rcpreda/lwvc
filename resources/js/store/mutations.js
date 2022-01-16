@@ -31,9 +31,11 @@ export const SET_OTHERSTREAM = (state, otherStream) => {
 
 export const DESTROY_MYSTREAM = (state) => {
     state.peer = null
-    state.myStream.getTracks().forEach(function(track) {
-        track.stop();
-    });
+    if(state.myStream){
+        state.myStream.getTracks().forEach(function(track) {
+            track.stop();
+        });
+    }
     state.myStream = null
 }
 

@@ -2110,6 +2110,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2122,10 +2142,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      incomingVideoCallData: null
+      incomingVideoCallData: null,
+      mobileNav: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['myStream', 'displayCallRequestPopup'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['onlineUsersCount', 'myStream', 'displayCallRequestPopup'])),
   methods: {
     logout: function logout() {
       this.$axios.post('/logout').then(function () {
@@ -2288,9 +2309,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {};
+  },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['onlineUsers'])),
   methods: {
     startCall: function startCall(user) {
+      this.$emit('buttonHit');
       this.$store.dispatch('startCall', user);
     }
   },
@@ -2343,6 +2368,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2350,7 +2380,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       mic: true
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['myStream', 'otherStream', 'callingUser'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['peer', 'myStream', 'otherStream', 'callingUser'])),
   methods: {
     toggleMic: function toggleMic(status) {
       this.mic = status;
@@ -2364,6 +2394,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     if (this.myStream) {
       var myVideo = document.querySelector("#my-video");
 
@@ -2375,6 +2407,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       myVideo.play();
     }
+
+    this.peer.on('error', function (err) {
+      console.log(err);
+
+      _this.$store.dispatch("callEnded");
+    });
   },
   watch: {
     otherStream: function otherStream() {
@@ -2423,7 +2461,7 @@ var MediaHandler = /*#__PURE__*/function () {
       return new Promise(function (res, rej) {
         navigator.mediaDevices.getUserMedia({
           video: true,
-          audio: false
+          audio: true
         }).then(function (stream) {
           res(stream);
         })["catch"](function (err) {
@@ -2648,6 +2686,7 @@ var callRejected = function callRejected(_ref15) {
 };
 var callEnded = function callEnded(_ref16) {
   var commit = _ref16.commit;
+  commit('SET_CALL_REQUEST_POPUP', false);
   commit('DESTROY_MYSTREAM');
 };
 
@@ -2663,6 +2702,8 @@ var callEnded = function callEnded(_ref16) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "onlineUsers": () => (/* binding */ onlineUsers),
+/* harmony export */   "onlineUsersCount": () => (/* binding */ onlineUsersCount),
+/* harmony export */   "peer": () => (/* binding */ peer),
 /* harmony export */   "myStream": () => (/* binding */ myStream),
 /* harmony export */   "otherStream": () => (/* binding */ otherStream),
 /* harmony export */   "displayCallRequestPopup": () => (/* binding */ displayCallRequestPopup),
@@ -2671,6 +2712,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var onlineUsers = function onlineUsers(state) {
   return state.onlineUsers;
+};
+var onlineUsersCount = function onlineUsersCount(state) {
+  return state.onlineUsers.length;
+};
+var peer = function peer(state) {
+  return state.peer;
 };
 var myStream = function myStream(state) {
   return state.myStream;
@@ -2774,9 +2821,13 @@ var SET_OTHERSTREAM = function SET_OTHERSTREAM(state, otherStream) {
 };
 var DESTROY_MYSTREAM = function DESTROY_MYSTREAM(state) {
   state.peer = null;
-  state.myStream.getTracks().forEach(function (track) {
-    track.stop();
-  });
+
+  if (state.myStream) {
+    state.myStream.getTracks().forEach(function (track) {
+      track.stop();
+    });
+  }
+
   state.myStream = null;
 };
 var TOGGLE_MIC = function TOGGLE_MIC(state, status) {
@@ -4792,7 +4843,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#users-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#mobileNav[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4816,7 +4867,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.user:hover .video-icon[data-v-1a2645eb] {\n    display: block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.user:hover .video-icon[data-v-1a2645eb] {\n    display: block;\n}\n#users-container[data-v-1a2645eb]{\n    height: calc(100% - 3rem)\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37748,139 +37799,262 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-7xl mx-auto h-screen py-10 text-gray-500" },
+    { staticClass: "h-screen bg-gray-100 flex justify-center relative" },
     [
-      _c("div", { staticClass: "flex h-full shadow-xl" }, [
-        _c(
-          "div",
-          { staticClass: "w-3/12 border-r" },
-          [
+      _c(
+        "div",
+        { staticClass: "w-full h-20 lg:h-36 bg-gray-700 flex justify-center" },
+        [
+          _c("div", { staticClass: "w-11/12 mt-3 md:hidden" }, [
             _c(
-              "div",
-              { staticClass: "h-12 bg-gray-100 flex items-center px-5" },
-              [_vm._v(" Online Users ")]
+              "svg",
+              {
+                staticClass: "h-5 w-5 text-white",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor",
+                },
+                on: {
+                  click: function ($event) {
+                    _vm.mobileNav = true
+                  },
+                },
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d: "M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z",
+                    "clip-rule": "evenodd",
+                  },
+                }),
+              ]
             ),
-            _vm._v(" "),
-            _c("UsersList"),
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-9/12" }, [
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white h-5/6 text-gray-500",
+        },
+        [
           _c(
             "div",
-            {
-              staticClass:
-                "h-12 bg-gray-100 flex justify-between items-center px-5",
-            },
+            { staticClass: "flex h-full shadow-xl text-xs lg:text-sm" },
             [
-              _c("div", { staticClass: "flex gap-2" }, [
+              _c(
+                "div",
+                { staticClass: "hidden md:block md:w-4/12 lg:w-3/12 border-r" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "h-12 bg-gray-100 flex items-center px-5" },
+                    [_vm._v(" Online Users:  " + _vm._s(_vm.onlineUsersCount))]
+                  ),
+                  _vm._v(" "),
+                  _c("UsersList"),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-full md:w-8/12 lg:w-9/12" }, [
                 _c(
-                  "svg",
+                  "div",
                   {
-                    staticClass: "h-6 w-6",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20",
-                      fill: "currentColor",
-                    },
+                    staticClass:
+                      "h-12 bg-gray-100 flex justify-between items-center px-2 md:px-5",
                   },
                   [
-                    _c("path", {
-                      attrs: {
-                        "fill-rule": "evenodd",
-                        d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z",
-                        "clip-rule": "evenodd",
-                      },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("span", [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.authUser.name) +
-                      "\n                    "
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex gap-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "text-gray-400 hover:text-red-400",
-                    on: {
-                      click: function ($event) {
-                        return _vm.logout()
-                      },
-                    },
-                  },
-                  [_vm._v("Logout")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "relative", attrs: { id: "chat-container" } },
-            [
-              _vm.myStream
-                ? _c("VideoChat", {
-                    attrs: { incomingVideoCallData: _vm.incomingVideoCallData },
-                  })
-                : _c(
-                    "div",
-                    {
-                      staticClass:
-                        "h-full flex flex-col items-center justify-center",
-                    },
-                    [
+                    _c("div", { staticClass: "flex gap-2 items-center" }, [
                       _c(
                         "svg",
                         {
-                          staticClass: "h-12 w-12",
+                          staticClass: "h-6 w-6",
                           attrs: {
-                            fill: "none",
-                            viewBox: "0 0 24 24",
                             xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20",
+                            fill: "currentColor",
                           },
                         },
                         [
                           _c("path", {
                             attrs: {
-                              d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 1.643.397 3.23 1.145 4.65L2.029 20.94a.85.85 0 0 0 1.036 1.036l4.29-1.117A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10ZM12 8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h3Zm3 5.162v-2.324l1.734-1.642A.75.75 0 0 1 18 9.741v4.518a.75.75 0 0 1-1.266.545L15 13.162Z",
-                              fill: "#212121",
+                              "fill-rule": "evenodd",
+                              d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z",
+                              "clip-rule": "evenodd",
                             },
                           }),
                         ]
                       ),
                       _vm._v(" "),
-                      _c("p", { staticClass: "font-medium text-xl mt-2" }, [
-                        _vm._v("Laravel WebRTC Video Chat"),
+                      _c("span", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.authUser.name) +
+                            "\n                        "
+                        ),
                       ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text-gray-500 text-sm" }, [
-                        _vm._v("Select a user & start video call"),
-                      ]),
-                      _vm._v(" "),
-                      _vm.displayCallRequestPopup && _vm.incomingVideoCallData
-                        ? _c("CallRequestPopup", {
-                            staticClass: "absolute top-2 right-2",
-                            attrs: {
-                              incomingVideoCallData: _vm.incomingVideoCallData,
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex gap-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "text-gray-400 hover:text-red-400",
+                          on: {
+                            click: function ($event) {
+                              return _vm.logout()
                             },
-                          })
-                        : _vm._e(),
+                          },
+                        },
+                        [_vm._v("Logout")]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "relative", attrs: { id: "chat-container" } },
+                  [
+                    _vm.myStream
+                      ? _c("VideoChat", {
+                          attrs: {
+                            incomingVideoCallData: _vm.incomingVideoCallData,
+                          },
+                        })
+                      : _c(
+                          "div",
+                          {
+                            staticClass:
+                              "h-full flex flex-col items-center justify-center space-x-2",
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "h-12 w-12",
+                                attrs: {
+                                  fill: "none",
+                                  viewBox: "0 0 24 24",
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                },
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 1.643.397 3.23 1.145 4.65L2.029 20.94a.85.85 0 0 0 1.036 1.036l4.29-1.117A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10ZM12 8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h3Zm3 5.162v-2.324l1.734-1.642A.75.75 0 0 1 18 9.741v4.518a.75.75 0 0 1-1.266.545L15 13.162Z",
+                                    fill: "#212121",
+                                  },
+                                }),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "font-medium text-lg lg:text-xl mt-2",
+                              },
+                              [_vm._v("Laravel WebRTC Video Chat")]
+                            ),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "text-gray-500 text-sm" }, [
+                              _vm._v("Select a user & start video call"),
+                            ]),
+                            _vm._v(" "),
+                            _vm.displayCallRequestPopup &&
+                            _vm.incomingVideoCallData
+                              ? _c("CallRequestPopup", {
+                                  staticClass: "absolute top-2 right-2",
+                                  attrs: {
+                                    incomingVideoCallData:
+                                      _vm.incomingVideoCallData,
+                                  },
+                                })
+                              : _vm._e(),
+                          ],
+                          1
+                        ),
+                  ],
+                  1
+                ),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _vm.mobileNav
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "absolute z-20 bg-white text-sm overflow-auto w-10/12 left-0 top-12 shadow-lg md:hidden",
+                  attrs: { id: "mobileNav" },
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "relative" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "h-10 flex items-center justify-between border-b px-2 bg-gray-50 sticky top-0 w-full",
+                        },
+                        [
+                          _c("div", [_vm._v("Online Users")]),
+                          _vm._v(" "),
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "h-5 w-5",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                fill: "none",
+                                viewBox: "0 0 24 24",
+                                stroke: "currentColor",
+                              },
+                              on: {
+                                click: function ($event) {
+                                  _vm.mobileNav = false
+                                },
+                              },
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                  "stroke-width": "2",
+                                  d: "M6 18L18 6M6 6l12 12",
+                                },
+                              }),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("UsersList", {
+                        staticClass: "px-2",
+                        on: {
+                          buttonHit: function ($event) {
+                            _vm.mobileNav = false
+                          },
+                        },
+                      }),
                     ],
                     1
                   ),
-            ],
-            1
-          ),
-        ]),
-      ]),
+                ]
+              )
+            : _vm._e(),
+        ]
+      ),
     ]
   )
 }
@@ -38024,41 +38198,46 @@ var render = function () {
         "div",
         {
           key: i,
-          staticClass: "flex items-center justify-between py-3 border-b user",
+          staticClass:
+            "flex w-full items-center justify-between py-3 gap-1 border-b user",
         },
         [
-          _c("div", { staticClass: "flex gap-2" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "h-6 w-6",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  stroke: "currentColor",
-                },
-              },
-              [
-                _c("path", {
+          _c(
+            "div",
+            { staticClass: "flex gap-1 lg:gap-2 items-center w-11/12" },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "h-6 w-6",
                   attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d: "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor",
                   },
-                }),
-              ]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "truncate" }, [
-              _vm._v(
-                "\n                " + _vm._s(user.name) + "\n            "
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d: "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                    },
+                  }),
+                ]
               ),
-            ]),
-          ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "truncate flex-1" }, [
+                _vm._v(
+                  "\n                " + _vm._s(user.name) + "\n            "
+                ),
+              ]),
+            ]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "flex items-center" }, [
+          _c("div", { staticClass: "flex w-6 items-center" }, [
             _c(
               "svg",
               {
@@ -38123,10 +38302,27 @@ var render = function () {
         attrs: { id: "other-video" },
       }),
       _vm._v(" "),
+      !_vm.otherStream
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "transform -translate-x-2/4 -translate-y-2/4 absolute left-1/2 top-2/4 bg-gray-800 text-gray-400 flex justify-center items-center",
+            },
+            [
+              _c("div", { staticClass: "text-center" }, [
+                _vm._v("\n                Waiting for response from "),
+                _c("i", [_vm._v(" " + _vm._s(_vm.callingUser.name))]),
+              ]),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("video", {
         staticClass:
-          "absolute w-40 h-28 bottom-0 object-cover z-20 bg-gray-900",
-        attrs: { id: "my-video" },
+          "absolute w-20 h-20 md:w-28 md:h-20 lg:w-40 lg:h-28 bottom-0 object-cover z-20 bg-gray-900",
+        attrs: { id: "my-video", muted: "" },
+        domProps: { muted: true },
       }),
       _vm._v(" "),
       !_vm.mic
