@@ -17,21 +17,20 @@ export const REMOVE_ONLINE_USER = (state, user) => {
     state.onlineUsers.splice(index, 1)
 }
 
-export const START_CALL = (state, {user, stream}) => {
+export const SET_CALLING_USER = (state, user) => {
     state.callingUser = user
+}
+
+export const SET_MYSTREAM = (state, stream) => {
     state.myStream = stream
 }
 
-export const ACCEPT_CALL = (state, {user, stream}) => {
-    state.callingUser = user
-    state.myStream = stream
-}
-
-export const CALL_ACCEPTED = (state, {otherStream}) => {
+export const SET_OTHERSTREAM = (state, otherStream) => {
     state.otherStream = otherStream
 }
 
-export const END_CALL = (state) => {
+export const DESTROY_MYSTREAM = (state) => {
+    state.peer = null
     state.myStream.getTracks().forEach(function(track) {
         track.stop();
     });
@@ -44,14 +43,6 @@ export const TOGGLE_MIC = (state, status) => {
 
 export const SET_PEER = (state, peer) => {
     state.peer = peer
-}
-
-export const CALL_REJECTED = (state) => {
-    state.peer = null
-    state.myStream.getTracks().forEach(function(track) {
-        track.stop();
-    });
-    state.myStream = null
 }
 
 export const SET_CALL_REQUEST_POPUP = (state, status) => {

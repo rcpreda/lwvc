@@ -35,7 +35,8 @@
         computed: {
             ...mapGetters([
                 'myStream',
-                'otherStream'
+                'otherStream',
+                'callingUser'
             ])
         },
         methods: {
@@ -46,7 +47,7 @@
                 }
             },
             endCall(){
-                this.$store.dispatch('endCall')
+                this.$store.dispatch('endCall', this.callingUser)
             }
         },
         mounted(){

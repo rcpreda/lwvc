@@ -37,7 +37,8 @@ export const startCall = ({commit, state}, user) => {
             }, 1000);
         })
         commit('SET_PEER', peer1)
-        commit('START_CALL', { user: user, stream: stream })
+        commit('SET_CALLING_USER', user)
+        commit('SET_MYSTREAM', stream)
     })
 }
 
@@ -62,11 +63,12 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
         })
 
         peer2.on('stream', stream => {
-            commit('CALL_ACCEPTED', { otherStream: stream })
+            commit('SET_OTHERSTREAM', stream)
         })
 
         commit('SET_PEER', peer2)
-        commit('ACCEPT_CALL', { user: fromUser, stream: stream })
+        commit('SET_CALLING_USER', fromUser)
+        commit('SET_MYSTREAM', stream)
     })
 }
 
@@ -74,14 +76,45 @@ export const callAccepted = ({commit, state}, {signalData}) => {
     const peer1 = state.peer
     peer1.signal(signalData)
     peer1.on('stream', stream => {
-        commit('CALL_ACCEPTED', { otherStream: stream })
+        commit('SET_OTHERSTREAM', stream)
     })
 }
 
-export const endCall = ({commit}) => {
-    commit('END_CALL')
+export const endCall = ({commit, state}, callingUser) => {
+    const channel = Echo.private(`video-call.${callingUser.id}`)
+    setTimeout(() => {
+        channel.whisper('videoCallEnded', {
+            fromUser: state.authUser,
+        });
+    }, 1000);
+    commit('DESTROY_MYSTREAM')
 }
 
 export const toggleMic = ({commit}, status) => {
     commit('TOGGLE_MIC', status)
+}
+
+export const showCallRequestPopup = ({commit}) => {
+    commit('SET_CALL_REQUEST_POPUP', true)
+}
+
+export const hideCallRequestPopup = ({commit}) => {
+    commit('SET_CALL_REQUEST_POPUP', false)
+}
+
+export const rejectCall = ({state}, callingUser) => {
+    const channel = Echo.private(`video-call.${callingUser.id}`)
+    setTimeout(() => {
+        channel.whisper('videoCallRejected', {
+            fromUser: state.authUser,
+        });
+    }, 1000);
+}
+
+export const callRejected = ({commit}) => {
+    commit('DESTROY_MYSTREAM')
+}
+
+export const callEnded = ({commit}) => {
+    commit('DESTROY_MYSTREAM')
 }

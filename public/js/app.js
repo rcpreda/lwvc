@@ -2065,9 +2065,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_UsersList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/UsersList.vue */ "./resources/js/components/UsersList.vue");
 /* harmony import */ var _components_VideoChat_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/VideoChat.vue */ "./resources/js/components/VideoChat.vue");
+/* harmony import */ var _components_CallRequestPopup_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CallRequestPopup.vue */ "./resources/js/components/CallRequestPopup.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -2108,18 +2109,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     UsersList: _components_UsersList_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    VideoChat: _components_VideoChat_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    VideoChat: _components_VideoChat_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CallRequestPopup: _components_CallRequestPopup_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      incomingVideoCallData: null
+    };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(['myStream'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['myStream', 'displayCallRequestPopup'])),
   methods: {
     logout: function logout() {
       this.$axios.post('/logout').then(function () {
@@ -2153,18 +2159,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     Echo["private"]("video-call.".concat(this.authUser.id)).listenForWhisper('incomingVideoCall', function (e) {
       console.log("Incoming call");
+      _this.incomingVideoCallData = e;
 
-      _this.$store.dispatch("acceptCall", {
-        fromUser: e.fromUser,
-        signalData: e.signalData
-      });
+      _this.$store.dispatch("showCallRequestPopup");
     }).listenForWhisper('videoCallAccepted', function (e) {
       console.log("Call Accepted");
 
       _this.$store.dispatch("callAccepted", {
         signalData: e.signalData
       });
+    }).listenForWhisper('videoCallRejected', function (e) {
+      console.log("Call Rejected");
+
+      _this.$store.dispatch("callRejected", {
+        fromUser: e.fromUser
+      });
+    }).listenForWhisper('videoCallEnded', function (e) {
+      console.log("Call Ended");
+
+      _this.$store.dispatch("callEnded", {
+        fromUser: e.fromUser
+      });
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    incomingVideoCallData: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)([])),
+  methods: {
+    accept: function accept() {
+      this.$store.dispatch("acceptCall", {
+        fromUser: this.incomingVideoCallData.fromUser,
+        signalData: this.incomingVideoCallData.signalData
+      });
+      this.$store.dispatch("hideCallRequestPopup");
+    },
+    reject: function reject() {
+      this.$store.dispatch("rejectCall", this.incomingVideoCallData.fromUser);
+      this.$store.dispatch("hideCallRequestPopup");
+    }
   }
 });
 
@@ -2272,7 +2350,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       mic: true
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['myStream', 'otherStream'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['myStream', 'otherStream', 'callingUser'])),
   methods: {
     toggleMic: function toggleMic(status) {
       this.mic = status;
@@ -2282,7 +2360,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     endCall: function endCall() {
-      this.$store.dispatch('endCall');
+      this.$store.dispatch('endCall', this.callingUser);
     }
   },
   mounted: function mounted() {
@@ -2441,7 +2519,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "acceptCall": () => (/* binding */ acceptCall),
 /* harmony export */   "callAccepted": () => (/* binding */ callAccepted),
 /* harmony export */   "endCall": () => (/* binding */ endCall),
-/* harmony export */   "toggleMic": () => (/* binding */ toggleMic)
+/* harmony export */   "toggleMic": () => (/* binding */ toggleMic),
+/* harmony export */   "showCallRequestPopup": () => (/* binding */ showCallRequestPopup),
+/* harmony export */   "hideCallRequestPopup": () => (/* binding */ hideCallRequestPopup),
+/* harmony export */   "rejectCall": () => (/* binding */ rejectCall),
+/* harmony export */   "callRejected": () => (/* binding */ callRejected),
+/* harmony export */   "callEnded": () => (/* binding */ callEnded)
 /* harmony export */ });
 /* harmony import */ var simple_peer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! simple-peer */ "./node_modules/simple-peer/index.js");
 /* harmony import */ var simple_peer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(simple_peer__WEBPACK_IMPORTED_MODULE_0__);
@@ -2484,10 +2567,8 @@ var startCall = function startCall(_ref5, user) {
       }, 1000);
     });
     commit('SET_PEER', peer1);
-    commit('START_CALL', {
-      user: user,
-      stream: stream
-    });
+    commit('SET_CALLING_USER', user);
+    commit('SET_MYSTREAM', stream);
   });
 };
 var acceptCall = function acceptCall(_ref6, _ref7) {
@@ -2512,15 +2593,11 @@ var acceptCall = function acceptCall(_ref6, _ref7) {
       }, 1000);
     });
     peer2.on('stream', function (stream) {
-      commit('CALL_ACCEPTED', {
-        otherStream: stream
-      });
+      commit('SET_OTHERSTREAM', stream);
     });
     commit('SET_PEER', peer2);
-    commit('ACCEPT_CALL', {
-      user: fromUser,
-      stream: stream
-    });
+    commit('SET_CALLING_USER', fromUser);
+    commit('SET_MYSTREAM', stream);
   });
 };
 var callAccepted = function callAccepted(_ref8, _ref9) {
@@ -2530,18 +2607,48 @@ var callAccepted = function callAccepted(_ref8, _ref9) {
   var peer1 = state.peer;
   peer1.signal(signalData);
   peer1.on('stream', function (stream) {
-    commit('CALL_ACCEPTED', {
-      otherStream: stream
-    });
+    commit('SET_OTHERSTREAM', stream);
   });
 };
-var endCall = function endCall(_ref10) {
-  var commit = _ref10.commit;
-  commit('END_CALL');
+var endCall = function endCall(_ref10, callingUser) {
+  var commit = _ref10.commit,
+      state = _ref10.state;
+  var channel = Echo["private"]("video-call.".concat(callingUser.id));
+  setTimeout(function () {
+    channel.whisper('videoCallEnded', {
+      fromUser: state.authUser
+    });
+  }, 1000);
+  commit('DESTROY_MYSTREAM');
 };
 var toggleMic = function toggleMic(_ref11, status) {
   var commit = _ref11.commit;
   commit('TOGGLE_MIC', status);
+};
+var showCallRequestPopup = function showCallRequestPopup(_ref12) {
+  var commit = _ref12.commit;
+  commit('SET_CALL_REQUEST_POPUP', true);
+};
+var hideCallRequestPopup = function hideCallRequestPopup(_ref13) {
+  var commit = _ref13.commit;
+  commit('SET_CALL_REQUEST_POPUP', false);
+};
+var rejectCall = function rejectCall(_ref14, callingUser) {
+  var state = _ref14.state;
+  var channel = Echo["private"]("video-call.".concat(callingUser.id));
+  setTimeout(function () {
+    channel.whisper('videoCallRejected', {
+      fromUser: state.authUser
+    });
+  }, 1000);
+};
+var callRejected = function callRejected(_ref15) {
+  var commit = _ref15.commit;
+  commit('DESTROY_MYSTREAM');
+};
+var callEnded = function callEnded(_ref16) {
+  var commit = _ref16.commit;
+  commit('DESTROY_MYSTREAM');
 };
 
 /***/ }),
@@ -2557,7 +2664,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "onlineUsers": () => (/* binding */ onlineUsers),
 /* harmony export */   "myStream": () => (/* binding */ myStream),
-/* harmony export */   "otherStream": () => (/* binding */ otherStream)
+/* harmony export */   "otherStream": () => (/* binding */ otherStream),
+/* harmony export */   "displayCallRequestPopup": () => (/* binding */ displayCallRequestPopup),
+/* harmony export */   "authUser": () => (/* binding */ authUser),
+/* harmony export */   "callingUser": () => (/* binding */ callingUser)
 /* harmony export */ });
 var onlineUsers = function onlineUsers(state) {
   return state.onlineUsers;
@@ -2567,6 +2677,15 @@ var myStream = function myStream(state) {
 };
 var otherStream = function otherStream(state) {
   return state.otherStream;
+};
+var displayCallRequestPopup = function displayCallRequestPopup(state) {
+  return state.displayCallRequestPopup;
+};
+var authUser = function authUser(state) {
+  return state.authUser;
+};
+var callingUser = function callingUser(state) {
+  return state.callingUser;
 };
 
 /***/ }),
@@ -2617,12 +2736,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SET_ONLINE_USERS": () => (/* binding */ SET_ONLINE_USERS),
 /* harmony export */   "INSERT_ONLINE_USER": () => (/* binding */ INSERT_ONLINE_USER),
 /* harmony export */   "REMOVE_ONLINE_USER": () => (/* binding */ REMOVE_ONLINE_USER),
-/* harmony export */   "START_CALL": () => (/* binding */ START_CALL),
-/* harmony export */   "ACCEPT_CALL": () => (/* binding */ ACCEPT_CALL),
-/* harmony export */   "CALL_ACCEPTED": () => (/* binding */ CALL_ACCEPTED),
-/* harmony export */   "END_CALL": () => (/* binding */ END_CALL),
+/* harmony export */   "SET_CALLING_USER": () => (/* binding */ SET_CALLING_USER),
+/* harmony export */   "SET_MYSTREAM": () => (/* binding */ SET_MYSTREAM),
+/* harmony export */   "SET_OTHERSTREAM": () => (/* binding */ SET_OTHERSTREAM),
+/* harmony export */   "DESTROY_MYSTREAM": () => (/* binding */ DESTROY_MYSTREAM),
 /* harmony export */   "TOGGLE_MIC": () => (/* binding */ TOGGLE_MIC),
-/* harmony export */   "SET_PEER": () => (/* binding */ SET_PEER)
+/* harmony export */   "SET_PEER": () => (/* binding */ SET_PEER),
+/* harmony export */   "SET_CALL_REQUEST_POPUP": () => (/* binding */ SET_CALL_REQUEST_POPUP)
 /* harmony export */ });
 var SET_AUTH_USER = function SET_AUTH_USER(state, user) {
   state.authUser = user;
@@ -2643,23 +2763,17 @@ var REMOVE_ONLINE_USER = function REMOVE_ONLINE_USER(state, user) {
   });
   state.onlineUsers.splice(index, 1);
 };
-var START_CALL = function START_CALL(state, _ref) {
-  var user = _ref.user,
-      stream = _ref.stream;
+var SET_CALLING_USER = function SET_CALLING_USER(state, user) {
   state.callingUser = user;
+};
+var SET_MYSTREAM = function SET_MYSTREAM(state, stream) {
   state.myStream = stream;
 };
-var ACCEPT_CALL = function ACCEPT_CALL(state, _ref2) {
-  var user = _ref2.user,
-      stream = _ref2.stream;
-  state.callingUser = user;
-  state.myStream = stream;
-};
-var CALL_ACCEPTED = function CALL_ACCEPTED(state, _ref3) {
-  var otherStream = _ref3.otherStream;
+var SET_OTHERSTREAM = function SET_OTHERSTREAM(state, otherStream) {
   state.otherStream = otherStream;
 };
-var END_CALL = function END_CALL(state) {
+var DESTROY_MYSTREAM = function DESTROY_MYSTREAM(state) {
+  state.peer = null;
   state.myStream.getTracks().forEach(function (track) {
     track.stop();
   });
@@ -2670,6 +2784,9 @@ var TOGGLE_MIC = function TOGGLE_MIC(state, status) {
 };
 var SET_PEER = function SET_PEER(state, peer) {
   state.peer = peer;
+};
+var SET_CALL_REQUEST_POPUP = function SET_CALL_REQUEST_POPUP(state, status) {
+  state.displayCallRequestPopup = status;
 };
 
 /***/ }),
@@ -2689,6 +2806,7 @@ __webpack_require__.r(__webpack_exports__);
   authUser: null,
   onlineUsers: [],
   callingUser: null,
+  displayCallRequestPopup: false,
   myStream: null,
   otherStream: null,
   peer: null
@@ -37320,6 +37438,45 @@ component.options.__file = "resources/js/components/App.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/CallRequestPopup.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/CallRequestPopup.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CallRequestPopup.vue?vue&type=template&id=1052adc6& */ "./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6&");
+/* harmony import */ var _CallRequestPopup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CallRequestPopup.vue?vue&type=script&lang=js& */ "./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CallRequestPopup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CallRequestPopup.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/UsersList.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/UsersList.vue ***!
@@ -37418,6 +37575,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallRequestPopup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CallRequestPopup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallRequestPopup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/UsersList.vue?vue&type=script&lang=js&":
 /*!************************************************************************!*\
   !*** ./resources/js/components/UsersList.vue?vue&type=script&lang=js& ***!
@@ -37502,6 +37675,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./App.vue?vue&type=template&id=332fccf4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/App.vue?vue&type=template&id=332fccf4&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallRequestPopup_vue_vue_type_template_id_1052adc6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CallRequestPopup.vue?vue&type=template&id=1052adc6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6&");
 
 
 /***/ }),
@@ -37637,7 +37827,9 @@ var render = function () {
             { staticClass: "relative", attrs: { id: "chat-container" } },
             [
               _vm.myStream
-                ? _c("VideoChat")
+                ? _c("VideoChat", {
+                    attrs: { incomingVideoCallData: _vm.incomingVideoCallData },
+                  })
                 : _c(
                     "div",
                     {
@@ -37672,12 +37864,131 @@ var render = function () {
                       _c("p", { staticClass: "text-gray-500 text-sm" }, [
                         _vm._v("Select a user & start video call"),
                       ]),
-                    ]
+                      _vm._v(" "),
+                      _vm.displayCallRequestPopup && _vm.incomingVideoCallData
+                        ? _c("CallRequestPopup", {
+                            staticClass: "absolute top-2 right-2",
+                            attrs: {
+                              incomingVideoCallData: _vm.incomingVideoCallData,
+                            },
+                          })
+                        : _vm._e(),
+                    ],
+                    1
                   ),
             ],
             1
           ),
         ]),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CallRequestPopup.vue?vue&type=template&id=1052adc6& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "min-w-min p-3 shadow-lg rounded bg-gray-100 text-gray-600 text-sm",
+    },
+    [
+      _c("div", { staticClass: "font-medium" }, [
+        _vm._v("Incoming Video Call from "),
+        _c("i", [
+          _vm._v('"' + _vm._s(_vm.incomingVideoCallData.fromUser.name) + '"'),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex gap-4 mt-4 text-white" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "w-8 h-8 bg-green-500 rounded-full flex items-center justify-center cursor-pointer",
+            on: {
+              click: function ($event) {
+                return _vm.accept()
+              },
+            },
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "h-5 w-5",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "currentColor",
+                  viewBox: "0 0 16 16",
+                },
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d: "M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z",
+                  },
+                }),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "w-8 h-8 bg-red-500 rounded-full flex items-center justify-center cursor-pointer",
+            on: {
+              click: function ($event) {
+                return _vm.reject()
+              },
+            },
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "h-5 w-5",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "currentColor",
+                  viewBox: "0 0 16 16",
+                },
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d: "M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925-10-14 .814-.58 10 14-.814.58z",
+                  },
+                }),
+              ]
+            ),
+          ]
+        ),
       ]),
     ]
   )
