@@ -45,3 +45,15 @@ export const TOGGLE_MIC = (state, status) => {
 export const SET_PEER = (state, peer) => {
     state.peer = peer
 }
+
+export const CALL_REJECTED = (state) => {
+    state.peer = null
+    state.myStream.getTracks().forEach(function(track) {
+        track.stop();
+    });
+    state.myStream = null
+}
+
+export const SET_CALL_REQUEST_POPUP = (state, status) => {
+    state.displayCallRequestPopup = status
+}
