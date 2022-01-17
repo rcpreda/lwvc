@@ -2595,24 +2595,14 @@ var startCall = function startCall(_ref5, user) {
       trickle: false,
       stream: stream,
       config: {
-        iceServers: [// {
-        //     urls: "stun:numb.viagenie.ca",
-        //     username: "sultan1640@gmail.com",
-        //     credential: "98376683"
-        // },
-        // {
-        //     urls: "turn:numb.viagenie.ca",
-        //     username: "sultan1640@gmail.com",
-        //     credential: "98376683"
-        // }
-        {
-          urls: "stun:ss-turn1.xirsys.com",
-          username: "5WLEHGzKOtYyOC-vbmBh0LuGSJf-HMjRi9XL2z9lEExlvh6taFCamkOX1GAN0xv0AAAAAGHllKdsd3ZjVHVybg==",
-          credential: "cf0f03b8-77af-11ec-a5ca-0242ac140004"
+        iceServers: [{
+          urls: "stun:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
         }, {
-          urls: "turn:ss-turn1.xirsys.com:80?transport=udp",
-          username: "5WLEHGzKOtYyOC-vbmBh0LuGSJf-HMjRi9XL2z9lEExlvh6taFCamkOX1GAN0xv0AAAAAGHllKdsd3ZjVHVybg==",
-          credential: "cf0f03b8-77af-11ec-a5ca-0242ac140004"
+          urls: "turn:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
         }]
       }
     });
@@ -2639,21 +2629,7 @@ var acceptCall = function acceptCall(_ref6, _ref7) {
   mediaHandler.getPermissions().then(function (stream) {
     var peer2 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       trickle: false,
-      stream: stream // config: { 
-      //     iceServers: [
-      //         {
-      //             urls: "stun:numb.viagenie.ca",
-      //             username: "sultan1640@gmail.com",
-      //             credential: "98376683"
-      //         },
-      //         {
-      //             urls: "turn:numb.viagenie.ca",
-      //             username: "sultan1640@gmail.com",
-      //             credential: "98376683"
-      //         }
-      //     ]
-      // },
-
+      stream: stream
     });
     peer2.signal(signalData);
     peer2.on("signal", function (data) {
