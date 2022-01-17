@@ -27,15 +27,25 @@ export const startCall = ({commit, state}, user) => {
             stream: stream,
             config: { 
                 iceServers: [
+                    // {
+                    //     urls: "stun:numb.viagenie.ca",
+                    //     username: "sultan1640@gmail.com",
+                    //     credential: "98376683"
+                    // },
+                    // {
+                    //     urls: "turn:numb.viagenie.ca",
+                    //     username: "sultan1640@gmail.com",
+                    //     credential: "98376683"
+                    // }
                     {
-                        urls: "stun:numb.viagenie.ca",
-                        username: "sultan1640@gmail.com",
-                        credential: "98376683"
+                        urls: "stun:ss-turn1.xirsys.com",
+                        username: "5WLEHGzKOtYyOC-vbmBh0LuGSJf-HMjRi9XL2z9lEExlvh6taFCamkOX1GAN0xv0AAAAAGHllKdsd3ZjVHVybg==",
+                        credential: "cf0f03b8-77af-11ec-a5ca-0242ac140004"
                     },
                     {
-                        urls: "turn:numb.viagenie.ca",
-                        username: "sultan1640@gmail.com",
-                        credential: "98376683"
+                        urls: "turn:ss-turn1.xirsys.com:80?transport=udp",
+                        username: "5WLEHGzKOtYyOC-vbmBh0LuGSJf-HMjRi9XL2z9lEExlvh6taFCamkOX1GAN0xv0AAAAAGHllKdsd3ZjVHVybg==",
+                        credential: "cf0f03b8-77af-11ec-a5ca-0242ac140004"
                     }
                 ]
             },
