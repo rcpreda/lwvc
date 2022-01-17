@@ -34,7 +34,7 @@ export const startCall = ({commit, state}, user) => {
                     fromUser: state.authUser,
                     signalData: data
                 });
-            }, 1000);
+            }, 3000);
         })
         commit('SET_PEER', peer1)
         commit('SET_CALLING_USER', user)
@@ -59,7 +59,7 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
                     fromUser: state.authUser,
                     signalData: data
                 });
-            }, 1000);
+            }, 3000);
         })
 
         peer2.on('stream', stream => {
@@ -86,7 +86,7 @@ export const endCall = ({commit, state}, callingUser) => {
         channel.whisper('videoCallEnded', {
             fromUser: state.authUser,
         });
-    }, 1000);
+    }, 3000);
     commit('DESTROY_MYSTREAM')
 }
 
@@ -108,7 +108,7 @@ export const rejectCall = ({state}, callingUser) => {
         channel.whisper('videoCallRejected', {
             fromUser: state.authUser,
         });
-    }, 1000);
+    }, 3000);
 }
 
 export const callRejected = ({commit}) => {
