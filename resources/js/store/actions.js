@@ -23,8 +23,14 @@ export const startCall = ({commit, state}, user) => {
     mediaHandler.getPermissions().then((stream) => {
         const peer1 = new Peer({
             initiator: true, 
-            trickle: true,
-            stream: stream
+            trickle: false,
+            stream: stream,
+            config: { 
+                iceServers: [
+                    { urls: 'stun:stun.l.google.com:19302' }, 
+                    { urls: 'stun:global.stun.twilio.com:3478?transport=udp' }
+                ]
+            },
         })
         
         peer1.on("signal", data => {
@@ -47,8 +53,14 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
     mediaHandler.getPermissions().then((stream) => {
 
         const peer2 = new Peer({
-            trickle: true, 
-            stream: stream 
+            trickle: false,
+            stream: stream,
+            config: { 
+                iceServers: [
+                    { urls: 'stun:stun.l.google.com:19302' }, 
+                    { urls: 'stun:global.stun.twilio.com:3478?transport=udp' }
+                ]
+            },
         })
 
         peer2.signal(signalData)
