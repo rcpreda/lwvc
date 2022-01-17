@@ -23,7 +23,7 @@ export const startCall = ({commit, state}, user) => {
     mediaHandler.getPermissions().then((stream) => {
         const peer1 = new Peer({
             initiator: true, 
-            trickle: false,
+            trickle: true,
             stream: stream
         })
         
@@ -47,7 +47,7 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
     mediaHandler.getPermissions().then((stream) => {
 
         const peer2 = new Peer({
-            trickle: false, 
+            trickle: true, 
             stream: stream 
         })
 
