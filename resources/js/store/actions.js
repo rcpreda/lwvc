@@ -28,8 +28,15 @@ export const startCall = ({commit, state}, user) => {
             config: { 
                 iceServers: [
                     {
-                        urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+                        urls: "stun:numb.viagenie.ca",
+                        username: "sultan1640@gmail.com",
+                        credential: "98376683"
                     },
+                    {
+                        urls: "turn:numb.viagenie.ca",
+                        username: "sultan1640@gmail.com",
+                        credential: "98376683"
+                    }
                 ]
             },
         })
@@ -56,13 +63,20 @@ export const acceptCall = ({commit, state}, {fromUser, signalData}) => {
         const peer2 = new Peer({
             trickle: false,
             stream: stream,
-            config: { 
-                iceServers: [
-                    {
-                        urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
-                    },
-                ]
-            },
+            // config: { 
+            //     iceServers: [
+            //         {
+            //             urls: "stun:numb.viagenie.ca",
+            //             username: "sultan1640@gmail.com",
+            //             credential: "98376683"
+            //         },
+            //         {
+            //             urls: "turn:numb.viagenie.ca",
+            //             username: "sultan1640@gmail.com",
+            //             credential: "98376683"
+            //         }
+            //     ]
+            // },
         })
 
         peer2.signal(signalData)

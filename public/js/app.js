@@ -2596,7 +2596,13 @@ var startCall = function startCall(_ref5, user) {
       stream: stream,
       config: {
         iceServers: [{
-          urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302']
+          urls: "stun:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
+        }, {
+          urls: "turn:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
         }]
       }
     });
@@ -2623,12 +2629,21 @@ var acceptCall = function acceptCall(_ref6, _ref7) {
   mediaHandler.getPermissions().then(function (stream) {
     var peer2 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       trickle: false,
-      stream: stream,
-      config: {
-        iceServers: [{
-          urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302']
-        }]
-      }
+      stream: stream // config: { 
+      //     iceServers: [
+      //         {
+      //             urls: "stun:numb.viagenie.ca",
+      //             username: "sultan1640@gmail.com",
+      //             credential: "98376683"
+      //         },
+      //         {
+      //             urls: "turn:numb.viagenie.ca",
+      //             username: "sultan1640@gmail.com",
+      //             credential: "98376683"
+      //         }
+      //     ]
+      // },
+
     });
     peer2.signal(signalData);
     peer2.on("signal", function (data) {
