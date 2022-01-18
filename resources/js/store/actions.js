@@ -25,6 +25,20 @@ export const startCall = ({commit, state}, user) => {
             initiator: true, 
             trickle: false,
             stream: stream,
+            config: {
+                iceServers: [
+                    {
+                        urls: "stun:numb.viagenie.ca",
+                        username: "sultan1640@gmail.com",
+                        credential: "98376683"
+                    },
+                    {
+                        urls: "turn:numb.viagenie.ca",
+                        username: "sultan1640@gmail.com",
+                        credential: "98376683"
+                    }
+                ]
+            },
         })
         
         peer1.on("signal", data => {

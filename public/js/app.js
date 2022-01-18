@@ -2592,7 +2592,18 @@ var startCall = function startCall(_ref5, user) {
     var peer1 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       initiator: true,
       trickle: false,
-      stream: stream
+      stream: stream,
+      config: {
+        iceServers: [{
+          urls: "stun:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
+        }, {
+          urls: "turn:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
+        }]
+      }
     });
     peer1.on("signal", function (data) {
       var channel = Echo["private"]("video-call.".concat(user.id));
