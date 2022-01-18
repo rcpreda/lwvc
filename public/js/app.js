@@ -2409,6 +2409,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.peer.on('error', function (err) {
       console.log(err); // this.$store.dispatch("callEnded");
     });
+    this.peer.on('close', function () {
+      console.log("Peer connection closed");
+    });
   },
   watch: {
     otherStream: function otherStream() {
@@ -37960,7 +37963,7 @@ var render = function () {
                             ),
                             _vm._v(" "),
                             _c("p", { staticClass: "text-gray-500 text-sm" }, [
-                              _vm._v("Select a user & start video call"),
+                              _vm._v("Select an user & start video call"),
                             ]),
                             _vm._v(" "),
                             _vm.displayCallRequestPopup &&

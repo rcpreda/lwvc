@@ -70,6 +70,9 @@
                 console.log(err)
                // this.$store.dispatch("callEnded");
             })
+            this.peer.on('close', () => {
+                console.log("Peer connection closed")
+            })
         },
         watch: {
             otherStream(){
