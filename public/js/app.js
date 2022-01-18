@@ -2394,8 +2394,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
     if (this.myStream) {
       var myVideo = document.querySelector("#my-video");
 
@@ -2409,9 +2407,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     this.peer.on('error', function (err) {
-      console.log(err);
-
-      _this.$store.dispatch("callEnded");
+      console.log(err); // this.$store.dispatch("callEnded");
     });
   },
   watch: {
@@ -2593,18 +2589,7 @@ var startCall = function startCall(_ref5, user) {
     var peer1 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       initiator: true,
       trickle: false,
-      stream: stream,
-      config: {
-        iceServers: [{
-          urls: "stun:numb.viagenie.ca",
-          username: "sultan1640@gmail.com",
-          credential: "98376683"
-        }, {
-          urls: "turn:numb.viagenie.ca",
-          username: "sultan1640@gmail.com",
-          credential: "98376683"
-        }]
-      }
+      stream: stream
     });
     peer1.on("signal", function (data) {
       var channel = Echo["private"]("video-call.".concat(user.id));
