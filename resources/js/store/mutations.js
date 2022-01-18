@@ -29,6 +29,10 @@ export const SET_OTHERSTREAM = (state, otherStream) => {
     state.otherStream = otherStream
 }
 
+export const DESTROY_OTHERSTREAM = (state) => {
+    state.otherStream = null
+}
+
 export const DESTROY_MYSTREAM = (state) => {
     state.peer = null
     if(state.myStream){
@@ -49,4 +53,12 @@ export const SET_PEER = (state, peer) => {
 
 export const SET_CALL_REQUEST_POPUP = (state, status) => {
     state.displayCallRequestPopup = status
+}
+
+export const SET_INCOMING_CALL_DATA = (state, data) => {
+    state.incomingCallData = data
+}
+
+export const DESTROY_INCOMING_CALL_DATA = (state, data) => {
+    state.incomingCallData = null
 }

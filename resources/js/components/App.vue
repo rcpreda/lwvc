@@ -28,12 +28,12 @@
                         </div>
                     </div>
                     <div id="chat-container" class="relative">
-                        <VideoChat v-if="myStream" :incomingVideoCallData="incomingVideoCallData"/>
+                        <VideoChat v-if="myStream"/>
                         <div v-else class="h-full flex flex-col items-center justify-center space-x-2">
                             <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 1.643.397 3.23 1.145 4.65L2.029 20.94a.85.85 0 0 0 1.036 1.036l4.29-1.117A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10ZM12 8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h3Zm3 5.162v-2.324l1.734-1.642A.75.75 0 0 1 18 9.741v4.518a.75.75 0 0 1-1.266.545L15 13.162Z" fill="#212121"/></svg>
                             <p class="font-medium text-lg lg:text-xl mt-2">Laravel WebRTC Video Chat</p>
                             <p class="text-gray-500 text-sm">Select an user & start video call</p>
-                            <CallRequestPopup v-if="displayCallRequestPopup && incomingVideoCallData" :incomingVideoCallData="incomingVideoCallData" class="absolute top-2 right-2"/>
+                            <CallRequestPopup v-if="displayCallRequestPopup && incomingCallData" class="absolute top-2 right-2"/>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,6 @@ export default {
     },
     data(){
         return {
-            incomingVideoCallData : null,
             mobileNav: false
         }
     },
@@ -74,6 +73,7 @@ export default {
         ...mapGetters([
             'onlineUsersCount',
             'myStream',
+            'incomingCallData',
             'displayCallRequestPopup'
         ])
     },
@@ -114,12 +114,17 @@ export default {
         Echo.private(`video-call.${this.authUser.id}`)
             .listenForWhisper('incomingVideoCall', (e) => {
                 console.log("Incoming call")
-                this.incomingVideoCallData = e
+                this.$axios.get(`/signals/${e.signalID}`).then(res => {
+                    this.$store.dispatch("setIncomingCallData", res.data.data);
+                })
                 this.$store.dispatch("showCallRequestPopup");
             })
             .listenForWhisper('videoCallAccepted', (e) => {
                 console.log("Call Accepted")
-                this.$store.dispatch("callAccepted", { signalData: e.signalData});
+                this.$axios.get(`/signals/${e.signalID}`).then(res => {
+                    this.$store.dispatch("setIncomingCallData", res.data.data);
+                    this.$store.dispatch("callAccepted");
+                })
             })
             .listenForWhisper('videoCallRejected', (e) => {
                 console.log("Call Rejected")

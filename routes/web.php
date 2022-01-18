@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SignalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
     })->name('chat');
 
     Route::get('/users', [UserController::class, 'index']);
+    Route::post('/signals', [SignalController::class, 'store']);
+    Route::get('/signals/{signal}', [SignalController::class, 'show']);
 });
 
 

@@ -5,5 +5,6 @@ export default {
     displayCallRequestPopup: false,
     myStream: null,
     otherStream: null,
-    peer: null
+    peer: null,
+    incomingCallData: null,
 }

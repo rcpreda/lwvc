@@ -1,6 +1,6 @@
 <template>
-    <div class="min-w-min p-3 shadow-lg rounded bg-gray-100 text-gray-600 text-sm">
-        <div class="font-medium">Incoming Video Call from <i>"{{ incomingVideoCallData.fromUser.name }}"</i></div>
+    <div v-if="incomingCallData" class="min-w-min p-3 shadow-lg rounded bg-gray-100 text-gray-600 text-sm">
+        <div class="font-medium">Incoming Video Call from <i>"{{ incomingCallData.user.name }}"</i></div>
         <div class="flex gap-4 mt-4 text-white">
             <div @click="accept()" class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 16 16">
@@ -19,27 +19,18 @@
 <script>
 import {mapGetters} from 'vuex'
 export default {
-    props: {
-        incomingVideoCallData:{
-            type: Object,
-            required: true
-        }
-    },
     computed: {
         ...mapGetters([
-            
+            'incomingCallData'
         ])
     },
     methods: {
         accept(){
-            this.$store.dispatch("acceptCall", { 
-                fromUser: this.incomingVideoCallData.fromUser, 
-                signalData: this.incomingVideoCallData.signalData
-            });
+            this.$store.dispatch("acceptCall");
             this.$store.dispatch("hideCallRequestPopup");
         },
         reject(){
-            this.$store.dispatch("rejectCall", this.incomingVideoCallData.fromUser);
+            this.$store.dispatch("rejectCall");
             this.$store.dispatch("hideCallRequestPopup");
         }
     }

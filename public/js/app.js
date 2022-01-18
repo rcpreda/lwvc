@@ -2142,11 +2142,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      incomingVideoCallData: null,
       mobileNav: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['onlineUsersCount', 'myStream', 'displayCallRequestPopup'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['onlineUsersCount', 'myStream', 'incomingCallData', 'displayCallRequestPopup'])),
   methods: {
     logout: function logout() {
       this.$axios.post('/logout').then(function () {
@@ -2180,14 +2179,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     Echo["private"]("video-call.".concat(this.authUser.id)).listenForWhisper('incomingVideoCall', function (e) {
       console.log("Incoming call");
-      _this.incomingVideoCallData = e;
+
+      _this.$axios.get("/signals/".concat(e.signalID)).then(function (res) {
+        _this.$store.dispatch("setIncomingCallData", res.data.data);
+      });
 
       _this.$store.dispatch("showCallRequestPopup");
     }).listenForWhisper('videoCallAccepted', function (e) {
       console.log("Call Accepted");
 
-      _this.$store.dispatch("callAccepted", {
-        signalData: e.signalData
+      _this.$axios.get("/signals/".concat(e.signalID)).then(function (res) {
+        _this.$store.dispatch("setIncomingCallData", res.data.data);
+
+        _this.$store.dispatch("callAccepted");
       });
     }).listenForWhisper('videoCallRejected', function (e) {
       console.log("Call Rejected");
@@ -2245,23 +2249,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    incomingVideoCallData: {
-      type: Object,
-      required: true
-    }
-  },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)([])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['incomingCallData'])),
   methods: {
     accept: function accept() {
-      this.$store.dispatch("acceptCall", {
-        fromUser: this.incomingVideoCallData.fromUser,
-        signalData: this.incomingVideoCallData.signalData
-      });
+      this.$store.dispatch("acceptCall");
       this.$store.dispatch("hideCallRequestPopup");
     },
     reject: function reject() {
-      this.$store.dispatch("rejectCall", this.incomingVideoCallData.fromUser);
+      this.$store.dispatch("rejectCall");
       this.$store.dispatch("hideCallRequestPopup");
     }
   }
@@ -2390,7 +2385,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     endCall: function endCall() {
-      this.$store.dispatch('endCall', this.callingUser);
+      this.$store.dispatch('endCall');
     }
   },
   mounted: function mounted() {
@@ -2552,20 +2547,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setOnlineUsers": () => (/* binding */ setOnlineUsers),
 /* harmony export */   "insertOnlineUser": () => (/* binding */ insertOnlineUser),
 /* harmony export */   "removeOnlineUser": () => (/* binding */ removeOnlineUser),
-/* harmony export */   "startCall": () => (/* binding */ startCall),
-/* harmony export */   "acceptCall": () => (/* binding */ acceptCall),
-/* harmony export */   "callAccepted": () => (/* binding */ callAccepted),
-/* harmony export */   "endCall": () => (/* binding */ endCall),
 /* harmony export */   "toggleMic": () => (/* binding */ toggleMic),
 /* harmony export */   "showCallRequestPopup": () => (/* binding */ showCallRequestPopup),
 /* harmony export */   "hideCallRequestPopup": () => (/* binding */ hideCallRequestPopup),
+/* harmony export */   "setIncomingCallData": () => (/* binding */ setIncomingCallData),
+/* harmony export */   "startCall": () => (/* binding */ startCall),
+/* harmony export */   "acceptCall": () => (/* binding */ acceptCall),
+/* harmony export */   "callAccepted": () => (/* binding */ callAccepted),
 /* harmony export */   "rejectCall": () => (/* binding */ rejectCall),
 /* harmony export */   "callRejected": () => (/* binding */ callRejected),
-/* harmony export */   "callEnded": () => (/* binding */ callEnded)
+/* harmony export */   "callEnded": () => (/* binding */ callEnded),
+/* harmony export */   "endCall": () => (/* binding */ endCall)
 /* harmony export */ });
 /* harmony import */ var simple_peer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! simple-peer */ "./node_modules/simple-peer/index.js");
 /* harmony import */ var simple_peer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(simple_peer__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _MediaHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../MediaHandler */ "./resources/js/MediaHandler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 var setAuthUser = function setAuthUser(_ref, user) {
@@ -2584,9 +2583,25 @@ var removeOnlineUser = function removeOnlineUser(_ref4, user) {
   var commit = _ref4.commit;
   commit('REMOVE_ONLINE_USER', user);
 };
-var startCall = function startCall(_ref5, user) {
-  var commit = _ref5.commit,
-      state = _ref5.state;
+var toggleMic = function toggleMic(_ref5, status) {
+  var commit = _ref5.commit;
+  commit('TOGGLE_MIC', status);
+};
+var showCallRequestPopup = function showCallRequestPopup(_ref6) {
+  var commit = _ref6.commit;
+  commit('SET_CALL_REQUEST_POPUP', true);
+};
+var hideCallRequestPopup = function hideCallRequestPopup(_ref7) {
+  var commit = _ref7.commit;
+  commit('SET_CALL_REQUEST_POPUP', false);
+};
+var setIncomingCallData = function setIncomingCallData(_ref8, data) {
+  var commit = _ref8.commit;
+  commit('SET_INCOMING_CALL_DATA', data);
+};
+var startCall = function startCall(_ref9, user) {
+  var commit = _ref9.commit,
+      state = _ref9.state;
   var mediaHandler = new _MediaHandler__WEBPACK_IMPORTED_MODULE_1__["default"]();
   mediaHandler.getPermissions().then(function (stream) {
     var peer1 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
@@ -2595,9 +2610,9 @@ var startCall = function startCall(_ref5, user) {
       stream: stream,
       config: {
         iceServers: [{
-          urls: "stun:numb.viagenie.ca:3478" // username: "sultan1640@gmail.com",
-          // credential: "98376683"
-
+          urls: "stun:numb.viagenie.ca",
+          username: "sultan1640@gmail.com",
+          credential: "98376683"
         }, {
           urls: "turn:numb.viagenie.ca",
           username: "sultan1640@gmail.com",
@@ -2607,96 +2622,90 @@ var startCall = function startCall(_ref5, user) {
     });
     peer1.on("signal", function (data) {
       var channel = Echo["private"]("video-call.".concat(user.id));
-      setTimeout(function () {
-        channel.whisper('incomingVideoCall', {
-          fromUser: state.authUser,
-          signalData: data
-        });
-      }, 3000);
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("/signals", {
+        data: JSON.stringify(data)
+      }).then(function (res) {
+        setTimeout(function () {
+          channel.whisper('incomingVideoCall', {
+            signalID: res.data.signal.id
+          });
+        }, 500);
+      });
     });
     commit('SET_PEER', peer1);
     commit('SET_CALLING_USER', user);
     commit('SET_MYSTREAM', stream);
   });
 };
-var acceptCall = function acceptCall(_ref6, _ref7) {
-  var commit = _ref6.commit,
-      state = _ref6.state;
-  var fromUser = _ref7.fromUser,
-      signalData = _ref7.signalData;
+var acceptCall = function acceptCall(_ref10) {
+  var commit = _ref10.commit,
+      state = _ref10.state;
   var mediaHandler = new _MediaHandler__WEBPACK_IMPORTED_MODULE_1__["default"]();
   mediaHandler.getPermissions().then(function (stream) {
     var peer2 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       trickle: false,
       stream: stream
     });
-    peer2.signal(signalData);
+    peer2.signal(JSON.parse(state.incomingCallData.data));
     peer2.on("signal", function (data) {
-      var channel = Echo["private"]("video-call.".concat(fromUser.id));
-      setTimeout(function () {
-        channel.whisper('videoCallAccepted', {
-          fromUser: state.authUser,
-          signalData: data
-        });
-      }, 3000);
+      var channel = Echo["private"]("video-call.".concat(state.incomingCallData.user.id));
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("/signals", {
+        data: JSON.stringify(data)
+      }).then(function (res) {
+        commit('SET_CALLING_USER', state.incomingCallData.user);
+        setTimeout(function () {
+          channel.whisper('videoCallAccepted', {
+            signalID: res.data.signal.id
+          });
+        }, 500);
+      });
     });
     peer2.on('stream', function (stream) {
       commit('SET_OTHERSTREAM', stream);
     });
     commit('SET_PEER', peer2);
-    commit('SET_CALLING_USER', fromUser);
     commit('SET_MYSTREAM', stream);
   });
 };
-var callAccepted = function callAccepted(_ref8, _ref9) {
-  var commit = _ref8.commit,
-      state = _ref8.state;
-  var signalData = _ref9.signalData;
+var callAccepted = function callAccepted(_ref11) {
+  var commit = _ref11.commit,
+      state = _ref11.state;
   var peer1 = state.peer;
-  peer1.signal(signalData);
+  peer1.signal(JSON.parse(state.incomingCallData.data));
   peer1.on('stream', function (stream) {
     commit('SET_OTHERSTREAM', stream);
   });
-};
-var endCall = function endCall(_ref10, callingUser) {
-  var commit = _ref10.commit,
-      state = _ref10.state;
-  var channel = Echo["private"]("video-call.".concat(callingUser.id));
-  setTimeout(function () {
-    channel.whisper('videoCallEnded', {
-      fromUser: state.authUser
-    });
-  }, 3000);
-  commit('DESTROY_MYSTREAM');
-};
-var toggleMic = function toggleMic(_ref11, status) {
-  var commit = _ref11.commit;
-  commit('TOGGLE_MIC', status);
-};
-var showCallRequestPopup = function showCallRequestPopup(_ref12) {
-  var commit = _ref12.commit;
-  commit('SET_CALL_REQUEST_POPUP', true);
-};
-var hideCallRequestPopup = function hideCallRequestPopup(_ref13) {
-  var commit = _ref13.commit;
-  commit('SET_CALL_REQUEST_POPUP', false);
-};
-var rejectCall = function rejectCall(_ref14, callingUser) {
-  var state = _ref14.state;
-  var channel = Echo["private"]("video-call.".concat(callingUser.id));
+}; // Done
+
+var rejectCall = function rejectCall(_ref12) {
+  var commit = _ref12.commit,
+      state = _ref12.state;
+  var channel = Echo["private"]("video-call.".concat(state.incomingCallData.user.id));
   setTimeout(function () {
     channel.whisper('videoCallRejected', {
       fromUser: state.authUser
     });
   }, 3000);
+  commit('DESTROY_INCOMING_CALL_DATA');
 };
-var callRejected = function callRejected(_ref15) {
-  var commit = _ref15.commit;
+var callRejected = function callRejected(_ref13) {
+  var commit = _ref13.commit;
   commit('DESTROY_MYSTREAM');
 };
-var callEnded = function callEnded(_ref16) {
-  var commit = _ref16.commit;
+var callEnded = function callEnded(_ref14) {
+  var commit = _ref14.commit;
   commit('SET_CALL_REQUEST_POPUP', false);
+  commit('DESTROY_MYSTREAM');
+};
+var endCall = function endCall(_ref15) {
+  var commit = _ref15.commit,
+      state = _ref15.state;
+  var channel = Echo["private"]("video-call.".concat(state.callingUser.id));
+  setTimeout(function () {
+    channel.whisper('videoCallEnded', {
+      fromUser: state.authUser
+    });
+  }, 3000);
   commit('DESTROY_MYSTREAM');
 };
 
@@ -2718,7 +2727,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "otherStream": () => (/* binding */ otherStream),
 /* harmony export */   "displayCallRequestPopup": () => (/* binding */ displayCallRequestPopup),
 /* harmony export */   "authUser": () => (/* binding */ authUser),
-/* harmony export */   "callingUser": () => (/* binding */ callingUser)
+/* harmony export */   "callingUser": () => (/* binding */ callingUser),
+/* harmony export */   "incomingCallData": () => (/* binding */ incomingCallData)
 /* harmony export */ });
 var onlineUsers = function onlineUsers(state) {
   return state.onlineUsers;
@@ -2743,6 +2753,9 @@ var authUser = function authUser(state) {
 };
 var callingUser = function callingUser(state) {
   return state.callingUser;
+};
+var incomingCallData = function incomingCallData(state) {
+  return state.incomingCallData;
 };
 
 /***/ }),
@@ -2796,10 +2809,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SET_CALLING_USER": () => (/* binding */ SET_CALLING_USER),
 /* harmony export */   "SET_MYSTREAM": () => (/* binding */ SET_MYSTREAM),
 /* harmony export */   "SET_OTHERSTREAM": () => (/* binding */ SET_OTHERSTREAM),
+/* harmony export */   "DESTROY_OTHERSTREAM": () => (/* binding */ DESTROY_OTHERSTREAM),
 /* harmony export */   "DESTROY_MYSTREAM": () => (/* binding */ DESTROY_MYSTREAM),
 /* harmony export */   "TOGGLE_MIC": () => (/* binding */ TOGGLE_MIC),
 /* harmony export */   "SET_PEER": () => (/* binding */ SET_PEER),
-/* harmony export */   "SET_CALL_REQUEST_POPUP": () => (/* binding */ SET_CALL_REQUEST_POPUP)
+/* harmony export */   "SET_CALL_REQUEST_POPUP": () => (/* binding */ SET_CALL_REQUEST_POPUP),
+/* harmony export */   "SET_INCOMING_CALL_DATA": () => (/* binding */ SET_INCOMING_CALL_DATA),
+/* harmony export */   "DESTROY_INCOMING_CALL_DATA": () => (/* binding */ DESTROY_INCOMING_CALL_DATA)
 /* harmony export */ });
 var SET_AUTH_USER = function SET_AUTH_USER(state, user) {
   state.authUser = user;
@@ -2829,6 +2845,9 @@ var SET_MYSTREAM = function SET_MYSTREAM(state, stream) {
 var SET_OTHERSTREAM = function SET_OTHERSTREAM(state, otherStream) {
   state.otherStream = otherStream;
 };
+var DESTROY_OTHERSTREAM = function DESTROY_OTHERSTREAM(state) {
+  state.otherStream = null;
+};
 var DESTROY_MYSTREAM = function DESTROY_MYSTREAM(state) {
   state.peer = null;
 
@@ -2848,6 +2867,12 @@ var SET_PEER = function SET_PEER(state, peer) {
 };
 var SET_CALL_REQUEST_POPUP = function SET_CALL_REQUEST_POPUP(state, status) {
   state.displayCallRequestPopup = status;
+};
+var SET_INCOMING_CALL_DATA = function SET_INCOMING_CALL_DATA(state, data) {
+  state.incomingCallData = data;
+};
+var DESTROY_INCOMING_CALL_DATA = function DESTROY_INCOMING_CALL_DATA(state, data) {
+  state.incomingCallData = null;
 };
 
 /***/ }),
@@ -2870,7 +2895,8 @@ __webpack_require__.r(__webpack_exports__);
   displayCallRequestPopup: false,
   myStream: null,
   otherStream: null,
-  peer: null
+  peer: null,
+  incomingCallData: null
 });
 
 /***/ }),
@@ -37932,11 +37958,7 @@ var render = function () {
                   { staticClass: "relative", attrs: { id: "chat-container" } },
                   [
                     _vm.myStream
-                      ? _c("VideoChat", {
-                          attrs: {
-                            incomingVideoCallData: _vm.incomingVideoCallData,
-                          },
-                        })
+                      ? _c("VideoChat")
                       : _c(
                           "div",
                           {
@@ -37977,14 +37999,9 @@ var render = function () {
                               _vm._v("Select an user & start video call"),
                             ]),
                             _vm._v(" "),
-                            _vm.displayCallRequestPopup &&
-                            _vm.incomingVideoCallData
+                            _vm.displayCallRequestPopup && _vm.incomingCallData
                               ? _c("CallRequestPopup", {
                                   staticClass: "absolute top-2 right-2",
-                                  attrs: {
-                                    incomingVideoCallData:
-                                      _vm.incomingVideoCallData,
-                                  },
                                 })
                               : _vm._e(),
                           ],
@@ -38091,91 +38108,93 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "min-w-min p-3 shadow-lg rounded bg-gray-100 text-gray-600 text-sm",
-    },
-    [
-      _c("div", { staticClass: "font-medium" }, [
-        _vm._v("Incoming Video Call from "),
-        _c("i", [
-          _vm._v('"' + _vm._s(_vm.incomingVideoCallData.fromUser.name) + '"'),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex gap-4 mt-4 text-white" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "w-8 h-8 bg-green-500 rounded-full flex items-center justify-center cursor-pointer",
-            on: {
-              click: function ($event) {
-                return _vm.accept()
-              },
-            },
-          },
-          [
+  return _vm.incomingCallData
+    ? _c(
+        "div",
+        {
+          staticClass:
+            "min-w-min p-3 shadow-lg rounded bg-gray-100 text-gray-600 text-sm",
+        },
+        [
+          _c("div", { staticClass: "font-medium" }, [
+            _vm._v("Incoming Video Call from "),
+            _c("i", [
+              _vm._v('"' + _vm._s(_vm.incomingCallData.user.name) + '"'),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex gap-4 mt-4 text-white" }, [
             _c(
-              "svg",
+              "div",
               {
-                staticClass: "h-5 w-5",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "currentColor",
-                  viewBox: "0 0 16 16",
+                staticClass:
+                  "w-8 h-8 bg-green-500 rounded-full flex items-center justify-center cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    return _vm.accept()
+                  },
                 },
               },
               [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d: "M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z",
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-5 w-5",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      fill: "currentColor",
+                      viewBox: "0 0 16 16",
+                    },
                   },
-                }),
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d: "M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z",
+                      },
+                    }),
+                  ]
+                ),
               ]
             ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "w-8 h-8 bg-red-500 rounded-full flex items-center justify-center cursor-pointer",
-            on: {
-              click: function ($event) {
-                return _vm.reject()
-              },
-            },
-          },
-          [
+            _vm._v(" "),
             _c(
-              "svg",
+              "div",
               {
-                staticClass: "h-5 w-5",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "currentColor",
-                  viewBox: "0 0 16 16",
+                staticClass:
+                  "w-8 h-8 bg-red-500 rounded-full flex items-center justify-center cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    return _vm.reject()
+                  },
                 },
               },
               [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d: "M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925-10-14 .814-.58 10 14-.814.58z",
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-5 w-5",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      fill: "currentColor",
+                      viewBox: "0 0 16 16",
+                    },
                   },
-                }),
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d: "M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925-10-14 .814-.58 10 14-.814.58z",
+                      },
+                    }),
+                  ]
+                ),
               ]
             ),
-          ]
-        ),
-      ]),
-    ]
-  )
+          ]),
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38311,22 +38330,6 @@ var render = function () {
         staticClass: "w-full h-full object-cover bg-gray-800",
         attrs: { id: "other-video" },
       }),
-      _vm._v(" "),
-      !_vm.otherStream
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "transform -translate-x-2/4 -translate-y-2/4 absolute left-1/2 top-2/4 bg-gray-800 text-gray-400 flex justify-center items-center",
-            },
-            [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v("\n                Waiting for response from "),
-                _c("i", [_vm._v(" " + _vm._s(_vm.callingUser.name))]),
-              ]),
-            ]
-          )
-        : _vm._e(),
       _vm._v(" "),
       _c("video", {
         staticClass:

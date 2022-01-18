@@ -30,3 +30,6 @@ export const callingUser = (state) => {
     return state.callingUser
 }
 
+export const incomingCallData = (state) => {
+    return state.incomingCallData
+}
