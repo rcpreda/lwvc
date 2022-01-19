@@ -2610,13 +2610,13 @@ var startCall = function startCall(_ref9, user) {
       stream: stream,
       config: {
         iceServers: [{
-          urls: "stun:numb.viagenie.ca",
-          username: "sultan1640@gmail.com",
-          credential: "98376683"
+          urls: "turn:turn.hexdcode.com:3478",
+          username: "test",
+          credential: "test123"
         }, {
-          urls: "turn:numb.viagenie.ca",
-          username: "sultan1640@gmail.com",
-          credential: "98376683"
+          urls: "stun:stun.hexdcode.com",
+          username: "test",
+          credential: "test123"
         }]
       }
     });
