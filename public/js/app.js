@@ -38339,6 +38339,22 @@ var render = function () {
         attrs: { id: "other-video" },
       }),
       _vm._v(" "),
+      !_vm.otherStream
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "transform -translate-x-2/4 -translate-y-2/4 absolute left-1/2 top-2/4 bg-gray-800 text-gray-400 flex justify-center items-center",
+            },
+            [
+              _c("div", { staticClass: "text-center" }, [
+                _vm._v("\n                Waiting for response from "),
+                _c("i", [_vm._v(" " + _vm._s(_vm.callingUser.name))]),
+              ]),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("video", {
         staticClass:
           "absolute w-20 h-20 md:w-28 md:h-20 lg:w-40 lg:h-28 bottom-0 object-cover z-20 bg-gray-900",
