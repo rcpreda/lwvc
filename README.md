@@ -1,66 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Video Chat using Laravel & Vue
 
-## About Laravel
+Peer to peer video calling using simple-peer WebRTC library & self hosted turn server.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A basic Nginx, MySQL & PHP server setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A pusher account with client events enabled
+(https://pusher.com/)
+    
+One domain with 2 subdomain (All pointing to server's public IP)
+        
+        example.com
+        turn.example.com
+        stun.example.com
+    
+SSL Certificate for all 3 domains (Preferably a Wildcard SSL or You may also use Let's encrypt free SSL)
 
-## Learning Laravel
+Coturn server (https://github.com/coturn/coturn)
+## Coturn Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Installation
+    sudo apt-get -y update
+    sudo apt-get upgrade
+    sudo reboot
+    sudo apt-get install coturn
+    sudo systemctl stop coturn
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Enable TURN server
+    sudo nano /etc/default/coturn
+Remove the # before TURNSERVER_ENABLED & save
 
-## Laravel Sponsors
+### TURN server configuration
+    sudo nano /etc/turnserver.conf
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### turnserver.conf
 
-### Premium Partners
+    # TURN server name and realm
+    realm=turn.example.com
+    server-name​=​turn.example.com​
+    
+    # Use fingerprint in TURN message
+    fingerprint
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+    # IPs the TURN server listens to
+    listening-ip=0.0.0.0
 
-## Contributing
+    # External IP-Address of the TURN server (Public IP of Server)
+    external-ip​=​45.77.55.34
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    # Main listening port
+    listening-port=3478
 
-## Code of Conduct
+    # Further ports that are open for communication
+    min-port=10000
+    max-port=20000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    # Log file path
+    log-file​=​/var/log/turnserver.log
 
-## Security Vulnerabilities
+    # Enable verbose logging
+    verbose
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    # Specify the user for the TURN authentification
+    user=test:test123
 
-## License
+    # Enable long-term credential mechanism
+    lt-cred-mech
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    # SSL certificates
+    cert​=​/etc/letsencrypt/live/​turn.example.com-0001​/cert.pem
+    pkey​=​/etc/letsencrypt/live/​turn.example.com-0001/privkey.pem
+
+    # 443 for TURN over TLS, which can bypass firewalls
+    tls-listening-port=443
+
+
+Make sure you change the domain & SSL certificate location.
+Remember to Enable port 80 and 443 on inbound security rules & Enable port 3478 and 5349 for TCP and UDP incoming connection.
+
+    sudo systemctl start coturn
+## Testing TURN & STUN server
+
+We can test our STUN and TURN server from the tool on Trickle ICE.
+https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
+
+If you test a STUN server, it works if you can gather a candidate with type "srflx". If you test a TURN server, it works if you can gather a candidate with type "relay".
+## Installation
+
+```bash
+  composer install
+  npm install
+```
+
+    
+## Environment Variables
+
+To run this project, you will need to add your own environment variables from .env.example to your .env file
+
