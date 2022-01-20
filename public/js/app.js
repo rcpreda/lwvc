@@ -4886,7 +4886,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#mobileNav[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#container[data-v-332fccf4]{\n    height: 80%;\n}\n@media only screen and (max-width: 600px) {\n#container[data-v-332fccf4]{\n        height: 70%;\n}\n}\n#chat-container[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n#mobileNav[data-v-332fccf4]{\n    height: calc(100% - 3rem)\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37882,7 +37882,8 @@ var render = function () {
         "div",
         {
           staticClass:
-            "w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white h-5/6 text-gray-500",
+            "w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white text-gray-500",
+          attrs: { id: "container" },
         },
         [
           _c(

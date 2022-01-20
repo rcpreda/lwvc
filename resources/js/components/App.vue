@@ -7,7 +7,7 @@
                 </svg>
             </div>
         </div>
-        <div class="w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white h-5/6 text-gray-500">
+        <div id="container" class="w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white text-gray-500">
             <div class="flex h-full shadow-xl text-xs lg:text-sm">
                 <div class="hidden md:block md:w-4/12 lg:w-3/12 border-r">
                     <div class="h-12 bg-gray-100 flex items-center px-5"> Online Users:  {{ onlineUsersCount }}</div>
@@ -141,6 +141,14 @@ export default {
 </script>
 
 <style scoped>
+    #container{
+        height: 80%;
+    }
+    @media only screen and (max-width: 600px) {
+        #container{
+            height: 70%;
+        }
+    }
     #chat-container{
         height: calc(100% - 3rem)
     }
