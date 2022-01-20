@@ -2389,6 +2389,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     if (this.myStream) {
       var myVideo = document.querySelector("#my-video");
 
@@ -2402,10 +2404,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     this.peer.on('error', function (err) {
-      console.log(err); // this.$store.dispatch("callEnded");
+      console.log(err);
+
+      _this.$store.dispatch("callEnded");
     });
     this.peer.on('close', function () {
       console.log("Peer connection closed");
+
+      _this.$store.dispatch("callEnded");
     });
   },
   watch: {
@@ -2604,6 +2610,7 @@ var startCall = function startCall(_ref9, user) {
       state = _ref9.state;
   var mediaHandler = new _MediaHandler__WEBPACK_IMPORTED_MODULE_1__["default"]();
   mediaHandler.getPermissions().then(function (stream) {
+    console.log("test");
     var peer1 = new (simple_peer__WEBPACK_IMPORTED_MODULE_0___default())({
       initiator: true,
       trickle: false,

@@ -15,7 +15,7 @@
                 @csrf
                 <input autofocus
                     class="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
-                    id="email" name="email" placeholder="Email" type="text" required>
+                    id="email" name="email" placeholder="Email" type="email" value="{{ old('email') }}" required>
                 <input autofocus
                     class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                     id="password" name="password" placeholder="Password" type="password" required>

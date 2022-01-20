@@ -38,6 +38,7 @@ export const startCall = ({commit, state}, user) => {
     const mediaHandler = new MediaHander;
     
     mediaHandler.getPermissions().then((stream) => {
+        console.log(process.env.MIX_STUN_USERNAME)
         const peer1 = new Peer({
             initiator: true, 
             trickle: false,
@@ -45,14 +46,14 @@ export const startCall = ({commit, state}, user) => {
             config: {
                 iceServers: [
                     {
-                        urls: "turn:turn.hexdcode.com:3478",
-                        username: "test",
-                        credential: "test123"
+                        urls: process.env.MIX_TURN_URLS,
+                        username: process.env.MIX_TURN_USERNAME,
+                        credential: process.env.MIX_TURN_PASSWORD
                     },
                     {
-                        urls: "stun:stun.hexdcode.com",
-                        username: "test",
-                        credential: "test123"
+                        urls: process.env.MIX_STUN_URLS,
+                        username: process.env.MIX_STUN_USERNAME,
+                        credential: process.env.MIX_STUN_PASSWORD
                     }
                 ]
             },

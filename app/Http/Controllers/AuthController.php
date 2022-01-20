@@ -61,10 +61,11 @@ class AuthController extends Controller
         ], request()->has('remember'));
 
         if($success){
+            $request->session()->regenerate();
             return redirect()->route('chat');
         }
 
-        return back()->withErrors([
+        return back()->withInput()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }

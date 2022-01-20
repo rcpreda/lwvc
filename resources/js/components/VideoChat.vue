@@ -68,10 +68,11 @@
             }
             this.peer.on('error', (err) => {
                 console.log(err)
-               // this.$store.dispatch("callEnded");
+                this.$store.dispatch("callEnded");
             })
             this.peer.on('close', () => {
                 console.log("Peer connection closed")
+                this.$store.dispatch("callEnded");
             })
         },
         watch: {
