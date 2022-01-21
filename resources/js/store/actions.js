@@ -108,6 +108,7 @@ export const acceptCall = ({commit, state}) => {
 
         commit('SET_PEER', peer2)
         commit('SET_MYSTREAM', stream)
+        commit('SET_CALLING_USER', state.incomingCallData.user)
     })
 }
 
