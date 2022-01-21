@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen bg-gray-100 flex justify-center relative">
+    <div class="h-full bg-gray-100 flex justify-center w-full relative">
         <div class="w-full h-20 lg:h-36 bg-gray-700 flex justify-center">
             <div class="w-11/12 mt-3 md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" @click="mobileNav=true" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -7,7 +7,7 @@
                 </svg>
             </div>
         </div>
-        <div id="container" class="w-11/12 md:w-10/12 absolute top-10 lg:top-16 bg-white text-gray-500">
+        <div id="container" class="w-11/12 md:w-10/12 absolute top-10 md:top-16 bg-white text-gray-500">
             <div class="flex h-full shadow-xl text-xs lg:text-sm">
                 <div class="hidden md:block md:w-4/12 lg:w-3/12 border-r">
                     <div class="h-12 bg-gray-100 flex items-center px-5"> Online Users:  {{ onlineUsersCount }}</div>
@@ -142,13 +142,15 @@ export default {
 
 <style scoped>
     #container{
+        /* min-height: calc(100% - 20rem); */
         height: 80%;
+        max-height: 600px;
     }
-    @media only screen and (max-width: 600px) {
+    /* @media only screen and (max-width: 600px) {
         #container{
             height: 70%;
         }
-    }
+    } */
     #chat-container{
         height: calc(100% - 3rem)
     }

@@ -7,7 +7,7 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div id="app" class="w-full min-h-screen overflow-auto">
+        <div id="app" class="w-full h-screen overflow-auto">
            <App :auth-user="{{ json_encode(auth()->user()) }}"/>
         </div>
         <script src="{{ mix('/js/app.js') }}"></script>

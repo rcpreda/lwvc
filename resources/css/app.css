@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* #app{
+    min-height: 700px;
+} */
+
 ::-webkit-scrollbar {
     width: 4px;
     cursor: pointer;
