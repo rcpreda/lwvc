@@ -2,7 +2,7 @@
     <div>
         <div class="antialiased bg-gray-50 min-h-screen">
             <div class="w-full text-gray-700 bg-white shadow-sm">
-                <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div class="flex flex-col max-w-screen-lg px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
                     <div class="flex flex-row items-center justify-between p-4">
                         <a href="/" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">LOGO HERE</a>
                     </div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="w-full">
-                <div class="flex max-w-screen-xl p-8 mx-auto items-center justify-between">
+                <div class="flex max-w-screen-lg p-8 mx-auto items-center justify-between">
                     <div id="container" class="w-full flex flex-col md:flex-row border rounded-md bg-white">
                         <div class="w-full md:w-4/12 font-medium border-r p-5">
                             <div class="text-gray-500">Debarshi Das</div>
@@ -54,18 +54,21 @@
                                     </vc-date-picker>
                                     <TimezoneSelector class="mt-4"/>
                                 </div>
-                                <div v-if="selectedDate" class="w-4/12 h-full pt-5 flex flex-col">
-                                    <div class="mb-5 px-5">{{ moment(selectedDate).format('dddd, MMMM DD') }}</div>
-                                    <div class="overflow-auto px-5 py-2">
-                                       <div v-for="i in 10" :key="i" class="flex gap-2 mb-3">
-                                            <div v-if="i!=2" class="ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center">
-                                                12:00 am
-                                            </div>
-                                            <div v-if="i==2" class="w-6/12 py-3 cursor-pointer bg-gray-600 text-white rounded-md text-center">2:30 am</div>
-                                            <div v-if="i==2" class="w-6/12 py-3 cursor-pointer bg-blue-600 hover:bg-blue-400 text-white rounded-md text-center">Confirm</div>
-                                       </div>
+                                <transition name="fade">
+                                    <div v-if="selectedDate" class="w-4/12 h-full pt-5 flex flex-col">
+                                        <div class="mb-5 px-5">{{ formattedSelectedDate }}</div>
+                                        <div class="overflow-auto px-5 py-2">
+                                        <div v-for="i in 10" :key="i" @click="activeTime = i" class="flex gap-2 mb-3">
+                                                <div v-if="i!=activeTime" class="ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center">
+                                                    12:00 am
+                                                </div>
+                                                <div v-if="i==activeTime" class="w-6/12 py-3 cursor-pointer bg-gray-600 text-white rounded-md text-center">2:30 am</div>
+                                                <div v-if="i==activeTime" @click="$router.push({ path: '/schedule/confirm' })" class="w-6/12 py-3 cursor-pointer bg-blue-600 hover:bg-blue-400 text-white rounded-md text-center">Confirm</div>
+                                        </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </transition>
+                                
                             </div>
                         </div>
                     </div>
@@ -83,7 +86,13 @@ export default {
     data(){
         return {
             selectedDate: null,
-            showTimeSlots: false
+            showTimeSlots: false,
+            activeTime: null
+        }
+    },
+    computed: {
+        formattedSelectedDate(){
+            return moment(this.selectedDate).format('dddd, MMMM DD')
         }
     },
     components: {

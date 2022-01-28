@@ -1,11 +1,12 @@
 <template>
     <div>
+        <Navbar/>
         <div class="antialiased pt-5 pb-28">
             <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
-                <div class="flex flex-col gap-2 max-w-screen-xl px-4 mx-auto md:px-6 lg:px-8">
+                <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
                         <div class="text-gray-500 text-sm">Last edited 25 January 2022.</div>
-                        <a href="/link" class="flex items-center text-sm text-blue-500 gap-2 cursor-pointer">
+                        <a href="/schedule" target="blank" class="flex items-center text-sm text-blue-500 gap-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
@@ -261,13 +262,14 @@
 import { VueEditor } from "vue2-editor";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
+import Navbar from '../../components/Navbar.vue'
 
 export default {
     data(){
         return {
             dateRange: null,
             step1: false,
-            step2: true,
+            step2: false,
             description: null,
             customToolbar: [
                 ["bold", "italic", "underline"],
@@ -282,7 +284,8 @@ export default {
     },
     components: {
         VueEditor,
-        DatePicker 
+        DatePicker,
+        Navbar
     },
 }
 </script>

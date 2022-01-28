@@ -666,6 +666,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-6\/12 {
   width: 50%;
 }
+.w-10 {
+  width: 2.5rem;
+}
+.w-5\/12 {
+  width: 41.666667%;
+}
 .min-w-min {
   min-width: -webkit-min-content;
   min-width: -moz-min-content;
@@ -676,6 +682,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-lg {
   max-width: 32rem;
+}
+.max-w-screen-lg {
+  max-width: 1024px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -905,6 +914,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .p-5 {
   padding: 1.25rem;
+}
+.p-10 {
+  padding: 2.5rem;
 }
 .px-5 {
   padding-left: 1.25rem;
@@ -1158,6 +1170,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-blue-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+.hover\:bg-blue-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+.hover\:bg-blue-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 .hover\:text-red-400:hover {
   --tw-text-opacity: 1;

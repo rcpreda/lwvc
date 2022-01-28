@@ -5,16 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignalController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/link', function () {
-    return view('eventlink');
-});
-
+Route::view('/{any}', 'app')->where('any', '.*');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/chat', function () {

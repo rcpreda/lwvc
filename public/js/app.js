@@ -2065,20 +2065,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue");
 //
 //
 //
 //
 //
 //
-//
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'App',
-  components: {
-    Navbar: _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  name: 'App'
 });
 
 /***/ }),
@@ -2634,6 +2628,81 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Create.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Create.vue?vue&type=script&lang=js& ***!
@@ -2648,6 +2717,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
 /* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
 /* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
+/* harmony import */ var _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Navbar.vue */ "./resources/js/components/Navbar.vue");
 //
 //
 //
@@ -2907,6 +2977,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -2915,7 +2987,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dateRange: null,
       step1: false,
-      step2: true,
+      step2: false,
       description: null,
       customToolbar: [["bold", "italic", "underline"], [{
         list: "ordered"
@@ -2930,16 +3002,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_0__.VueEditor,
-    DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"]
+    DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Navbar: _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3027,6 +3100,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3034,8 +3110,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selectedDate: null,
-      showTimeSlots: false
+      showTimeSlots: false,
+      activeTime: null
     };
+  },
+  computed: {
+    formattedSelectedDate: function formattedSelectedDate() {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.selectedDate).format('dddd, MMMM DD');
+    }
   },
   components: {
     TimezoneSelector: _components_TimezoneSelector_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -3045,6 +3127,109 @@ __webpack_require__.r(__webpack_exports__);
       return moment__WEBPACK_IMPORTED_MODULE_1___default()();
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {}
 });
 
 /***/ }),
@@ -3102,15 +3287,14 @@ var MediaHandler = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
-/* harmony import */ var _views_event_EventLink_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/event/EventLink.vue */ "./resources/js/views/event/EventLink.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router/routes */ "./resources/js/router/routes.js");
-/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/lib/v-calendar.umd.min.js");
-/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(v_calendar__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/routes */ "./resources/js/router/routes.js");
+/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/lib/v-calendar.umd.min.js");
+/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(v_calendar__WEBPACK_IMPORTED_MODULE_4__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -3120,10 +3304,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_6__["default"].prototype.$axios = axios;
-vue__WEBPACK_IMPORTED_MODULE_6__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_6__["default"].use((v_calendar__WEBPACK_IMPORTED_MODULE_5___default()), {
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].prototype.$axios = axios;
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((v_calendar__WEBPACK_IMPORTED_MODULE_4___default()), {
   componentPrefix: 'vc',
   screens: {
     "sm": "640px",
@@ -3132,14 +3315,13 @@ vue__WEBPACK_IMPORTED_MODULE_6__["default"].use((v_calendar__WEBPACK_IMPORTED_MO
     "xl": "1280px"
   }
 });
-new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
+new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
   el: '#app',
-  store: _store__WEBPACK_IMPORTED_MODULE_3__["default"],
-  router: _router_routes__WEBPACK_IMPORTED_MODULE_4__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
+  router: _router_routes__WEBPACK_IMPORTED_MODULE_3__["default"],
   components: {
     App: _App_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    VideoCallApp: _components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    EventLink: _views_event_EventLink_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    VideoCallApp: _components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -3191,14 +3373,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_event_Create_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/event/Create.vue */ "./resources/js/views/event/Create.vue");
+/* harmony import */ var _views_event_Schedule_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/event/Schedule.vue */ "./resources/js/views/event/Schedule.vue");
+/* harmony import */ var _views_event_ScheduleConfirm_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/event/ScheduleConfirm.vue */ "./resources/js/views/event/ScheduleConfirm.vue");
+/* harmony import */ var _views_event_Confirmed_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/event/Confirmed.vue */ "./resources/js/views/event/Confirmed.vue");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
   mode: 'history',
   scrollBehavior: function scrollBehavior() {
     return {
@@ -3210,6 +3398,18 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     path: '/',
     name: 'CreateEvent',
     component: _views_event_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }, {
+    path: '/schedule',
+    name: 'ScheduleEvent',
+    component: _views_event_Schedule_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }, {
+    path: '/schedule/confirm',
+    name: 'ScheduleConfirm',
+    component: _views_event_ScheduleConfirm_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }, {
+    path: '/schedule/confirmation',
+    name: 'ScheduleConfirmation',
+    component: _views_event_Confirmed_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 }));
 
@@ -5641,9 +5841,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n#video-container[data-v-737f9f18]{\n
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&":
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -5658,7 +5858,55 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#container[data-v-179217a0]{\n    height: 600px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#container[data-v-4b6ab05b]{\n    height: 600px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#container[data-v-bdec596a]{\n    height: 600px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#container[data-v-379b2125]{\n    height: 600px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -72335,9 +72583,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&":
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& ***!
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -72348,7 +72596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_style_index_0_id_179217a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_style_index_0_id_4b6ab05b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&");
 
             
 
@@ -72357,11 +72605,71 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_style_index_0_id_179217a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_style_index_0_id_4b6ab05b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_style_index_0_id_179217a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_style_index_0_id_4b6ab05b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_style_index_0_id_bdec596a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_style_index_0_id_bdec596a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_style_index_0_id_bdec596a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_style_index_0_id_379b2125_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_style_index_0_id_379b2125_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_style_index_0_id_379b2125_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -73011,6 +73319,47 @@ component.options.__file = "resources/js/components/VideoChat.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/event/Confirmed.vue":
+/*!************************************************!*\
+  !*** ./resources/js/views/event/Confirmed.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true& */ "./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true&");
+/* harmony import */ var _Confirmed_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Confirmed.vue?vue&type=script&lang=js& */ "./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Confirmed_vue_vue_type_style_index_0_id_4b6ab05b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& */ "./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Confirmed_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "4b6ab05b",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/event/Confirmed.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/event/Create.vue":
 /*!*********************************************!*\
   !*** ./resources/js/views/event/Create.vue ***!
@@ -73050,10 +73399,10 @@ component.options.__file = "resources/js/views/event/Create.vue"
 
 /***/ }),
 
-/***/ "./resources/js/views/event/EventLink.vue":
-/*!************************************************!*\
-  !*** ./resources/js/views/event/EventLink.vue ***!
-  \************************************************/
+/***/ "./resources/js/views/event/Schedule.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/views/event/Schedule.vue ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -73061,9 +73410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EventLink.vue?vue&type=template&id=179217a0&scoped=true& */ "./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true&");
-/* harmony import */ var _EventLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventLink.vue?vue&type=script&lang=js& */ "./resources/js/views/event/EventLink.vue?vue&type=script&lang=js&");
-/* harmony import */ var _EventLink_vue_vue_type_style_index_0_id_179217a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& */ "./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&");
+/* harmony import */ var _Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Schedule.vue?vue&type=template&id=bdec596a&scoped=true& */ "./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true&");
+/* harmony import */ var _Schedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Schedule.vue?vue&type=script&lang=js& */ "./resources/js/views/event/Schedule.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Schedule_vue_vue_type_style_index_0_id_bdec596a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& */ "./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -73074,19 +73423,60 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _EventLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Schedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "179217a0",
+  "bdec596a",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/event/EventLink.vue"
+component.options.__file = "resources/js/views/event/Schedule.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/event/ScheduleConfirm.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/views/event/ScheduleConfirm.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true& */ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true&");
+/* harmony import */ var _ScheduleConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ScheduleConfirm.vue?vue&type=script&lang=js& */ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ScheduleConfirm_vue_vue_type_style_index_0_id_379b2125_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& */ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ScheduleConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "379b2125",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/event/ScheduleConfirm.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -73203,6 +73593,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Confirmed.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/views/event/Create.vue?vue&type=script&lang=js&":
 /*!**********************************************************************!*\
   !*** ./resources/js/views/event/Create.vue?vue&type=script&lang=js& ***!
@@ -73219,10 +73625,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/event/EventLink.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/views/event/EventLink.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/js/views/event/Schedule.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/event/Schedule.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -73230,8 +73636,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EventLink.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Schedule.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScheduleConfirm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -73274,15 +73696,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&":
+/***/ "./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&":
 /*!*********************************************************************************************************!*\
-  !*** ./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& ***!
+  !*** ./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& ***!
   \*********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_style_index_0_id_179217a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=style&index=0&id=179217a0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_style_index_0_id_4b6ab05b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=style&index=0&id=4b6ab05b&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_style_index_0_id_bdec596a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=style&index=0&id=bdec596a&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_style_index_0_id_379b2125_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=style&index=0&id=379b2125&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -73406,6 +73854,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Confirmed_vue_vue_type_template_id_4b6ab05b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/views/event/Create.vue?vue&type=template&id=49ce43a0&scoped=true&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/views/event/Create.vue?vue&type=template&id=49ce43a0&scoped=true& ***!
@@ -73423,19 +73888,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true& ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true& ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EventLink_vue_vue_type_template_id_179217a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EventLink.vue?vue&type=template&id=179217a0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Schedule_vue_vue_type_template_id_bdec596a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Schedule.vue?vue&type=template&id=bdec596a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScheduleConfirm_vue_vue_type_template_id_379b2125_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true&");
 
 
 /***/ }),
@@ -73459,7 +73941,7 @@ var render = function () {
   return _c(
     "div",
     { staticClass: "min-h-screen bg-gray-50", attrs: { id: "app" } },
-    [_c("Navbar"), _vm._v(" "), _c("router-view")],
+    [_c("router-view")],
     1
   )
 }
@@ -73880,7 +74362,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
+              "flex flex-col max-w-screen-lg px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
           },
           [
             _c(
@@ -74652,6 +75134,251 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Confirmed.vue?vue&type=template&id=4b6ab05b&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "antialiased bg-gray-50 min-h-screen" }, [
+      _c("div", { staticClass: "w-full text-gray-700 bg-white shadow-sm" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col max-w-screen-lg px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("nav", { staticClass: "pb-0 flex justify-end gap-4" }, [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900",
+                  attrs: { href: "#" },
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "flex gap-2 rounded-3xl items-center bg-blue-600 text-white px-4",
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-5 w-5",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20",
+                        fill: "currentColor",
+                      },
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d: "M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z",
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Share Link")]),
+                ]
+              ),
+            ]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex max-w-screen-lg p-8 mx-auto items-center justify-between",
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full flex flex-col md:flex-row border rounded-md bg-white",
+                attrs: { id: "container" },
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "w-full font-medium p-10 flex justify-center",
+                  },
+                  [
+                    _c("div", { staticClass: "w-6/12" }, [
+                      _c(
+                        "div",
+                        { staticClass: "text-center font-medium mb-4 text-xl" },
+                        [_vm._v("Confirmed")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-center mb-4 font-normal" },
+                        [_vm._v("You are scheduled with Debarshi Das.")]
+                      ),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex gap-2 mt-4" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", {}, [
+                          _vm._v("2:30am - 3:00am, Saturday, January 29, 2022"),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex gap-2 mt-4" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", {}, [_vm._v("India Standard Time")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex gap-2 mt-4" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d: "M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", {}, [
+                          _vm._v("Video conferencing details to follow."),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-4 font-normal" }, [
+                        _vm._v(
+                          "A calendar invitation has been sent to your email address."
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("hr", { staticClass: "mt-4" }),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
+          ]
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex flex-row items-center justify-between p-4" },
+      [
+        _c(
+          "a",
+          {
+            staticClass:
+              "text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline",
+            attrs: { href: "/" },
+          },
+          [_vm._v("LOGO HERE")]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex gap-2 mt-4" }, [
+      _c("div", { staticClass: "w-5 h-5 bg-red-500 rounded-full" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-xl" }, [_vm._v("30 Minute Meeting")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Create.vue?vue&type=template&id=49ce43a0&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Create.vue?vue&type=template&id=49ce43a0&scoped=true& ***!
@@ -74668,281 +75395,49 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "antialiased pt-5 pb-28" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800",
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex flex-col gap-2 max-w-screen-xl px-4 mx-auto md:px-6 lg:px-8",
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "w-full flex items-center justify-between mb-4",
-                },
-                [
-                  _c("div", { staticClass: "text-gray-500 text-sm" }, [
-                    _vm._v("Last edited 25 January 2022."),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "flex items-center text-sm text-blue-500 gap-2 cursor-pointer",
-                      attrs: { href: "/link" },
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "h-5 w-5",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            fill: "none",
-                            viewBox: "0 0 24 24",
-                            stroke: "currentColor",
-                          },
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2",
-                              d: "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14",
-                            },
-                          }),
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                        view live page\n                    "
-                      ),
-                    ]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "w-full bg-white border hover:border-gray-400" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "w-full flex justify-between items-center p-4 cursor-pointer",
-                      class: { "border-b": _vm.step1 },
-                      on: {
-                        click: function ($event) {
-                          _vm.step1 = !_vm.step1
-                        },
+  return _c(
+    "div",
+    [
+      _c("Navbar"),
+      _vm._v(" "),
+      _c("div", { staticClass: "antialiased pt-5 pb-28" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800",
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8",
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-full flex items-center justify-between mb-4",
+                  },
+                  [
+                    _c("div", { staticClass: "text-gray-500 text-sm" }, [
+                      _vm._v("Last edited 25 January 2022."),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "flex items-center text-sm text-blue-500 gap-2 cursor-pointer",
+                        attrs: { href: "/schedule", target: "blank" },
                       },
-                    },
-                    [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.step1,
-                              expression: "step1",
-                            },
-                          ],
-                        },
-                        [
-                          _c("button", { staticClass: "text-gray-600" }, [
-                            _vm._v("Cancel"),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white",
-                            },
-                            [_vm._v("Save & Close")]
-                          ),
-                        ]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.step1,
-                          expression: "step1",
-                        },
-                      ],
-                      staticClass: "max-w-lg p-4",
-                    },
-                    [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mb-4 w-full" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "block text-gray-700 text-sm font-medium mb-2",
-                            attrs: { for: "username" },
-                          },
-                          [_vm._v(" Location * ")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "flex items-center gap-2" }, [
-                          _c(
-                            "div",
-                            { staticClass: "rounded-full bg-green-500 p-1" },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "h-4 w-4 text-white",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 20 20",
-                                    fill: "currentColor",
-                                  },
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: {
-                                      d: "M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z",
-                                    },
-                                  }),
-                                ]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", [
-                            _vm._v(
-                              "\n                                    Video Call\n                                "
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "mb-4 w-full" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass:
-                                "block text-gray-700 text-sm font-medium mb-2",
-                              attrs: { for: "username" },
-                            },
-                            [_vm._v(" Description * ")]
-                          ),
-                          _vm._v(" "),
-                          _c("vue-editor", {
-                            attrs: {
-                              id: "editor",
-                              editorToolbar: _vm.customToolbar,
-                            },
-                            model: {
-                              value: _vm.description,
-                              callback: function ($$v) {
-                                _vm.description = $$v
-                              },
-                              expression: "description",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mb-4 w-full" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "block text-gray-700 text-sm font-medium mb-2",
-                            attrs: { for: "username" },
-                          },
-                          [_vm._v(" Event color * ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "flex gap-2" },
-                          _vm._l(_vm.eventColors, function (color, i) {
-                            return _c("div", {
-                              key: i,
-                              staticClass: "rounded-full w-8 h-8",
-                              class: color,
-                            })
-                          }),
-                          0
-                        ),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.step1,
-                          expression: "step1",
-                        },
-                      ],
-                      staticClass:
-                        "w-full flex justify-end items-center p-4 border-t",
-                    },
-                    [_vm._m(3)]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "w-full bg-white border hover:border-gray-400" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "w-full flex justify-between items-center p-4 cursor-pointer",
-                      class: { "border-b": _vm.step2 },
-                      on: {
-                        click: function ($event) {
-                          _vm.step2 = !_vm.step2
-                        },
-                      },
-                    },
-                    [
-                      _c("div", { staticClass: "flex gap-2" }, [
+                      [
                         _c(
                           "svg",
                           {
-                            staticClass: "h-6 w-6",
+                            staticClass: "h-5 w-5",
                             attrs: {
                               xmlns: "http://www.w3.org/2000/svg",
                               fill: "none",
@@ -74956,60 +75451,87 @@ var render = function () {
                                 "stroke-linecap": "round",
                                 "stroke-linejoin": "round",
                                 "stroke-width": "2",
-                                d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+                                d: "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14",
                               },
                             }),
                           ]
                         ),
+                        _vm._v(
+                          "\n                        view live page\n                    "
+                        ),
+                      ]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "w-full bg-white border hover:border-gray-400",
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-full flex justify-between items-center p-4 cursor-pointer",
+                        class: { "border-b": _vm.step1 },
+                        on: {
+                          click: function ($event) {
+                            _vm.step1 = !_vm.step1
+                          },
+                        },
+                      },
+                      [
+                        _vm._m(0),
                         _vm._v(" "),
-                        _vm._m(4),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.step2,
-                              expression: "step2",
-                            },
-                          ],
-                        },
-                        [
-                          _c("button", { staticClass: "text-gray-600" }, [
-                            _vm._v("Cancel"),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white",
-                            },
-                            [_vm._v("Save & Close")]
-                          ),
-                        ]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.step2,
-                          expression: "step2",
-                        },
-                      ],
-                    },
-                    [
-                      _c("div", { staticClass: "border-b" }, [
-                        _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.step1,
+                                expression: "step1",
+                              },
+                            ],
+                          },
+                          [
+                            _c("button", { staticClass: "text-gray-600" }, [
+                              _vm._v("Cancel"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white",
+                              },
+                              [_vm._v("Save & Close")]
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.step1,
+                            expression: "step1",
+                          },
+                        ],
+                        staticClass: "max-w-lg p-4",
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mb-4 w-full" }, [
                           _c(
                             "label",
                             {
@@ -75017,228 +75539,83 @@ var render = function () {
                                 "block text-gray-700 text-sm font-medium mb-2",
                               attrs: { for: "username" },
                             },
-                            [_vm._v(" Date Range ")]
+                            [_vm._v(" Location * ")]
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "mb-4 text-gray-500" }, [
-                            _vm._v(
-                              "Set a range of dates when you can accept meetings."
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex items-center mb-4" }, [
-                            _c("input", {
-                              staticClass: "cursor-pointer",
-                              attrs: { type: "radio", name: "date_range" },
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline",
-                              attrs: {
-                                placeholder: "30",
-                                type: "text",
-                                required: "",
-                              },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "relative ml-2 flex-1" },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
-                                    on: {
-                                      click: function ($event) {
-                                        _vm.dateRangeDropdwon =
-                                          !_vm.dateRangeDropdwon
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c("span", [_vm._v("calendar days")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "svg",
-                                      {
-                                        staticClass:
-                                          "inline w-4 h-4 transition-transform duration-200 transform",
-                                        class: {
-                                          "rotate-180": _vm.dateRangeDropdwon,
-                                          "rotate-0": !_vm.dateRangeDropdwon,
-                                        },
-                                        attrs: {
-                                          fill: "currentColor",
-                                          viewBox: "0 0 20 20",
-                                        },
-                                      },
-                                      [
-                                        _c("path", {
-                                          attrs: {
-                                            "fill-rule": "evenodd",
-                                            d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                            "clip-rule": "evenodd",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("transition", { attrs: { name: "fade" } }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value: _vm.dateRangeDropdwon,
-                                          expression: "dateRangeDropdwon",
-                                        },
-                                      ],
-                                      staticClass: "absolute w-full z-10",
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "grid grid-cols-1 gap-1",
-                                            },
-                                            [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "text-gray-800 rounded-lg",
-                                                    },
-                                                    [
-                                                      _c("div", [
-                                                        _vm._v("calendar days"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-gray-400 text-xs mt-2",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "Counts every day on the calendar including days you're unavailable"
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "text-gray-800 rounded-lg",
-                                                    },
-                                                    [
-                                                      _c("div", [
-                                                        _vm._v("business days"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "text-gray-400 text-xs mt-2",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "Excludes weekends and only counts Mon - Fri"
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "ml-2" }, [
-                              _vm._v("into the future"),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex items-center" }, [
-                            _c("input", {
-                              staticClass: "cursor-pointer",
-                              attrs: { type: "radio", name: "date_range" },
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "flex ml-4" }, [
-                              _c("div", { staticClass: "flex-1" }, [
-                                _vm._v("Within a date range"),
-                              ]),
-                              _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "flex items-center gap-2" },
+                            [
                               _c(
                                 "div",
-                                { staticClass: "flex-1" },
+                                {
+                                  staticClass: "rounded-full bg-green-500 p-1",
+                                },
                                 [
-                                  _c("date-picker", {
-                                    attrs: { range: "" },
-                                    model: {
-                                      value: _vm.dateRange,
-                                      callback: function ($$v) {
-                                        _vm.dateRange = $$v
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "h-4 w-4 text-white",
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        viewBox: "0 0 20 20",
+                                        fill: "currentColor",
                                       },
-                                      expression: "dateRange",
                                     },
-                                  }),
-                                ],
-                                1
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          d: "M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z",
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                ]
                               ),
-                            ]),
-                          ]),
+                              _vm._v(" "),
+                              _c("div", [
+                                _vm._v(
+                                  "\n                                    Video Call\n                                "
+                                ),
+                              ]),
+                            ]
+                          ),
                         ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "border-b" }, [
-                        _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mb-4 w-full" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block text-gray-700 text-sm font-medium mb-2",
+                                attrs: { for: "username" },
+                              },
+                              [_vm._v(" Description * ")]
+                            ),
+                            _vm._v(" "),
+                            _c("vue-editor", {
+                              attrs: {
+                                id: "editor",
+                                editorToolbar: _vm.customToolbar,
+                              },
+                              model: {
+                                value: _vm.description,
+                                callback: function ($$v) {
+                                  _vm.description = $$v
+                                },
+                                expression: "description",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mb-4 w-full" }, [
                           _c(
                             "label",
                             {
@@ -75246,341 +75623,781 @@ var render = function () {
                                 "block text-gray-700 text-sm font-medium mb-2",
                               attrs: { for: "username" },
                             },
-                            [_vm._v(" Duration ")]
+                            [_vm._v(" Event color * ")]
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "mb-4 text-gray-500" }, [
-                            _vm._v(
-                              "Define how long your event will be. It can be as long as 12 hours."
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex items-center mb-4" }, [
-                            _c(
-                              "div",
-                              { staticClass: "relative flex-1" },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
-                                    on: {
-                                      click: function ($event) {
-                                        _vm.durationDropdown =
-                                          !_vm.durationDropdown
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c("span", [_vm._v("15 min")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "svg",
-                                      {
-                                        staticClass:
-                                          "inline w-4 h-4 transition-transform duration-200 transform",
-                                        class: {
-                                          "rotate-180": _vm.durationDropdown,
-                                          "rotate-0": !_vm.durationDropdown,
-                                        },
-                                        attrs: {
-                                          fill: "currentColor",
-                                          viewBox: "0 0 20 20",
-                                        },
-                                      },
-                                      [
-                                        _c("path", {
-                                          attrs: {
-                                            "fill-rule": "evenodd",
-                                            d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                            "clip-rule": "evenodd",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("transition", { attrs: { name: "fade" } }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value: _vm.durationDropdown,
-                                          expression: "durationDropdown",
-                                        },
-                                      ],
-                                      staticClass: "absolute w-full z-10",
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "grid grid-cols-1 gap-1",
-                                            },
-                                            [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("15 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("30 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("45 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("60 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("Custom")])]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c("div", {}, [
-                        _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
                           _c(
-                            "label",
+                            "div",
+                            { staticClass: "flex gap-2" },
+                            _vm._l(_vm.eventColors, function (color, i) {
+                              return _c("div", {
+                                key: i,
+                                staticClass: "rounded-full w-8 h-8",
+                                class: color,
+                              })
+                            }),
+                            0
+                          ),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.step1,
+                            expression: "step1",
+                          },
+                        ],
+                        staticClass:
+                          "w-full flex justify-end items-center p-4 border-t",
+                      },
+                      [_vm._m(3)]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "w-full bg-white border hover:border-gray-400",
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-full flex justify-between items-center p-4 cursor-pointer",
+                        class: { "border-b": _vm.step2 },
+                        on: {
+                          click: function ($event) {
+                            _vm.step2 = !_vm.step2
+                          },
+                        },
+                      },
+                      [
+                        _c("div", { staticClass: "flex gap-2" }, [
+                          _c(
+                            "svg",
                             {
-                              staticClass:
-                                "block text-gray-700 text-sm font-medium mb-2",
+                              staticClass: "h-6 w-6",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                fill: "none",
+                                viewBox: "0 0 24 24",
+                                stroke: "currentColor",
+                              },
                             },
                             [
-                              _vm._v(
-                                " Want to add time before or after your events? "
-                              ),
+                              _c("path", {
+                                attrs: {
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                  "stroke-width": "2",
+                                  d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+                                },
+                              }),
                             ]
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "mb-4 text-gray-500" }, [
-                            _vm._v(
-                              "Give yourself some buffer time to prepare for or wrap up from booked Calendly events."
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex items-center mb-4" }, [
-                            _c("input", {
-                              staticClass: "cursor-pointer",
-                              attrs: { type: "checkbox", name: "date_range" },
-                            }),
+                          _vm._m(4),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.step2,
+                                expression: "step2",
+                              },
+                            ],
+                          },
+                          [
+                            _c("button", { staticClass: "text-gray-600" }, [
+                              _vm._v("Cancel"),
+                            ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "ml-4" }, [
-                              _vm._v("Before event"),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white",
+                              },
+                              [_vm._v("Save & Close")]
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.step2,
+                            expression: "step2",
+                          },
+                        ],
+                      },
+                      [
+                        _c("div", { staticClass: "border-b" }, [
+                          _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block text-gray-700 text-sm font-medium mb-2",
+                                attrs: { for: "username" },
+                              },
+                              [_vm._v(" Date Range ")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mb-4 text-gray-500" }, [
+                              _vm._v(
+                                "Set a range of dates when you can accept meetings."
+                              ),
                             ]),
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "relative ml-2 flex-1" },
+                              { staticClass: "flex items-center mb-4" },
                               [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
-                                    on: {
-                                      click: function ($event) {
-                                        _vm.beforeEventDropdown =
-                                          !_vm.beforeEventDropdown
-                                      },
-                                    },
+                                _c("input", {
+                                  staticClass: "cursor-pointer",
+                                  attrs: { type: "radio", name: "date_range" },
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  staticClass:
+                                    "appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline",
+                                  attrs: {
+                                    placeholder: "30",
+                                    type: "text",
+                                    required: "",
                                   },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "relative ml-2 flex-1" },
                                   [
-                                    _c("span", [_vm._v("15 min")]),
-                                    _vm._v(" "),
                                     _c(
-                                      "svg",
+                                      "button",
                                       {
                                         staticClass:
-                                          "inline w-4 h-4 transition-transform duration-200 transform",
-                                        class: {
-                                          "rotate-180": _vm.beforeEventDropdown,
-                                          "rotate-0": !_vm.beforeEventDropdown,
-                                        },
-                                        attrs: {
-                                          fill: "currentColor",
-                                          viewBox: "0 0 20 20",
+                                          "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.dateRangeDropdwon =
+                                              !_vm.dateRangeDropdwon
+                                          },
                                         },
                                       },
                                       [
-                                        _c("path", {
-                                          attrs: {
-                                            "fill-rule": "evenodd",
-                                            d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                            "clip-rule": "evenodd",
+                                        _c("span", [_vm._v("calendar days")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass:
+                                              "inline w-4 h-4 transition-transform duration-200 transform",
+                                            class: {
+                                              "rotate-180":
+                                                _vm.dateRangeDropdwon,
+                                              "rotate-0":
+                                                !_vm.dateRangeDropdwon,
+                                            },
+                                            attrs: {
+                                              fill: "currentColor",
+                                              viewBox: "0 0 20 20",
+                                            },
                                           },
-                                        }),
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "fill-rule": "evenodd",
+                                                d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                                "clip-rule": "evenodd",
+                                              },
+                                            }),
+                                          ]
+                                        ),
                                       ]
                                     ),
-                                  ]
+                                    _vm._v(" "),
+                                    _c(
+                                      "transition",
+                                      { attrs: { name: "fade" } },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.dateRangeDropdwon,
+                                                expression: "dateRangeDropdwon",
+                                              },
+                                            ],
+                                            staticClass: "absolute w-full z-10",
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "grid grid-cols-1 gap-1",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-gray-800 rounded-lg",
+                                                          },
+                                                          [
+                                                            _c("div", [
+                                                              _vm._v(
+                                                                "calendar days"
+                                                              ),
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "text-gray-400 text-xs mt-2",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Counts every day on the calendar including days you're unavailable"
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-gray-800 rounded-lg",
+                                                          },
+                                                          [
+                                                            _c("div", [
+                                                              _vm._v(
+                                                                "business days"
+                                                              ),
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "text-gray-400 text-xs mt-2",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Excludes weekends and only counts Mon - Fri"
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
                                 ),
                                 _vm._v(" "),
-                                _c("transition", { attrs: { name: "fade" } }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value: _vm.beforeEventDropdown,
-                                          expression: "beforeEventDropdown",
-                                        },
-                                      ],
-                                      staticClass: "absolute w-full z-10",
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "grid grid-cols-1 gap-1",
-                                            },
-                                            [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("5 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("10 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("15 min")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                  attrs: { href: "#" },
-                                                },
-                                                [_c("div", [_vm._v("20 min")])]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
+                                _c("div", { staticClass: "ml-2" }, [
+                                  _vm._v("into the future"),
                                 ]),
-                              ],
-                              1
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "flex items-center" }, [
+                              _c("input", {
+                                staticClass: "cursor-pointer",
+                                attrs: { type: "radio", name: "date_range" },
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex ml-4" }, [
+                                _c("div", { staticClass: "flex-1" }, [
+                                  _vm._v("Within a date range"),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "flex-1" },
+                                  [
+                                    _c("date-picker", {
+                                      attrs: { range: "" },
+                                      model: {
+                                        value: _vm.dateRange,
+                                        callback: function ($$v) {
+                                          _vm.dateRange = $$v
+                                        },
+                                        expression: "dateRange",
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "border-b" }, [
+                          _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block text-gray-700 text-sm font-medium mb-2",
+                                attrs: { for: "username" },
+                              },
+                              [_vm._v(" Duration ")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mb-4 text-gray-500" }, [
+                              _vm._v(
+                                "Define how long your event will be. It can be as long as 12 hours."
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex items-center mb-4" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "relative flex-1" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.durationDropdown =
+                                              !_vm.durationDropdown
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("span", [_vm._v("15 min")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass:
+                                              "inline w-4 h-4 transition-transform duration-200 transform",
+                                            class: {
+                                              "rotate-180":
+                                                _vm.durationDropdown,
+                                              "rotate-0": !_vm.durationDropdown,
+                                            },
+                                            attrs: {
+                                              fill: "currentColor",
+                                              viewBox: "0 0 20 20",
+                                            },
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "fill-rule": "evenodd",
+                                                d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                                "clip-rule": "evenodd",
+                                              },
+                                            }),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "transition",
+                                      { attrs: { name: "fade" } },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.durationDropdown,
+                                                expression: "durationDropdown",
+                                              },
+                                            ],
+                                            staticClass: "absolute w-full z-10",
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "grid grid-cols-1 gap-1",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("15 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("30 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("45 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("60 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("Custom"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ]
                             ),
                           ]),
                         ]),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.step2,
-                          expression: "step2",
-                        },
-                      ],
-                      staticClass:
-                        "w-full flex justify-end items-center p-4 border-t",
-                    },
-                    [_vm._m(6)]
-                  ),
-                ]
-              ),
-            ]
-          ),
-        ]
-      ),
-    ]),
-  ])
+                        _vm._v(" "),
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("div", {}, [
+                          _c("div", { staticClass: "mb-4 max-w-lg p-4" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block text-gray-700 text-sm font-medium mb-2",
+                              },
+                              [
+                                _vm._v(
+                                  " Want to add time before or after your events? "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mb-4 text-gray-500" }, [
+                              _vm._v(
+                                "Give yourself some buffer time to prepare for or wrap up from booked Calendly events."
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex items-center mb-4" },
+                              [
+                                _c("input", {
+                                  staticClass: "cursor-pointer",
+                                  attrs: {
+                                    type: "checkbox",
+                                    name: "date_range",
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "ml-4" }, [
+                                  _vm._v("Before event"),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "relative ml-2 flex-1" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline",
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.beforeEventDropdown =
+                                              !_vm.beforeEventDropdown
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("span", [_vm._v("15 min")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass:
+                                              "inline w-4 h-4 transition-transform duration-200 transform",
+                                            class: {
+                                              "rotate-180":
+                                                _vm.beforeEventDropdown,
+                                              "rotate-0":
+                                                !_vm.beforeEventDropdown,
+                                            },
+                                            attrs: {
+                                              fill: "currentColor",
+                                              viewBox: "0 0 20 20",
+                                            },
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "fill-rule": "evenodd",
+                                                d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                                "clip-rule": "evenodd",
+                                              },
+                                            }),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "transition",
+                                      { attrs: { name: "fade" } },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.beforeEventDropdown,
+                                                expression:
+                                                  "beforeEventDropdown",
+                                              },
+                                            ],
+                                            staticClass: "absolute w-full z-10",
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "px-2 pt-2 pb-2 bg-white rounded-md shadow-lg",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "grid grid-cols-1 gap-1",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("5 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("10 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("15 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                                        attrs: { href: "#" },
+                                                      },
+                                                      [
+                                                        _c("div", [
+                                                          _vm._v("20 min"),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.step2,
+                            expression: "step2",
+                          },
+                        ],
+                        staticClass:
+                          "w-full flex justify-end items-center p-4 border-t",
+                      },
+                      [_vm._m(6)]
+                    ),
+                  ]
+                ),
+              ]
+            ),
+          ]
+        ),
+      ]),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {
@@ -75783,10 +76600,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/EventLink.vue?vue&type=template&id=179217a0&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/Schedule.vue?vue&type=template&id=bdec596a&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -75806,7 +76623,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
+              "flex flex-col max-w-screen-lg px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
           },
           [
             _vm._m(0),
@@ -75861,7 +76678,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              "flex max-w-screen-xl p-8 mx-auto items-center justify-between",
+              "flex max-w-screen-lg p-8 mx-auto items-center justify-between",
           },
           [
             _c(
@@ -75959,112 +76776,130 @@ var render = function () {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "w-full md:w-8/12" }, [
-                  _c("div", { staticClass: "flex w-full h-full" }, [
-                    _c(
-                      "div",
-                      { staticClass: "w-8/12 p-5" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "mb-6 text-xl font-medium text-gray-700",
-                          },
-                          [_vm._v("Select a Date & Time")]
-                        ),
-                        _vm._v(" "),
-                        _c("vc-date-picker", {
-                          attrs: {
-                            "is-expanded": "",
-                            "title-position": "left",
-                            "available-dates": [
-                              new Date("2022-01-23"),
-                              new Date("2022-01-24"),
-                            ],
-                            locale: { masks: { weekdays: "WWW" } },
-                          },
-                          model: {
-                            value: _vm.selectedDate,
-                            callback: function ($$v) {
-                              _vm.selectedDate = $$v
+                  _c(
+                    "div",
+                    { staticClass: "flex w-full h-full" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "w-8/12 p-5" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "mb-6 text-xl font-medium text-gray-700",
                             },
-                            expression: "selectedDate",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("TimezoneSelector", { staticClass: "mt-4" }),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _vm.selectedDate
-                      ? _c(
-                          "div",
-                          { staticClass: "w-4/12 h-full pt-5 flex flex-col" },
-                          [
-                            _c("div", { staticClass: "mb-5 px-5" }, [
-                              _vm._v(
-                                _vm._s(
-                                  _vm
-                                    .moment(_vm.selectedDate)
-                                    .format("dddd, MMMM DD")
-                                )
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
+                            [_vm._v("Select a Date & Time")]
+                          ),
+                          _vm._v(" "),
+                          _c("vc-date-picker", {
+                            attrs: {
+                              "is-expanded": "",
+                              "title-position": "left",
+                              "available-dates": [
+                                new Date("2022-01-23"),
+                                new Date("2022-01-24"),
+                              ],
+                              locale: { masks: { weekdays: "WWW" } },
+                            },
+                            model: {
+                              value: _vm.selectedDate,
+                              callback: function ($$v) {
+                                _vm.selectedDate = $$v
+                              },
+                              expression: "selectedDate",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("TimezoneSelector", { staticClass: "mt-4" }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("transition", { attrs: { name: "fade" } }, [
+                        _vm.selectedDate
+                          ? _c(
                               "div",
-                              { staticClass: "overflow-auto px-5 py-2" },
-                              _vm._l(10, function (i) {
-                                return _c(
+                              {
+                                staticClass: "w-4/12 h-full pt-5 flex flex-col",
+                              },
+                              [
+                                _c("div", { staticClass: "mb-5 px-5" }, [
+                                  _vm._v(_vm._s(_vm.formattedSelectedDate)),
+                                ]),
+                                _vm._v(" "),
+                                _c(
                                   "div",
-                                  { key: i, staticClass: "flex gap-2 mb-3" },
-                                  [
-                                    i != 2
-                                      ? _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center",
+                                  { staticClass: "overflow-auto px-5 py-2" },
+                                  _vm._l(10, function (i) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: i,
+                                        staticClass: "flex gap-2 mb-3",
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.activeTime = i
                                           },
-                                          [
-                                            _vm._v(
-                                              "\n                                            12:00 am\n                                        "
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    i == 2
-                                      ? _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "w-6/12 py-3 cursor-pointer bg-gray-600 text-white rounded-md text-center",
-                                          },
-                                          [_vm._v("2:30 am")]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    i == 2
-                                      ? _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "w-6/12 py-3 cursor-pointer bg-blue-600 hover:bg-blue-400 text-white rounded-md text-center",
-                                          },
-                                          [_vm._v("Confirm")]
-                                        )
-                                      : _vm._e(),
-                                  ]
-                                )
-                              }),
-                              0
-                            ),
-                          ]
-                        )
-                      : _vm._e(),
-                  ]),
+                                        },
+                                      },
+                                      [
+                                        i != _vm.activeTime
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center",
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                12:00 am\n                                            "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        i == _vm.activeTime
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-6/12 py-3 cursor-pointer bg-gray-600 text-white rounded-md text-center",
+                                              },
+                                              [_vm._v("2:30 am")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        i == _vm.activeTime
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-6/12 py-3 cursor-pointer bg-blue-600 hover:bg-blue-400 text-white rounded-md text-center",
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.$router.push({
+                                                      path: "/schedule/confirm",
+                                                    })
+                                                  },
+                                                },
+                                              },
+                                              [_vm._v("Confirm")]
+                                            )
+                                          : _vm._e(),
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]),
+                    ],
+                    1
+                  ),
                 ]),
               ]
             ),
@@ -76094,6 +76929,386 @@ var staticRenderFns = [
         ),
       ]
     )
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/event/ScheduleConfirm.vue?vue&type=template&id=379b2125&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "antialiased bg-gray-50 min-h-screen" }, [
+      _c("div", { staticClass: "w-full text-gray-700 bg-white shadow-sm" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col max-w-screen-lg px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("nav", { staticClass: "pb-0 flex justify-end gap-4" }, [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900",
+                  attrs: { href: "#" },
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "flex gap-2 rounded-3xl items-center bg-blue-600 text-white px-4",
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-5 w-5",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20",
+                        fill: "currentColor",
+                      },
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d: "M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z",
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Share Link")]),
+                ]
+              ),
+            ]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex max-w-screen-lg p-8 mx-auto items-center justify-between",
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full flex flex-col md:flex-row border rounded-md bg-white",
+                attrs: { id: "container" },
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-4/12 font-medium border-r p-10" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "rounded-full h-10 w-10 hover:bg-blue-100 flex items-center justify-center border cursor-pointer",
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5 text-blue-500",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-gray-500 mt-4" }, [
+                      _vm._v("Debarshi Das"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "text-2xl font-bold text-gray-700" },
+                      [_vm._v("30 Minute Meeting")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex items-center gap-2 text-gray-700 mt-4",
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("15 min")]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex items-start gap-2 text-gray-700 mt-4",
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-6 w-6",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d: "M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            "Video conferencing details provided upon confirmation."
+                          ),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex items-start gap-2 text-gray-700 mt-4",
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            "12:30am - 1:00am, Saturday, January 29, 2022."
+                          ),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex items-start gap-2 text-gray-700 mt-4",
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20",
+                              fill: "currentColor",
+                            },
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d: "M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z",
+                                "clip-rule": "evenodd",
+                              },
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("India Standard Time.")]),
+                      ]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-8/12 font-medium p-10" },
+                  [
+                    _c("div", { staticClass: "w-8/12" }, [
+                      _c("div", { staticClass: "text-xl" }, [
+                        _vm._v("Enter Details"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-4" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "py-2 px-3 bg-blue-600 text-white rounded-3xl",
+                            on: {
+                              click: function ($event) {
+                                return _vm.$router.push({
+                                  path: "/schedule/confirmation",
+                                })
+                              },
+                            },
+                          },
+                          [_vm._v("Schedule Event")]
+                        ),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
+          ]
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex flex-row items-center justify-between p-4" },
+      [
+        _c(
+          "a",
+          {
+            staticClass:
+              "text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline",
+            attrs: { href: "/" },
+          },
+          [_vm._v("LOGO HERE")]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4" }, [
+      _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "border py-2 px-2 w-full mt-2 rounded-md",
+        attrs: { type: "text" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4" }, [
+      _c("label", { attrs: { for: "name" } }, [_vm._v("Email *")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "border py-2 px-2 w-full mt-2 rounded-md",
+        attrs: { type: "text" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4" }, [
+      _c("label", { attrs: { for: "name" } }, [
+        _vm._v("Please share anything that will help prepare for our meeting."),
+      ]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "border py-2 px-2 w-full mt-2 rounded-md",
+      }),
+    ])
   },
 ]
 render._withStripped = true

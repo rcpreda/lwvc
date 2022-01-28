@@ -4,7 +4,6 @@ require('./bootstrap');
 import Vue from 'vue'
 import App from './App.vue'
 import VideoCallApp from './components/App.vue'
-import EventLink from './views/event/EventLink.vue'
 import store from './store'
 import VueRouter from 'vue-router'
 import router from './router/routes'
@@ -29,5 +28,5 @@ new Vue({
     el: '#app',
     store,
     router,
-    components: { App, VideoCallApp, EventLink }
+    components: { App, VideoCallApp}
 })
