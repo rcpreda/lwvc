@@ -41,7 +41,8 @@
                             <div class="flex w-full h-full">
                                 <div class="w-8/12 p-5">
                                     <div class="mb-6 text-xl font-medium text-gray-700">Select a Date & Time</div>
-                                    <vc-calendar
+                                    <vc-date-picker
+                                        v-model="selectedDate"
                                         is-expanded 
                                         title-position="left"
                                         :available-dates="[ 
@@ -50,11 +51,11 @@
                                         ]"
                                         :locale="{ masks: { weekdays: 'WWW' } }"
                                     >
-                                    </vc-calendar>
+                                    </vc-date-picker>
                                     <TimezoneSelector class="mt-4"/>
                                 </div>
-                                <div class="w-4/12 h-full pt-5 flex flex-col">
-                                    <div class="mb-5 px-5">Friday, January 28</div>
+                                <div v-if="selectedDate" class="w-4/12 h-full pt-5 flex flex-col">
+                                    <div class="mb-5 px-5">{{ moment(selectedDate).format('dddd, MMMM DD') }}</div>
                                     <div class="overflow-auto px-5 py-2">
                                        <div v-for="i in 10" :key="i" class="flex gap-2 mb-3">
                                             <div v-if="i!=2" class="ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center">
@@ -76,16 +77,23 @@
 
 <script>
 import TimezoneSelector from '../../components/TimezoneSelector.vue'
+import moment from "moment";
 export default {
     name: 'EventLink',
     data(){
         return {
             selectedDate: null,
+            showTimeSlots: false
         }
     },
     components: {
         TimezoneSelector
     },
+    methods: {
+        moment() {
+            return moment();
+        },
+    }
 }
 </script>
 
