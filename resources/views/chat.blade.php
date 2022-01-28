@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app" class="w-full h-screen overflow-auto">
-           <App :auth-user="{{ json_encode(auth()->user()) }}"/>
+           <video-call-app :auth-user="{{ json_encode(auth()->user()) }}"/>
         </div>
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>
