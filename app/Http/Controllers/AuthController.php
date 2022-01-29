@@ -62,7 +62,7 @@ class AuthController extends Controller
 
         if($success){
             $request->session()->regenerate();
-            return redirect()->route('chat');
+            return redirect()->route('app');
         }
 
         return back()->withInput()->withErrors([

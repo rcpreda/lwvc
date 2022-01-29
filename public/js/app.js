@@ -2072,7 +2072,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'App'
+  name: 'App',
+  props: {
+    authUser: {
+      type: Object,
+      required: true
+    }
+  },
+  mounted: function mounted() {
+    if (!this.authUser) {
+      window.location.href = '/login';
+    } else {
+      this.$store.dispatch("setAuthUser", this.authUser);
+    }
+  }
 });
 
 /***/ }),
@@ -2298,6 +2311,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2356,12 +2376,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       mobile: false,
       dropDown: false
     };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['authUser'])),
+  methods: {
+    logout: function logout() {
+      this.$axios.post('/logout').then(function () {
+        window.location.href = '/login';
+      });
+    }
   }
 });
 
@@ -5910,7 +5944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.mx-datepicker-range[data-v-49ce43a0] {\n    width: 100% !important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.mx-datepicker-range[data-v-49ce43a0] {\n    width: 100% !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -74545,7 +74579,7 @@ var render = function () {
                   "a",
                   {
                     staticClass:
-                      "px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                      "px-4 py-2 mt-2 text-sm font-semibold md:mt-0 md:ml-4",
                     attrs: { href: "#" },
                   },
                   [_vm._v("Home")]
@@ -74553,48 +74587,65 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "relative" },
+                  { staticClass: "relative ml-4" },
                   [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "flex flex-row text-gray-900 bg-gray-100 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                        on: {
-                          click: function ($event) {
-                            _vm.dropDown = !_vm.dropDown
+                    _c("div", { staticClass: "flex items-center" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "rounded-full flex items-center font-bold text-xl justify-center w-8 h-8 bg-blue-500 text-white",
+                        },
+                        [
+                          _vm._v(
+                            "\n                                 " +
+                              _vm._s(_vm.authUser.name.charAt(0)) +
+                              "\n                             "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "flex items-center py-2 mt-2 text-sm font-semibold text-left md:w-auto md:inline md:mt-0 md:ml-2",
+                          on: {
+                            click: function ($event) {
+                              _vm.dropDown = !_vm.dropDown
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("span", [_vm._v("Account")]),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1",
-                            class: {
-                              "rotate-180": _vm.dropDown,
-                              "rotate-0": !_vm.dropDown,
-                            },
-                            attrs: {
-                              fill: "currentColor",
-                              viewBox: "0 0 20 20",
-                            },
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                "fill-rule": "evenodd",
-                                d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                "clip-rule": "evenodd",
+                        [
+                          _c("span", [_vm._v("Account")]),
+                          _vm._v(" "),
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1",
+                              class: {
+                                "rotate-180": _vm.dropDown,
+                                "rotate-0": !_vm.dropDown,
                               },
-                            }),
-                          ]
-                        ),
-                      ]
-                    ),
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                              },
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                  "clip-rule": "evenodd",
+                                },
+                              }),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
                     _vm._v(" "),
                     _c("transition", { attrs: { name: "fade" } }, [
                       _c(
@@ -74678,8 +74729,12 @@ var render = function () {
                                     "a",
                                     {
                                       staticClass:
-                                        "flex row items-center rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                      attrs: { href: "#" },
+                                        "flex cursor-pointer items-center rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.logout()
+                                        },
+                                      },
                                     },
                                     [
                                       _c(

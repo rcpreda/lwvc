@@ -5,9 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignalController;
 
-Route::view('/{any}', 'app')->where('any', '.*');
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::view('/{any}', 'app')->where('any', '.*')->name('app');
+
     Route::get('/chat', function () {
         return view('chat');
     })->name('chat');
@@ -25,3 +27,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Route::view('/{any}', '404')->where('any', '.*');

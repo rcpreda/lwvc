@@ -7,5 +7,18 @@
 <script>
 export default {
   name: 'App',
+  props: {
+    authUser:{
+      type: Object,
+      required: true
+    }
+  },
+  mounted(){
+    if(!this.authUser){
+        window.location.href = '/login';
+    } else {
+        this.$store.dispatch("setAuthUser", this.authUser);
+    }
+  }
 }
 </script>

@@ -296,5 +296,4 @@ export default {
     .mx-datepicker-range {
         width: 100% !important;
     }
-    
 </style>

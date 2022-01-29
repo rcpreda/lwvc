@@ -10,7 +10,7 @@
     </head>
     <body class="antialiased">
        <div id="app">
-           <App/>
+           <App :auth-user="{{ json_encode(auth()->user()) }}"/>
        </div>
        <script src="{{ mix('/js/app.js') }}"></script>
     </body>

@@ -10,7 +10,7 @@
 <body>
     <div class="w-full min-h-screen flex flex-col justify-center items-center bg-gray-50">
         <div class="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
-            <h1 class="font-medium">Video Chat</h1>
+            <h1 class="font-medium">LOGO HERE</h1>
             <form class="mt-8 w-64 flex flex-col" method="post" action="/login">
                 @csrf
                 <input autofocus
