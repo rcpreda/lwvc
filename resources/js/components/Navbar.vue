@@ -16,7 +16,7 @@
                         <a class="px-4 py-2 mt-2 text-sm font-semibold md:mt-0 md:ml-4" href="#">Home</a>
                         <div class="relative ml-4">
                             <div class="flex items-center">
-                                <div class="rounded-full flex items-center font-bold text-xl justify-center w-8 h-8 bg-blue-500 text-white">
+                                <div class="rounded-full flex items-center font-medium text-xl justify-center w-8 h-8 bg-blue-500 text-white">
                                     {{ authUser.name.charAt(0) }}
                                 </div>
                                 <button @click="dropDown = !dropDown" class="flex items-center py-2 mt-2 text-sm font-semibold text-left md:w-auto md:inline md:mt-0 md:ml-2">

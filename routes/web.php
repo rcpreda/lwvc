@@ -8,7 +8,7 @@ use App\Http\Controllers\SignalController;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::view('/{any}', 'app')->where('any', '.*')->name('app');
+    Route::view('/', 'app')->name('app');
 
     Route::get('/chat', function () {
         return view('chat');

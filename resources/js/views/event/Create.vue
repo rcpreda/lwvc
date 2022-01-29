@@ -19,7 +19,7 @@
                                 <div class="rounded-full w-6 h-6 bg-purple-600"></div>
                                 <div>
                                     <p>What event is this?</p>
-                                    <p class="text-xs text-gray-500">30 min Meeting, No location given</p>
+                                    <p class="text-xs text-gray-500">30 min Meeting, Video call</p>
                                 </div>
                             </div>
                             <div class="hidden md:block" v-show="step1">

@@ -74594,7 +74594,7 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            "rounded-full flex items-center font-bold text-xl justify-center w-8 h-8 bg-blue-500 text-white",
+                            "rounded-full flex items-center font-medium text-xl justify-center w-8 h-8 bg-blue-500 text-white",
                         },
                         [
                           _vm._v(
@@ -76622,7 +76622,7 @@ var staticRenderFns = [
         _c("p", [_vm._v("What event is this?")]),
         _vm._v(" "),
         _c("p", { staticClass: "text-xs text-gray-500" }, [
-          _vm._v("30 min Meeting, No location given"),
+          _vm._v("30 min Meeting, Video call"),
         ]),
       ]),
     ])
