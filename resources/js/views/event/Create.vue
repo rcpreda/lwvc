@@ -22,7 +22,7 @@
                                     <p class="text-xs text-gray-500">30 min Meeting, No location given</p>
                                 </div>
                             </div>
-                            <div v-show="step1">
+                            <div class="hidden md:block" v-show="step1">
                                 <button class="text-gray-600">Cancel</button>
                                 <button class="rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white">Save & Close</button>
                             </div>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-show="step1" class="w-full flex justify-end items-center p-4 border-t">
+                        <div v-show="step1" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
                                 <button class="text-gray-600">Cancel</button>
                                 <button class="rounded-2xl ml-4 bg-blue-500 font-bold px-3 py-1 text-white">Save & Close</button>
@@ -79,7 +79,7 @@
                                     <p class="text-xs text-gray-500">30 min, 60 rolling calendar days</p>
                                 </div>
                             </div>
-                            <div v-show="step2">
+                            <div class="hidden md:block" v-show="step2">
                                 <button class="text-gray-600">Cancel</button>
                                 <button class="rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white">Save & Close</button>
                             </div>
@@ -89,41 +89,43 @@
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Date Range </label>
                                     <div class="mb-4 text-gray-500">Set a range of dates when you can accept meetings.</div>
-                                    <div class="flex items-center mb-4">
-                                    <input type="radio" class="cursor-pointer" name="date_range">
-                                    <input placeholder="30" class="appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline" type="text" required/>
-                                    <div class="relative ml-2 flex-1">
-                                        <button @click="dateRangeDropdwon = !dateRangeDropdwon" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
-                                            <span>calendar days</span>
-                                            <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': dateRangeDropdwon, 'rotate-0': !dateRangeDropdwon}" class="inline w-4 h-4 transition-transform duration-200 transform"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                        </button>
-                                        <transition name="fade">
-                                            <div v-show="dateRangeDropdwon" class="absolute w-full z-10">
-                                                <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
-                                                    <div class="grid grid-cols-1 gap-1">
-                                                        <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
-                                                            <div class="text-gray-800 rounded-lg">
-                                                                <div>calendar days</div>
-                                                                <div class="text-gray-400 text-xs mt-2">Counts every day on the calendar including days you're unavailable</div>
+                                    <div class="flex flex-col md:flex-row md:items-center mb-4">
+                                        <div class="flex flex-1 items-center">
+                                            <input type="radio" class="cursor-pointer" name="date_range">
+                                            <input placeholder="30" class="appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline" type="text" required/>
+                                            <div class="relative ml-2 flex-1">
+                                                <button @click="dateRangeDropdwon = !dateRangeDropdwon" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
+                                                    <span>calendar days</span>
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': dateRangeDropdwon, 'rotate-0': !dateRangeDropdwon}" class="inline w-4 h-4 transition-transform duration-200 transform"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                </button>
+                                                <transition name="fade">
+                                                    <div v-show="dateRangeDropdwon" class="absolute w-full z-10">
+                                                        <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
+                                                            <div class="grid grid-cols-1 gap-1">
+                                                                <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
+                                                                    <div class="text-gray-800 rounded-lg">
+                                                                        <div>calendar days</div>
+                                                                        <div class="text-gray-400 text-xs mt-2">Counts every day on the calendar including days you're unavailable</div>
+                                                                    </div>
+                                                                </a>    
+                                                                <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
+                                                                    <div class="text-gray-800 rounded-lg">
+                                                                        <div>business days</div>
+                                                                        <div class="text-gray-400 text-xs mt-2">Excludes weekends and only counts Mon - Fri</div>
+                                                                    </div>
+                                                                </a>                                                       
                                                             </div>
-                                                        </a>    
-                                                        <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
-                                                            <div class="text-gray-800 rounded-lg">
-                                                                <div>business days</div>
-                                                                <div class="text-gray-400 text-xs mt-2">Excludes weekends and only counts Mon - Fri</div>
-                                                            </div>
-                                                        </a>                                                       
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </transition>
                                             </div>
-                                        </transition>
-                                    </div> 
-                                    <div class="ml-2">into the future</div>
+                                        </div>
+                                        <div class="ml-2 text-right">into the future</div>
                                     </div>
                                     <div class="flex items-center">
                                         <input type="radio" class="cursor-pointer" name="date_range">
-                                        <div class="flex ml-4">
-                                            <div class="flex-1">Within a date range</div>
+                                        <div class="flex flex-1 ml-4 gap-2 items-center">
+                                            <div class="">Within a date range</div>
                                             <div class="flex-1">
                                                 <date-picker v-model="dateRange" range></date-picker>
                                             </div>
@@ -245,7 +247,7 @@
                                 </div>  
                             </div>                 
                         </div>
-                        <div v-show="step2" class="w-full flex justify-end items-center p-4 border-t">
+                        <div v-show="step2" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
                                 <button class="text-gray-600">Cancel</button>
                                 <button class="rounded-2xl ml-4 bg-blue-500 font-bold px-3 py-1 text-white">Save & Close</button>
@@ -268,7 +270,7 @@ export default {
     data(){
         return {
             dateRange: null,
-            step1: false,
+            step1: true,
             step2: false,
             description: null,
             customToolbar: [
@@ -291,5 +293,8 @@ export default {
 </script>
 
 <style scoped>
-
+    .mx-datepicker-range {
+        width: 100% !important;
+    }
+    
 </style>
