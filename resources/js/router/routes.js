@@ -4,6 +4,7 @@ import CreateEventView from '../views/event/Create.vue'
 import ScheduleEventView from '../views/event/Schedule.vue'
 import ScheduleConfirmView from '../views/event/ScheduleConfirm.vue'
 import ScheduleConfirmationView from '../views/event/Confirmed.vue'
+import DashboardView from '../views/event/Dashboard.vue'
 
 Vue.use(Router)
 
@@ -15,6 +16,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Dashboard',
+      component: DashboardView
+    },
+    {
+      path: '/create',
       name: 'CreateEvent',
       component: CreateEventView
     },
