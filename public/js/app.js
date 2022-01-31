@@ -3047,7 +3047,7 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         description: null,
         link: null,
-        color: null
+        color: '#c94f16'
       },
       step1Processing: false,
       dateRange: null,
@@ -3058,7 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         list: "bullet"
       }], ["link"]],
-      eventColors: ['bg-purple-600', 'bg-red-600', 'bg-green-600', 'bg-blue-600', 'bg-yellow-600', 'bg-pink-600', 'bg-indigo-600'],
+      eventColors: ['#c94f16', '#c9a316', '#70c916', '#16c3c9', '#1658c9', '#4916c9', '#8e16c9', '#c91685'],
       dateRangeDropdwon: false,
       durationDropdown: false,
       beforeEventDropdown: false
@@ -74778,8 +74778,12 @@ var render = function () {
                   "a",
                   {
                     staticClass:
-                      "text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline",
-                    attrs: { href: "#" },
+                      "cursor-pointer text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline",
+                    on: {
+                      click: function ($event) {
+                        return _vm.$router.push("/")
+                      },
+                    },
                   },
                   [_vm._v("LOGO HERE")]
                 ),
@@ -75940,7 +75944,14 @@ var render = function () {
                         },
                       },
                       [
-                        _vm._m(0),
+                        _c("div", { staticClass: "flex gap-2" }, [
+                          _c("div", {
+                            staticClass: "rounded-full w-6 h-6",
+                            style: "background-color:" + _vm.step1Data.color,
+                          }),
+                          _vm._v(" "),
+                          _vm._m(0),
+                        ]),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -76233,7 +76244,7 @@ var render = function () {
                                   key: i,
                                   staticClass:
                                     "rounded-full cursor-pointer w-8 h-8 flex items-center justify-center",
-                                  class: color,
+                                  style: "background-color:" + color,
                                   on: {
                                     click: function ($event) {
                                       _vm.step1Data.color = color
@@ -77063,15 +77074,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex gap-2" }, [
-      _c("div", { staticClass: "rounded-full w-6 h-6 bg-purple-600" }),
+    return _c("div", [
+      _c("p", [_vm._v("What event is this?")]),
       _vm._v(" "),
-      _c("div", [
-        _c("p", [_vm._v("What event is this?")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-xs text-gray-500" }, [
-          _vm._v("30 min Meeting, Video call"),
-        ]),
+      _c("p", { staticClass: "text-xs text-gray-500" }, [
+        _vm._v("30 min Meeting, Video call"),
       ]),
     ])
   },
@@ -77298,6 +77305,11 @@ var render = function () {
                         {
                           staticClass:
                             "flex gap-2 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl",
+                          on: {
+                            click: function ($event) {
+                              return _vm.$router.push("/create")
+                            },
+                          },
                         },
                         [
                           _c(
@@ -77336,14 +77348,15 @@ var render = function () {
               "div",
               {
                 staticClass:
-                  "max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 space-x-2",
+                  "max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 gap-4",
               },
               _vm._l(_vm.events, function (event) {
                 return _c(
                   "div",
                   {
                     key: event.id,
-                    staticClass: "shadow-lg rounded border-t-8 border-blue-500",
+                    staticClass: "shadow-lg rounded border-t-8",
+                    style: "border-color:" + event.color,
                   },
                   [
                     _c("div", { staticClass: "p-4 h-44" }, [
@@ -77352,7 +77365,7 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("div", {
-                        staticClass: "text-sm py-2",
+                        staticClass: "text-sm py-2 truncate",
                         domProps: { innerHTML: _vm._s(event.description) },
                       }),
                       _vm._v(" "),

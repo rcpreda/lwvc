@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="flex gap-2 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
+                            <button @click="$router.push('/create')" class="flex gap-2 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
@@ -36,11 +36,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 space-x-2">
-                    <div v-for="event in events" :key="event.id" class="shadow-lg rounded border-t-8 border-blue-500">
+                <div class="max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 gap-4">
+                    <div v-for="event in events" :key="event.id" class="shadow-lg rounded border-t-8" :style="`border-color:${event.color}`">
                         <div class="p-4 h-44">
                             <div class="font-medium text-lg">{{ event.name }}</div>
-                            <div class="text-sm py-2" v-html="event.description"></div>
+                            <div class="text-sm py-2 truncate" v-html="event.description"></div>
                             <a class="text-sm my-2 cursor-pointer text-blue-500 hover:border-b border-blue-500">view booking page</a>
                         </div>
                         <div class="p-4 flex border-t">

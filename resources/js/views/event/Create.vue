@@ -17,7 +17,7 @@
                     <div class="w-full bg-white border hover:border-gray-400">
                         <div @click="step1=!step1" class="w-full flex justify-between items-center p-4 cursor-pointer" :class="{'border-b':step1}">
                             <div class="flex gap-2">
-                                <div class="rounded-full w-6 h-6 bg-purple-600"></div>
+                                <div class="rounded-full w-6 h-6" :style="`background-color:${step1Data.color}`"></div>
                                 <div>
                                     <p>What event is this?</p>
                                     <p class="text-xs text-gray-500">30 min Meeting, Video call</p>
@@ -64,7 +64,7 @@
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event color * </label>
                                 <div class="flex gap-2">
-                                    <div v-for="(color, i) in eventColors" :key="i" @click="step1Data.color = color" class="rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" :class="color">
+                                    <div v-for="(color, i) in eventColors" :key="i" @click="step1Data.color = color" class="rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" :style="`background-color:${color}`">
                                         <svg v-if="color==step1Data.color" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                         </svg>
@@ -286,7 +286,7 @@ export default {
                 name: null,
                 description: null,
                 link: null,
-                color: null,
+                color: '#c94f16',
             },
             step1Processing: false,
             dateRange: null,
@@ -297,7 +297,7 @@ export default {
                 [{ list: "ordered" }, { list: "bullet" }],
                 ["link"]
             ],
-            eventColors: [ 'bg-purple-600', 'bg-red-600', 'bg-green-600', 'bg-blue-600', 'bg-yellow-600', 'bg-pink-600', 'bg-indigo-600' ],
+            eventColors: [ '#c94f16', '#c9a316', '#70c916', '#16c3c9', '#1658c9', '#4916c9', '#8e16c9', '#c91685' ],
             dateRangeDropdwon: false,
             durationDropdown: false,
             beforeEventDropdown: false
@@ -319,7 +319,7 @@ export default {
                 console.log(err)
                 this.step1Processing = false
             })
-        }
+        },
     }
 }
 </script>

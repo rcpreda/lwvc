@@ -7,9 +7,18 @@ use App\Http\Controllers\SignalController;
 use App\Http\Controllers\EventController;
 
 
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::get('/signup', [AuthController::class, 'signupForm'])->name('signup');
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 Route::middleware(['auth'])->group(function () {
 
-    Route::view('/', 'app')->name('app');
+   
 
     Route::get('/chat', function () {
         return view('chat');
@@ -23,15 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/events/{event}', [EventController::class, 'store']);
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index']);
+
+    Route::view('/{any}', 'app')->where('any', '.*')->name('app');
 });
-
-
-Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-Route::get('/signup', [AuthController::class, 'signupForm'])->name('signup');
-
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/signup', [AuthController::class, 'signup']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
 // Route::view('/{any}', '404')->where('any', '.*');
