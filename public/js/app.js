@@ -2743,6 +2743,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           remember: _this.remember
         }).then(function (res) {
           localStorage.setItem('auth-user', JSON.stringify(res.data.data));
+          localStorage.setItem('auth', true);
 
           _this.setAuthUser(res.data.data);
 
@@ -3196,9 +3197,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -3215,7 +3213,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       step1Processing: false,
       dateRange: null,
-      step1: true,
+      step1: false,
       step2: false,
       customToolbar: [["bold", "italic", "underline"], [{
         list: "ordered"
@@ -3667,6 +3665,14 @@ vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((v_calendar__WEBPACK_IMPORTED_MO
     "lg": "1024px",
     "xl": "1280px"
   }
+});
+_router_routes__WEBPACK_IMPORTED_MODULE_3__["default"].beforeEach(function (to, from, next) {
+  if (to.name !== 'Login' && !localStorage.getItem('auth')) next({
+    name: 'Login'
+  });else next();
+  if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth')) next({
+    name: 'Dashboard'
+  });else next();
 });
 new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
   el: '#app',
@@ -77621,20 +77627,6 @@ var render = function () {
                                                       [
                                                         _c("div", [
                                                           _vm._v("60 min"),
-                                                        ]),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "a",
-                                                      {
-                                                        staticClass:
-                                                          "rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
-                                                        attrs: { href: "#" },
-                                                      },
-                                                      [
-                                                        _c("div", [
-                                                          _vm._v("Custom"),
                                                         ]),
                                                       ]
                                                     ),

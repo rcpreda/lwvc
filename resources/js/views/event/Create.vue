@@ -176,10 +176,7 @@
                                                             </a>    
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>60 min</div>
-                                                            </a> 
-                                                            <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
-                                                                <div>Custom</div>
-                                                            </a>                              
+                                                            </a>                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -296,7 +293,7 @@ export default {
             },
             step1Processing: false,
             dateRange: null,
-            step1: true,
+            step1: false,
             step2: false,
             customToolbar: [
                 ["bold", "italic", "underline"],
