@@ -50,6 +50,7 @@ export default {
         login(){
             this.$axios.get('/sanctum/csrf-cookie').then(res => {
                 this.$axios.post('/api/login',{email: this.email, password: this.password, remember: this.remember}).then(res => {
+                    localStorage.setItem('auth-user', JSON.stringify(res.data.data));
                     this.setAuthUser(res.data.data)
                     this.$router.push('/')
                 })

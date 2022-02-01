@@ -17,6 +17,11 @@ export default new Router({
   },
   routes: [
     {
+      path: '/',
+      name: 'Dashboard',
+      component: DashboardView
+    },
+    {
       path: '/login',
       name: 'Login',
       component: LoginView
@@ -25,11 +30,6 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: SignupView
-    },
-    {
-      path: '/',
-      name: 'Dashboard',
-      component: DashboardView
     },
     {
       path: '/create',

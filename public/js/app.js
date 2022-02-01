@@ -2742,6 +2742,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           password: _this.password,
           remember: _this.remember
         }).then(function (res) {
+          localStorage.setItem('auth-user', JSON.stringify(res.data.data));
+
           _this.setAuthUser(res.data.data);
 
           _this.$router.push('/');
@@ -3752,6 +3754,10 @@ vue__WEBPACK_IMPORTED_MODULE_7__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     };
   },
   routes: [{
+    path: '/',
+    name: 'Dashboard',
+    component: _views_event_Dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
     path: '/login',
     name: 'Login',
     component: _views_auth_Login_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -3759,10 +3765,6 @@ vue__WEBPACK_IMPORTED_MODULE_7__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     path: '/signup',
     name: 'Signup',
     component: _views_auth_Signup_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, {
-    path: '/',
-    name: 'Dashboard',
-    component: _views_event_Dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/create',
     name: 'CreateEvent',
