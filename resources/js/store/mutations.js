@@ -1,5 +1,11 @@
 export const SET_AUTH_USER = (state, user) => {
     state.authUser = user
+    state.isAuthenticated = true
+}
+
+export const DESTROY_AUTH_USER = (state) => {
+    state.authUser = null,
+    state.isAuthenticated = false
 }
 
 export const SET_ONLINE_USERS = (state, users) => {

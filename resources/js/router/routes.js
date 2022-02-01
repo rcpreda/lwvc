@@ -5,6 +5,8 @@ import ScheduleEventView from '../views/event/Schedule.vue'
 import ScheduleConfirmView from '../views/event/ScheduleConfirm.vue'
 import ScheduleConfirmationView from '../views/event/Confirmed.vue'
 import DashboardView from '../views/event/Dashboard.vue'
+import LoginView from '../views/auth/Login.vue'
+import SignupView from '../views/auth/Signup.vue'
 
 Vue.use(Router)
 
@@ -14,6 +16,16 @@ export default new Router({
     return { x: 0, y: 0 }
   },
   routes: [
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: SignupView
+    },
     {
       path: '/',
       name: 'Dashboard',

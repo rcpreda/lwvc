@@ -63,6 +63,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
     data(){
         return {
@@ -76,9 +77,13 @@ export default {
         ])
     },
     methods: {
+        ...mapActions([
+            'destroyAuthUser'
+        ]),
         logout(){
-            this.$axios.post('/logout').then(() => {
-                window.location.href = '/login';
+            this.$axios.post('/api/logout').then(() => {
+                this.destroyAuthUser()
+                this.$router.push('/login')
             })
         }
     },

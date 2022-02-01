@@ -1,4 +1,5 @@
 export default {
+    isAuthenticated: false,
     authUser: null,
     onlineUsers: [],
     callingUser: null,
