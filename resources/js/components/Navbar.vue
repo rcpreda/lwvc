@@ -83,6 +83,7 @@ export default {
         logout(){
             this.$axios.post('/api/logout').then(() => {
                 this.destroyAuthUser()
+                localStorage.removeItem("auth-user");
                 this.$router.push('/login')
             })
         }

@@ -25,10 +25,16 @@ Vue.use(VCalendar, {
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !localStorage.getItem('auth')) next({ name: 'Login' })
-    else next()
-    if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth')) next({ name: 'Dashboard' })
-    else next()
+    if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
+        next({ name: 'Login' })
+    }
+    else if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth-user')) {
+        next({ name: 'Dashboard' })
+    } else{
+        next()
+    }
+   
+    
 })
 
 new Vue({

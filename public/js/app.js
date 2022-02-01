@@ -2401,6 +2401,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$axios.post('/api/logout').then(function () {
         _this.destroyAuthUser();
 
+        localStorage.removeItem("auth-user");
+
         _this.$router.push('/login');
       });
     }
@@ -2743,7 +2745,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           remember: _this.remember
         }).then(function (res) {
           localStorage.setItem('auth-user', JSON.stringify(res.data.data));
-          localStorage.setItem('auth', true);
 
           _this.setAuthUser(res.data.data);
 
@@ -3667,12 +3668,17 @@ vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((v_calendar__WEBPACK_IMPORTED_MO
   }
 });
 _router_routes__WEBPACK_IMPORTED_MODULE_3__["default"].beforeEach(function (to, from, next) {
-  if (to.name !== 'Login' && !localStorage.getItem('auth')) next({
-    name: 'Login'
-  });else next();
-  if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth')) next({
-    name: 'Dashboard'
-  });else next();
+  if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
+    next({
+      name: 'Login'
+    });
+  } else if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth-user')) {
+    next({
+      name: 'Dashboard'
+    });
+  } else {
+    next();
+  }
 });
 new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
   el: '#app',
