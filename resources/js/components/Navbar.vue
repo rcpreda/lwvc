@@ -14,6 +14,7 @@
                     </div>
                     <nav :class="{'flex': mobile, 'hidden': !mobile}" class="flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
                         <a class="px-4 py-2 mt-2 text-sm font-semibold md:mt-0 md:ml-4" href="#">Home</a>
+                        <router-link to="/availibility" class="px-4 py-2 mt-2 text-sm font-semibold md:mt-0 md:ml-4">Availibility</router-link>
                         <div class="relative ml-4">
                             <div class="flex items-center">
                                 <div v-if="authUser" class="rounded-full flex items-center font-medium text-xl justify-center w-8 h-8 bg-blue-500 text-white">
