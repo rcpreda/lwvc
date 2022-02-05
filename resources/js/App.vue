@@ -10,13 +10,16 @@ export default {
   name: 'App',
   methods:{
     ...mapActions([
-      'setAuthUser'
+      'setAuthUser',
+      'destroyAuthUser'
     ])
   },
   mounted() {
     this.$axios.get('/api/user').then(res => {
       this.setAuthUser(res.data.data)
     }).catch(err => {
+      this.destroyAuthUser()
+      localStorage.removeItem("auth-user");
       this.$router.push('/login')
     })
   }

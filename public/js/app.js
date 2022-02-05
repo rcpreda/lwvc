@@ -2081,13 +2081,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'App',
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(['setAuthUser'])),
+  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(['setAuthUser', 'destroyAuthUser'])),
   mounted: function mounted() {
     var _this = this;
 
     this.$axios.get('/api/user').then(function (res) {
       _this.setAuthUser(res.data.data);
     })["catch"](function (err) {
+      _this.destroyAuthUser();
+
+      localStorage.removeItem("auth-user");
+
       _this.$router.push('/login');
     });
   }
