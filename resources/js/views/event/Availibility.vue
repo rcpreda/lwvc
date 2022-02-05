@@ -30,7 +30,7 @@
             <div class="w-full text-gray-700 mt-5">
                 <div class="max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="border bg-white rounded py-5">
-                        <div class="flex justify-between px-5">
+                        <div class="flex justify-between px-5 pb-5">
                             <div>
                                 <div class="font-medium">Working hours</div>
                                 <div class="text-sm flex items-center gap-1">
@@ -40,25 +40,41 @@
                                     default schedule
                                 </div>
                             </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex mt-5 gap-4 px-5 pb-5">
-                            <div class="flex flex-col">
-                                <div>ACTIVE ON</div>
-
-                            </div>
-                            <div class="flex flex-col">
-                                <div>TIME ZONE</div>
-                                
+                            <div class="flex text-sm text-blue-500 gap-3">
+                                <a href="#">Edit</a>
+                                <a href="#">Default</a>
+                                <a href="#">Delete</a>
                             </div>
                         </div>
                         <hr>
-                        <div class="px-5 pt-5">
+                        <div class="px-5 pt-5 w-full">
                             <div class="font-medium">Set your weekly hours</div>
+                            <div class="mt-5 w-6/12 divide-y">
+                                <div v-for="(item, i) in Object.keys(availibility)" :key="i" class="flex text-sm gap-4 py-4 w-full ">
+                                    <div class="my-3 flex-1">
+                                        <div class="flex items-center gap-2">
+                                            <input type="checkbox" class="cursor-pointer">
+                                            <span class="font-medium">{{ item.toUpperCase() }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 gap-2 justify-between">
+                                        <div>
+                                            <div v-for="(sch, i) in availibility[item]" :key="i">
+                                                <div class="flex gap-2 my-2 items-center">
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    <vue-timepicker input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="bg-blue-500 text-white px-5 py-1 rounded">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,20 +85,73 @@
 
 <script>
 import Navbar from '../../components/Navbar.vue'
-
+import VueTimepicker from 'vue2-timepicker'
+import 'vue2-timepicker/dist/VueTimepicker.css'
 export default {
     data(){
         return {
-           events: null,
+            events: null,
+            availibility: {
+                sunday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                monday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                tuesday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                wednesday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                thursday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                friday: [
+                    {
+                        open: '',
+                        close: '',
+                    },
+                ],
+                saturday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ]
+            }
         }
     },
     components: {
-        Navbar
+        Navbar,
+        VueTimepicker
     },
     mounted() {
         this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
         })
+        for (const [key, value] of Object.entries(this.availibility)) {
+            if(key == 'sunday'){
+                value.forEach(element => {
+                    console.log(element)
+                });
+            }
+        }
     },
 }
 </script>

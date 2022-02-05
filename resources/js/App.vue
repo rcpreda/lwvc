@@ -16,6 +16,8 @@ export default {
   mounted() {
     this.$axios.get('/api/user').then(res => {
       this.setAuthUser(res.data.data)
+    }).catch(err => {
+      this.$router.push('/login')
     })
   }
 }
