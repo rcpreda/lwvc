@@ -58,6 +58,12 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+Vue.use(DToaster, {
+    presets: ToasterPresets,
+    position: 'top-left', //toasts container position on the screen
+    containerOffset: '45px', //toasts container offset from top/bottom of the screen
+});
+
 new Vue({
     el: '#app',
     store,
