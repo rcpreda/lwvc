@@ -70,6 +70,11 @@ export default {
     components: {
         Navbar
     },
+    methods: {
+        goToShowEvent(eventId) {
+            this.$router.push(`/event/show/${eventId}`);
+        },
+    },
     mounted() {
         this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
