@@ -59,7 +59,7 @@ export default new Router({
             component: ScheduleConfirmationView
         },
         {
-            path: '/show',
+            path: '/event/show/:id',
             name: 'ShowEvent',
             component: ShowEventView
         },
