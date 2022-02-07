@@ -64,6 +64,9 @@ Vue.use(DToaster, {
     containerOffset: '45px', //toasts container offset from top/bottom of the screen
 });
 
+// inherit vue in global to use emit
+window.Fire = new Vue();
+
 new Vue({
     el: '#app',
     store,
