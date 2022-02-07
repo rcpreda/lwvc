@@ -76,6 +76,8 @@ export default {
         },
     },
     mounted() {
+        var userData = JSON.parse(localStorage.getItem('auth-user'));
+        this.userName = userData.name;
         this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
         })
