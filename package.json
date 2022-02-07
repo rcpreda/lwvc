@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "dotenv": "^14.2.0",
+        "dtoaster": "^0.1.4",
         "moment-timezone": "^0.5.34",
         "simple-peer": "^9.11.0",
         "v-calendar": "^2.3.4",

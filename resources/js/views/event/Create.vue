@@ -3,6 +3,15 @@
         <Navbar/>
         <div class="antialiased pt-5 pb-28">
             <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
+                <div class="max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
+                    <button @click="goToDashboard" type="button" class="flex gap-1 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                </div>
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
                         <div class="text-gray-500 text-sm">Last edited 25 January 2022.</div>
@@ -20,11 +29,11 @@
                                 <div class="rounded-full w-6 h-6" :style="`background-color:${step1Data.color}`"></div>
                                 <div>
                                     <p>What event is this?</p>
-                                    <p class="text-xs text-gray-500">30 min Meeting, Video call</p>
+                                    <p class="text-xs text-gray-500">{{ step1Data.name }}, Video call</p>
                                 </div>
                             </div>
                             <div class="hidden md:flex" v-show="step1">
-                                <button class="text-gray-600">Cancel</button>
+                                <button @click="step1=!step1" class="text-gray-600 mr-3">Cancel</button>
                                 <button @click.stop="saveStep1()" :disabled="step1Processing" class="rounded-2xl disabled:bg-blue-400 ml-4 bg-blue-500 px-3 py-1 font-bold flex items-center justify-center text-white">
                                     <svg v-show="step1Processing" class="animate-spin mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -74,7 +83,7 @@
                         </div>
                         <div v-show="step1" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div class="flex">
-                                <button class="text-gray-600">Cancel</button>
+                                <button @click="step1=!step1" class="text-gray-600">Cancel</button>
                                 <button @click.stop="saveStep1()" :disabled="step1Processing" class="rounded-2xl disabled:bg-blue-400 ml-4 bg-blue-500 px-3 py-1 font-bold flex items-center justify-center text-white">
                                     <svg v-show="step1Processing" class="animate-spin mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -125,13 +134,13 @@
                                                                         <div>calendar days</div>
                                                                         <div class="text-gray-400 text-xs mt-2">Counts every day on the calendar including days you're unavailable</div>
                                                                     </div>
-                                                                </a>    
+                                                                </a>
                                                                 <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                     <div class="text-gray-800 rounded-lg">
                                                                         <div>business days</div>
                                                                         <div class="text-gray-400 text-xs mt-2">Excludes weekends and only counts Mon - Fri</div>
                                                                     </div>
-                                                                </a>                                                       
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,7 +158,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="border-b">
                                 <div class="mb-4 max-w-lg p-4">
@@ -170,21 +179,21 @@
                                                             </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>30 min</div>
-                                                            </a>   
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>45 min</div>
-                                                            </a>    
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>60 min</div>
-                                                            </a>                           
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </transition>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </div>  
-                            </div>   
+                                </div>
+                            </div>
                             <div class="border-b">
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Weekly Hours </label>
@@ -223,8 +232,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>  
-                            </div>  
+                                </div>
+                            </div>
                             <div class="">
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2"> Want to add time before or after your events? </label>
@@ -246,21 +255,21 @@
                                                             </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>10 min</div>
-                                                            </a>   
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>15 min</div>
-                                                            </a>    
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>20 min</div>
-                                                            </a>                             
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </transition>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </div>  
-                            </div>                 
+                                </div>
+                            </div>
                         </div>
                         <div v-show="step2" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
@@ -286,7 +295,7 @@ export default {
         return {
             step1Data: {
                 id: null,
-                name: null,
+                name: "30 min Meeting",
                 description: null,
                 link: null,
                 color: '#c94f16',
@@ -318,10 +327,24 @@ export default {
                 console.log(res)
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false
+                this.step1 = false
+                this.$dtoast.pop({
+                    preset: "success",
+                    heading: `Success!`,
+                    content: `Event added!`,
+                });
             }).catch(err => {
                 console.log(err)
                 this.step1Processing = false
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: `Error!`,
+                    content: `Something when wrong, please try again!`,
+                });
             })
+        },
+        goToDashboard(){
+            this.$router.push('/');
         },
     }
 }
