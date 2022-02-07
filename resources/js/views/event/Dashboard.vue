@@ -65,6 +65,7 @@ export default {
     data(){
         return {
            events: null,
+           userName: null,
         }
     },
     components: {
