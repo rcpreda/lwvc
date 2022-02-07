@@ -20,7 +20,7 @@
                                 <div class="rounded-full w-6 h-6" :style="`background-color:${step1Data.color}`"></div>
                                 <div>
                                     <p>What event is this?</p>
-                                    <p class="text-xs text-gray-500">30 min Meeting, Video call</p>
+                                    <p class="text-xs text-gray-500">{{ step1Data.name }}, Video call</p>
                                 </div>
                             </div>
                             <div class="hidden md:flex" v-show="step1">
@@ -286,7 +286,7 @@ export default {
         return {
             step1Data: {
                 id: null,
-                name: null,
+                name: "30 min Meeting",
                 description: null,
                 link: null,
                 color: '#c94f16',
