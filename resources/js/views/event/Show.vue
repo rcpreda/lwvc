@@ -3,13 +3,31 @@
         <Navbar/>
         <div class="antialiased pt-5 pb-28">
             <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
-                <div class="max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
+                <div class="flex justify-between max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
                     <button @click="goToDashboard" type="button" class="flex gap-1 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                         <span>Back</span>
+                    </button>
+                    <button v-show="!isDeleteConfirmed" @click="deleteConfirmation" type="button"
+                        class="flex gap-1 border items-center border-red-500 text-red-500 py-1 px-3 rounded-3xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        <span>Delete</span>
+                    </button>
+                    <button v-show="isDeleteConfirmed" @click="deleteEvent" type="button"
+                        class="flex gap-1 border items-center border-red-500 text-red-500 py-1 px-3 rounded-3xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        <span>Delete this event?</span>
                     </button>
                 </div>
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
@@ -312,7 +330,8 @@ export default {
             eventColors: [ '#c94f16', '#c9a316', '#70c916', '#16c3c9', '#1658c9', '#4916c9', '#8e16c9', '#c91685' ],
             dateRangeDropdwon: false,
             durationDropdown: false,
-            beforeEventDropdown: false
+            beforeEventDropdown: false,
+            isDeleteConfirmed: false,
         }
     },
     components: {
@@ -346,6 +365,26 @@ export default {
         goToDashboard(){
             this.$router.push('/');
         },
+        deleteConfirmation() {
+            if (this.isDeleteConfirmed) {
+                this.isDeleteConfirmed = false;
+            } else {
+                this.isDeleteConfirmed = true;
+            }
+        },
+        deleteEvent() {
+            this.$axios.delete(`/api/events/${this.step1Data.id}`)
+            .then( () => {
+                this.$router.push('/');
+                Fire.$emit('eventDeleted');
+            }).catch(() => {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading:  `Error!`,
+                    content:  `Something when wrong, please try again!`,
+                });
+            });
+        }
     },
     mounted() {
         this.$axios.get(`/api/events/${this.$route.params.id}`)
