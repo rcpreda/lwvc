@@ -394,6 +394,15 @@ export default {
             this.step1Data.description = res.data.data.description;
             this.step1Data.link = res.data.data.link;
             this.step1Data.color = res.data.data.color;
+        }).catch(() => {
+            this.$dtoast.pop({
+                preset: "error",
+                heading: `Error!`,
+                content: `Something when wrong, redirecting to home...`,
+            });
+            window.setTimeout(() => {
+                this.$router.push('/');
+            }, 2000);
         });
     },
 }
