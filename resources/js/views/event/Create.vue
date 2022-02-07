@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="hidden md:flex" v-show="step1">
-                                <button class="text-gray-600">Cancel</button>
+                                <button @click="step1=!step1" class="text-gray-600 mr-3">Cancel</button>
                                 <button @click.stop="saveStep1()" :disabled="step1Processing" class="rounded-2xl disabled:bg-blue-400 ml-4 bg-blue-500 px-3 py-1 font-bold flex items-center justify-center text-white">
                                     <svg v-show="step1Processing" class="animate-spin mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -74,7 +74,7 @@
                         </div>
                         <div v-show="step1" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div class="flex">
-                                <button class="text-gray-600">Cancel</button>
+                                <button @click="step1=!step1" class="text-gray-600">Cancel</button>
                                 <button @click.stop="saveStep1()" :disabled="step1Processing" class="rounded-2xl disabled:bg-blue-400 ml-4 bg-blue-500 px-3 py-1 font-bold flex items-center justify-center text-white">
                                     <svg v-show="step1Processing" class="animate-spin mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
