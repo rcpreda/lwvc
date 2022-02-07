@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 gap-4">
-                    <div v-for="event in events" :key="event.id" class="shadow-lg rounded border-t-8" :style="`border-color:${event.color}`">
+                    <div v-for="event in events" :key="event.id" class="shadow rounded border-t-8 mb-3 hover:shadow-lg hover:scale-105 hover:cursor-pointer" :style="`border-color:${event.color}`">
                         <div class="p-4 h-44">
                             <div class="font-medium text-lg">{{ event.name }}</div>
                             <div class="text-sm py-2 truncate" v-html="event.description"></div>
