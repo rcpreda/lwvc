@@ -125,13 +125,13 @@
                                                                         <div>calendar days</div>
                                                                         <div class="text-gray-400 text-xs mt-2">Counts every day on the calendar including days you're unavailable</div>
                                                                     </div>
-                                                                </a>    
+                                                                </a>
                                                                 <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                     <div class="text-gray-800 rounded-lg">
                                                                         <div>business days</div>
                                                                         <div class="text-gray-400 text-xs mt-2">Excludes weekends and only counts Mon - Fri</div>
                                                                     </div>
-                                                                </a>                                                       
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,7 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="border-b">
                                 <div class="mb-4 max-w-lg p-4">
@@ -170,21 +170,21 @@
                                                             </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>30 min</div>
-                                                            </a>   
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>45 min</div>
-                                                            </a>    
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>60 min</div>
-                                                            </a>                           
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </transition>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </div>  
-                            </div>   
+                                </div>
+                            </div>
                             <div class="border-b">
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Weekly Hours </label>
@@ -223,8 +223,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>  
-                            </div>  
+                                </div>
+                            </div>
                             <div class="">
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2"> Want to add time before or after your events? </label>
@@ -246,21 +246,21 @@
                                                             </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>10 min</div>
-                                                            </a>   
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>15 min</div>
-                                                            </a>    
+                                                            </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>20 min</div>
-                                                            </a>                             
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </transition>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </div>  
-                            </div>                 
+                                </div>
+                            </div>
                         </div>
                         <div v-show="step2" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
@@ -318,6 +318,7 @@ export default {
                 console.log(res)
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false
+                this.step1 = false
             }).catch(err => {
                 console.log(err)
                 this.step1Processing = false
