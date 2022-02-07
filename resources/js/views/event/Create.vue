@@ -3,6 +3,15 @@
         <Navbar/>
         <div class="antialiased pt-5 pb-28">
             <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
+                <div class="max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
+                    <button @click="goToDashboard" type="button" class="flex gap-1 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                </div>
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
                         <div class="text-gray-500 text-sm">Last edited 25 January 2022.</div>
@@ -323,6 +332,9 @@ export default {
                 console.log(err)
                 this.step1Processing = false
             })
+        },
+        goToDashboard(){
+            this.$router.push('/');
         },
     }
 }
