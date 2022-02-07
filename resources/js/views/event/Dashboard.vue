@@ -71,7 +71,7 @@ export default {
         Navbar
     },
     mounted() {
-        this.$axios.get(`/events`).then( res => {
+        this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
         })
     },

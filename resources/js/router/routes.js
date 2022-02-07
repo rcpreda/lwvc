@@ -5,6 +5,9 @@ import ScheduleEventView from '../views/event/Schedule.vue'
 import ScheduleConfirmView from '../views/event/ScheduleConfirm.vue'
 import ScheduleConfirmationView from '../views/event/Confirmed.vue'
 import DashboardView from '../views/event/Dashboard.vue'
+import AvailibilityView from '../views/event/Availibility.vue'
+import LoginView from '../views/auth/Login.vue'
+import SignupView from '../views/auth/Signup.vue'
 
 Vue.use(Router)
 
@@ -18,6 +21,21 @@ export default new Router({
       path: '/',
       name: 'Dashboard',
       component: DashboardView
+    },
+    {
+      path: '/availibility',
+      name: 'Availibility',
+      component: AvailibilityView
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: SignupView
     },
     {
       path: '/create',

@@ -6,6 +6,10 @@ export const setAuthUser = ({commit}, user) => {
     commit('SET_AUTH_USER', user)
 }
 
+export const destroyAuthUser = ({commit}) => {
+    commit('DESTROY_AUTH_USER')
+}
+
 export const setOnlineUsers = ({commit}, users) => {
     commit('SET_ONLINE_USERS', users)
 }

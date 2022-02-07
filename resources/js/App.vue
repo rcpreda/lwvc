@@ -5,20 +5,23 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'App',
-  props: {
-    authUser:{
-      type: Object,
-      required: true
-    }
+  methods:{
+    ...mapActions([
+      'setAuthUser',
+      'destroyAuthUser'
+    ])
   },
-  mounted(){
-    if(!this.authUser){
-        window.location.href = '/login';
-    } else {
-        this.$store.dispatch("setAuthUser", this.authUser);
-    }
+  mounted() {
+    this.$axios.get('/api/user').then(res => {
+      this.setAuthUser(res.data.data)
+    }).catch(err => {
+      this.destroyAuthUser()
+      localStorage.removeItem("auth-user");
+      this.$router.push('/login')
+    })
   }
 }
 </script>

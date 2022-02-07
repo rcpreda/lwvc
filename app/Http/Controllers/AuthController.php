@@ -9,21 +9,6 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-
-    public function signupForm(){
-        if(auth()->check()){
-            return redirect()->route('chat');
-        }
-        return view('Auth.signup');
-    }
-
-    public function loginForm(){
-        if(auth()->check()){
-            return redirect()->route('chat');
-        }
-        return view('Auth.login');
-    }
-
     public function signup(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -32,7 +17,10 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/signup')->withErrors($validator)->withInput();
+            return response()->json([
+                'success' => false,
+                $validator->errors()
+            ], 422);
         }
 
         $user = new User;
@@ -42,7 +30,9 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('login');
+        return response()->json([
+            "success" => true
+        ], 201);
     }
 
     public function login(Request $request){
@@ -52,7 +42,10 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/login')->withErrors($validator)->withInput();
+            return response()->json([
+                'success' => false,
+                 $validator->errors()
+            ], 422);
         }
 
         $success = auth()->attempt([
@@ -62,12 +55,16 @@ class AuthController extends Controller
 
         if($success){
             $request->session()->regenerate();
-            return redirect()->route('app');
+            return response()->json([
+                'success' => true,
+                'data' => auth()->user()
+            ], 200);
         }
 
-        return back()->withInput()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return response()->json([
+            'success' => false,
+            'error' => 'Provided credentials are wrong!'
+        ], 422);
     }
 
     public function logout(Request $request){

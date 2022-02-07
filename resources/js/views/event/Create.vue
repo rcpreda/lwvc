@@ -59,7 +59,7 @@
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event link * </label>
                                 <div class="text-gray-500 text-sm mb-2">example.com/debarshi</div>
-                                <input placeholder="Add a location" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+                                <input placeholder="link" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
                             </div>
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event color * </label>
@@ -73,9 +73,15 @@
                             </div>
                         </div>
                         <div v-show="step1" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
-                            <div>
+                            <div class="flex">
                                 <button class="text-gray-600">Cancel</button>
-                                <button class="rounded-2xl ml-4 bg-blue-500 font-bold px-3 py-1 text-white">Save & Close</button>
+                                <button @click.stop="saveStep1()" :disabled="step1Processing" class="rounded-2xl disabled:bg-blue-400 ml-4 bg-blue-500 px-3 py-1 font-bold flex items-center justify-center text-white">
+                                    <svg v-show="step1Processing" class="animate-spin mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Save & Close
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -170,10 +176,7 @@
                                                             </a>    
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
                                                                 <div>60 min</div>
-                                                            </a> 
-                                                            <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
-                                                                <div>Custom</div>
-                                                            </a>                              
+                                                            </a>                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -290,7 +293,7 @@ export default {
             },
             step1Processing: false,
             dateRange: null,
-            step1: true,
+            step1: false,
             step2: false,
             customToolbar: [
                 ["bold", "italic", "underline"],
@@ -311,7 +314,7 @@ export default {
     methods: {
         saveStep1(){
             this.step1Processing = true
-            this.$axios.post(`/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data).then(res => {
+            this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data).then(res => {
                 console.log(res)
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false

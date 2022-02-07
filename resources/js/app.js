@@ -24,6 +24,31 @@ Vue.use(VCalendar, {
       }
 });
 
+Vue.directive('clickoutside', {
+    bind: function (el, binding, vnode) {
+      el.clickOutsideEvent = function (event) {
+        if (!(el == event.target || el.contains(event.target))) {
+          vnode.context[binding.expression](event);
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent)
+    },
+    unbind: function (el) {
+      document.body.removeEventListener('click', el.clickOutsideEvent)
+    },
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
+        next({ name: 'Login' })
+    }
+    else if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth-user')) {
+        next({ name: 'Dashboard' })
+    } else{
+        next()
+    } 
+})
+
 new Vue({
     el: '#app',
     store,
