@@ -20,7 +20,9 @@ export default {
     }).catch(err => {
       this.destroyAuthUser()
       localStorage.removeItem("auth-user");
-      this.$router.push('/login')
+      // this is make when the  signup page refresh it will be redirect to login
+      // Better to create manual check in every page, so we wil have more control
+        //this.$router.push('/login')
     })
   }
 }
