@@ -321,22 +321,42 @@ export default {
         Navbar
     },
     methods: {
-        saveStep1(){
+        updateStep1(){
             this.step1Processing = true
-            this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data).then(res => {
+            this.$axios.post(`/api/events/${this.step1Data.id}`, this.step1Data).then(res => {
                 console.log(res)
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false
                 this.step1 = false
+                this.$dtoast.pop({
+                    preset: "success",
+                    heading:  `Success!`,
+                    content:  `Event updated!`,
+                });
             }).catch(err => {
                 console.log(err)
                 this.step1Processing = false
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading:  `Error!`,
+                    content:  `Something when wrong, please try again`,
+                });
             })
         },
         goToDashboard(){
             this.$router.push('/');
         },
-    }
+    },
+    mounted() {
+        this.$axios.get(`/api/events/${this.$route.params.id}`)
+        .then( res => {
+            this.step1Data.id = res.data.data.id;
+            this.step1Data.name = res.data.data.name;
+            this.step1Data.description = res.data.data.description;
+            this.step1Data.link = res.data.data.link;
+            this.step1Data.color = res.data.data.color;
+        });
+    },
 }
 </script>
 
