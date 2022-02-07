@@ -2090,9 +2090,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     })["catch"](function (err) {
       _this.destroyAuthUser();
 
-      localStorage.removeItem("auth-user");
-
-      _this.$router.push('/login');
+      localStorage.removeItem("auth-user"); // this is make when the  signup page refresh it will be redirect to login
+      // Better to create manual check in every page, so we wil have more control
+      //this.$router.push('/login')
     });
   }
 });
@@ -3867,7 +3867,13 @@ vue__WEBPACK_IMPORTED_MODULE_5__["default"].directive('clickoutside', {
   }
 });
 _router_routes__WEBPACK_IMPORTED_MODULE_3__["default"].beforeEach(function (to, from, next) {
-  if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
+  // this is the main cause why the the signup page keep redirect to login
+  // because the condition is tru when where not going to login page (we are going to signup)
+  // and we are not authenticated
+  // so the solution is change the order of the logic or add new condition as shown below
+  if (to.name === "Signup" && !localStorage.getItem('auth-user')) {
+    next();
+  } else if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
     next({
       name: 'Login'
     });
