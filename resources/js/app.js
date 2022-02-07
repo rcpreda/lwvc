@@ -21,37 +21,44 @@ Vue.use(VCalendar, {
         "md": "768px",
         "lg": "1024px",
         "xl": "1280px"
-      }
+    }
 });
 
 Vue.directive('clickoutside', {
     bind: function (el, binding, vnode) {
-      el.clickOutsideEvent = function (event) {
-        if (!(el == event.target || el.contains(event.target))) {
-          vnode.context[binding.expression](event);
-        }
-      };
-      document.body.addEventListener('click', el.clickOutsideEvent)
+        el.clickOutsideEvent = function (event) {
+            if (!(el == event.target || el.contains(event.target))) {
+                vnode.context[binding.expression](event);
+            }
+        };
+        document.body.addEventListener('click', el.clickOutsideEvent)
     },
     unbind: function (el) {
-      document.body.removeEventListener('click', el.clickOutsideEvent)
+        document.body.removeEventListener('click', el.clickOutsideEvent)
     },
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
+    // this is the main cause why the the signup page keep redirect to login
+    // because the condition is tru when where not going to login page (we are going to signup)
+    // and we are not authenticated
+    // so the solution is change the order of the logic or add new condition as shown below
+    if (to.name === "Signup" && !localStorage.getItem('auth-user')) {
+        next()
+    }
+    else if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {
         next({ name: 'Login' })
     }
     else if ((to.name == 'Login' || to.name == 'Signup') && localStorage.getItem('auth-user')) {
         next({ name: 'Dashboard' })
-    } else{
+    } else {
         next()
-    } 
+    }
 })
 
 new Vue({
     el: '#app',
     store,
     router,
-    components: { App, VideoCallApp}
+    components: { App, VideoCallApp }
 })
