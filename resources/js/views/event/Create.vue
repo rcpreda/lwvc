@@ -328,9 +328,19 @@ export default {
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false
                 this.step1 = false
+                this.$dtoast.pop({
+                    preset: "success",
+                    heading: `Success!`,
+                    content: `Event added!`,
+                });
             }).catch(err => {
                 console.log(err)
                 this.step1Processing = false
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: `Error!`,
+                    content: `Something when wrong, please try again!`,
+                });
             })
         },
         goToDashboard(){
