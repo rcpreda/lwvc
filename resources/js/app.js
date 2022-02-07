@@ -1,5 +1,5 @@
 require('./bootstrap');
-
+import 'dtoaster/dist/dtoaster.css'
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -8,6 +8,8 @@ import store from './store'
 import VueRouter from 'vue-router'
 import router from './router/routes'
 import VCalendar from 'v-calendar';
+import DToaster from 'dtoaster'
+import ToasterPresets from './config/json/toast_presets.json';
 
 
 Vue.prototype.$axios = axios;
@@ -55,6 +57,15 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
+
+Vue.use(DToaster, {
+    presets: ToasterPresets,
+    position: 'top-left', //toasts container position on the screen
+    containerOffset: '45px', //toasts container offset from top/bottom of the screen
+});
+
+// inherit vue in global to use emit
+window.Fire = new Vue();
 
 new Vue({
     el: '#app',
