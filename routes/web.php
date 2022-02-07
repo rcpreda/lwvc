@@ -18,7 +18,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
-   
+
 
     Route::get('/chat', function () {
         return view('chat');
@@ -33,6 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index']);
 
-    Route::view('/{any}', 'app')->where('any', '.*')->name('app');
+    Route::view('/{any?}', 'app')->where('any', '.*')->name('app');
 });
 // Route::view('/{any}', '404')->where('any', '.*');
