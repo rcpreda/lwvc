@@ -19,11 +19,13 @@
                     <div class="border-b-2 py-4 flex justify-between gap-2">
                         <div class="flex items-center gap-2 text-sm">
                             <div>
-                                <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">A</div>
+                                <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">
+                                    {{ (userName == null) ? '' : userName.charAt(0) }}
+                                </div>
                             </div>
                             <div class="flex flex-col">
-                                <div>Rishi</div>
-                                <div class="text-blue-500">example.com/debarshi</div>
+                                <div>{{ userName }}</div>
+                                <div class="text-blue-500">example.com/{{ userName }}</div>
                             </div>
                         </div>
                         <div>
