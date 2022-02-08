@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignalController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/events/{event}', [EventController::class, 'store']);
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index']);
+
+    Route::post('/schedule', [ScheduleController::class, 'store']);
 });
 
 

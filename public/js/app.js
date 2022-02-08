@@ -2844,18 +2844,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-timepicker */ "./node_modules/vue2-timepicker/dist/VueTimepicker.common.js");
 /* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_timepicker__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue2_timepicker_dist_VueTimepicker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-timepicker/dist/VueTimepicker.css */ "./node_modules/vue2-timepicker/dist/VueTimepicker.css");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 //
 //
 //
@@ -2948,7 +2936,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   data: function data() {
     return {
       events: null,
-      availibility: {
+      availability: {
         sunday: [{
           open: '',
           close: ''
@@ -2984,24 +2972,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     Navbar: _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     VueTimepicker: (vue2_timepicker__WEBPACK_IMPORTED_MODULE_1___default())
   },
+  methods: {
+    saveSchedule: function saveSchedule() {
+      this.$axios.post('/api/schedule', {
+        // availability: JSON.stringify(this.availability)
+        availability: this.availability
+      }).then(function (res) {
+        console.log(res);
+      });
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
     this.$axios.get("/api/events").then(function (res) {
       _this.events = res.data.data;
     });
-
-    for (var _i = 0, _Object$entries = Object.entries(this.availibility); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-          key = _Object$entries$_i[0],
-          value = _Object$entries$_i[1];
-
-      if (key == 'sunday') {
-        value.forEach(function (element) {
-          console.log(element);
-        });
-      }
-    }
   }
 });
 
@@ -76896,7 +76882,7 @@ var render = function () {
                   _c(
                     "div",
                     { staticClass: "mt-5 w-6/12 divide-y" },
-                    _vm._l(Object.keys(_vm.availibility), function (item, i) {
+                    _vm._l(Object.keys(_vm.availability), function (item, i) {
                       return _c(
                         "div",
                         {
@@ -76930,7 +76916,7 @@ var render = function () {
                               _c(
                                 "div",
                                 _vm._l(
-                                  _vm.availibility[item],
+                                  _vm.availability[item],
                                   function (sch, i) {
                                     return _c("div", { key: i }, [
                                       _c(
@@ -76984,6 +76970,13 @@ var render = function () {
                                                 "rounded outline-none",
                                               format: "hh:mm a",
                                             },
+                                            model: {
+                                              value: sch.close,
+                                              callback: function ($$v) {
+                                                _vm.$set(sch, "close", $$v)
+                                              },
+                                              expression: "sch.close",
+                                            },
                                           }),
                                         ],
                                         1
@@ -77001,7 +76994,20 @@ var render = function () {
                     0
                   ),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "bg-blue-500 text-white px-5 py-1 rounded",
+                        on: {
+                          click: function ($event) {
+                            return _vm.saveSchedule()
+                          },
+                        },
+                      },
+                      [_vm._v("Save")]
+                    ),
+                  ]),
                 ]),
               ]),
             ]
@@ -77042,18 +77048,6 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [_vm._v("Default")]),
       _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [_vm._v("Delete")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        { staticClass: "bg-blue-500 text-white px-5 py-1 rounded" },
-        [_vm._v("Save")]
-      ),
     ])
   },
 ]

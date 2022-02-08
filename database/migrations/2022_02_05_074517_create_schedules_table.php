@@ -18,13 +18,8 @@ class CreateSchedulesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->boolean('is_default')->default(false);
             $table->string('name');
-            $table->json('sunday');
-            $table->json('monday');
-            $table->json('tuesday');
-            $table->json('wednesday');
-            $table->json('thursday');
-            $table->json('friday');
-            $table->json('saturday');
+            $table->string('timezone');
+            $table->json('availability');
             $table->timestamps();
         });
     }

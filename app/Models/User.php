@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function Signal(){
         return $this->hasOne('App\Models\Signal');
     }
+
+    public function Schedules(){
+        return $this->hasMany('App\Models\Schedule');
+    }
 }

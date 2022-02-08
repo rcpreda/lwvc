@@ -566,9 +566,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-5 {
   margin-top: 1.25rem;
 }
-.ml-5 {
-  margin-left: 1.25rem;
-}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -680,20 +677,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-64 {
   width: 16rem;
 }
-.w-8\/12 {
-  width: 66.666667%;
-}
-.w-28 {
-  width: 7rem;
+.w-6\/12 {
+  width: 50%;
 }
 .w-16 {
   width: 4rem;
 }
 .w-10 {
   width: 2.5rem;
-}
-.w-6\/12 {
-  width: 50%;
 }
 .min-w-min {
   min-width: -webkit-min-content;
