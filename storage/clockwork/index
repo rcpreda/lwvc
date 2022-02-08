@@ -1,0 +1,7 @@
+1644331086-4335-311426327,1644331086.3082,GET,/,"\Illuminate\Routing\ViewController",200,261.19112968445,request
+1644331087-5797-1409497417,1644331087.4536,GET,/api/events,"App\Http\Controllers\EventController@index",200,317.71492958069,request
+1644331087-8864-775221601,1644331087.7774,GET,/api/user,"App\Http\Controllers\UserController@user",200,228.75499725342,request
+1644331091-8833-350288098,1644331091.8212,GET,/,"\Illuminate\Routing\ViewController",200,126.84297561646,request
+1644331092-3061-1387736621,1644331092.2234,GET,/api/events,"App\Http\Controllers\EventController@index",200,194.4751739502,request
+1644331092-4883-1513239452,1644331092.423,GET,/api/user,"App\Http\Controllers\UserController@user",200,163.85197639465,request
+1644331093-7523-26028311,1644331093.688,GET,/api/events,"App\Http\Controllers\EventController@index",200,159.00301933289,request
