@@ -85,15 +85,6 @@ export default {
             this.events = res.data.data
         })
     },
-    created() {
-        Fire.$on('eventDeleted', () => {
-            this.$dtoast.pop({
-                preset: "success",
-                heading: `Success!`,
-                content: `Event deleted!`,
-            });
-        })
-    }
 }
 </script>
 
