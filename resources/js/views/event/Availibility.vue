@@ -49,8 +49,8 @@
                         <hr>
                         <div class="px-5 pt-5 w-full">
                             <div class="font-medium">Set your weekly hours</div>
-                            <div class="mt-5 w-6/12 divide-y">
-                                <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex text-sm gap-4 py-4 w-full ">
+                            <div class="mt-5 w-full md:w-6/12 divide-y">
+                                <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
                                     <div class="my-3 flex-1">
                                         <div class="flex items-center gap-2">
                                             <input type="checkbox" class="cursor-pointer">
