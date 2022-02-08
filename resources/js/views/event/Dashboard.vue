@@ -19,11 +19,13 @@
                     <div class="border-b-2 py-4 flex justify-between gap-2">
                         <div class="flex items-center gap-2 text-sm">
                             <div>
-                                <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">A</div>
+                                <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">
+                                    {{ (userName == null) ? '' : userName.charAt(0) }}
+                                </div>
                             </div>
                             <div class="flex flex-col">
-                                <div>Rishi</div>
-                                <div class="text-blue-500">example.com/debarshi</div>
+                                <div>{{ userName }}</div>
+                                <div class="text-blue-500">example.com/{{ userName }}</div>
                             </div>
                         </div>
                         <div>
@@ -37,9 +39,9 @@
                     </div>
                 </div>
                 <div class="max-w-screen-lg mt-4 px-4 mx-auto md:px-6 lg:px-8 grid grid-cols-3 gap-4">
-                    <div v-for="event in events" :key="event.id" class="shadow-lg rounded border-t-8" :style="`border-color:${event.color}`">
+                    <div v-for="event in events" :key="event.id" class="shadow rounded border-t-8 mb-3 hover:shadow-lg hover:scale-105 hover:cursor-pointer" :style="`border-color:${event.color}`">
                         <div class="p-4 h-44">
-                            <div class="font-medium text-lg">{{ event.name }}</div>
+                            <div @click="goToShowEvent(event.id)" class="font-medium text-lg hover:text-gray-400">{{ event.name }}</div>
                             <div class="text-sm py-2 truncate" v-html="event.description"></div>
                             <a class="text-sm my-2 cursor-pointer text-blue-500 hover:border-b border-blue-500">view booking page</a>
                         </div>
@@ -65,12 +67,20 @@ export default {
     data(){
         return {
            events: null,
+           userName: null,
         }
     },
     components: {
         Navbar
     },
+    methods: {
+        goToShowEvent(eventId) {
+            this.$router.push(`/event/show/${eventId}`);
+        },
+    },
     mounted() {
+        var userData = JSON.parse(localStorage.getItem('auth-user'));
+        this.userName = userData.name;
         this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
         })

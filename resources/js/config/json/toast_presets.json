@@ -1,0 +1,27 @@
+[
+    {
+        "name" : "success",
+        "icon" : "mdi mdi-checkbox-multiple-marked-circle-outline",
+        "icon_size" : "32px",
+        "duration" : "2500",
+        "background" : "rgba(32,105,156,.9)",
+        "height" : "75px",
+        "color" : "#FFFFFF",
+        "show_progress_timeout" : "true",
+        "progress_background" : "#5a9fdc",
+        "progress_thumb_bg" : "rgba(32,105,156,.9)"
+    },
+
+    {
+        "name" : "error",
+        "icon" : "mdi mdi-close-circle-outline",
+        "icon_size" : "32px",
+        "duration" : "2500",
+        "background" : "#ff1e1e",
+        "height" : "75px",
+        "color" : "#FFFFFF",
+        "show_progress_timeout" : "true",
+        "progress_background" : "rgb(255 175 175)",
+        "progress_thumb_bg" : "#ff1e1e"
+    }
+]
