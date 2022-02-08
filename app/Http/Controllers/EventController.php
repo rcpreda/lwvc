@@ -20,7 +20,7 @@ class EventController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                $validator->errors()
+                'errors' => $validator->errors()
             ], 422);
         }
 
