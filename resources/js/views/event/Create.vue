@@ -46,7 +46,8 @@
                         <div v-show="step1" class="max-w-lg p-4">
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event Name * </label>
-                                <input placeholder="30 min meeting" v-model="step1Data.name" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+                                <input placeholder="30 min meeting" v-model="step1Data.name" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.name !== null}" type="text" required/>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.name !== null">{{ validationErrorMessages.name }}</small>
                             </div>
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Location * </label>
@@ -63,12 +64,14 @@
                             </div>
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Description * </label>
-                                <vue-editor id="editor" v-model="step1Data.description" :editorToolbar="customToolbar"></vue-editor>
+                                <vue-editor id="editor" v-model="step1Data.description" :editorToolbar="customToolbar" :class="{'border border-red-500' : validationErrorMessages.description !== null}"></vue-editor>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.description !== null">{{ validationErrorMessages.description }}</small>
                             </div>
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event link * </label>
                                 <div class="text-gray-500 text-sm mb-2">example.com/debarshi</div>
-                                <input placeholder="link" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+                                <input placeholder="link" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.link !== null}" type="text" required/>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.link !== null">{{ validationErrorMessages.link }}</small>
                             </div>
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event color * </label>
@@ -312,7 +315,12 @@ export default {
             eventColors: [ '#c94f16', '#c9a316', '#70c916', '#16c3c9', '#1658c9', '#4916c9', '#8e16c9', '#c91685' ],
             dateRangeDropdwon: false,
             durationDropdown: false,
-            beforeEventDropdown: false
+            beforeEventDropdown: false,
+            validationErrorMessages: {
+                name: null,
+                description: null,
+                link: null,
+            }
         }
     },
     components: {
@@ -323,8 +331,26 @@ export default {
     methods: {
         saveStep1(){
             this.step1Processing = true
-            this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data).then(res => {
-                console.log(res)
+            //step 1. validations
+            if(this.step1Data.name === "") {
+                this.validationErrorMessages.name = "Event name required";
+            } else {
+                this.validationErrorMessages.name = null;
+            }
+            if(this.step1Data.description === "" || this.step1Data.description === null) {
+                this.validationErrorMessages.description = "Event description required";
+            } else {
+                this.validationErrorMessages.description = null;
+            }
+            if(this.step1Data.link === "" || this.step1Data.link === null) {
+                this.validationErrorMessages.link = "Event link required";
+            } else {
+                this.validationErrorMessages.link = null;
+            }
+
+            //submit data
+            this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data)
+            .then(res => {
                 this.step1Data.id = res.data.data.id
                 this.step1Processing = false
                 this.step1 = false
@@ -333,15 +359,16 @@ export default {
                     heading: `Success!`,
                     content: `Event added!`,
                 });
-            }).catch(err => {
-                console.log(err)
-                this.step1Processing = false
+                // redirect to event show after creating event
+                this.$router.push(`/event/show/${this.step1Data.id}`);
+            }).catch(() => {
+                this.step1Processing = false;
                 this.$dtoast.pop({
                     preset: "error",
                     heading: `Error!`,
                     content: `Something when wrong, please try again!`,
                 });
-            })
+            });
         },
         goToDashboard(){
             this.$router.push('/');
