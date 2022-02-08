@@ -2,12 +2,12 @@
     <div>
         <Navbar />
         <div class="antialiased pt-5 pb-28">
-            <div class="flex items-center gap-2 max-w-screen-lg px-4 mx-auto justify-center" v-show="isLoading">
+            <div class="flex items-center gap-2 max-w-screen-lg px-4 mx-auto justify-center" v-show="isPageLoading">
                 <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-1"></div>
                 <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-2"></div>
                 <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-3"></div>
             </div>
-            <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800" v-show="!isLoading">
+            <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800" v-show="!isPageLoading">
                 <div class="flex justify-between max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
                     <button @click="goToDashboard" type="button"
                         class="flex gap-1 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
