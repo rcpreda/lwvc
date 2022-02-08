@@ -2,7 +2,12 @@
     <div>
         <Navbar />
         <div class="antialiased pt-5 pb-28">
-            <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
+            <div class="flex items-center gap-2 max-w-screen-lg px-4 mx-auto justify-center" v-show="isPageLoading">
+                <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-1"></div>
+                <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-2"></div>
+                <div class="bg-blue-600 p-2  w-4 h-4 rounded-full animate-bounce blue-circle blue-circle-3"></div>
+            </div>
+            <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800" v-show="!isPageLoading">
                 <div class="flex justify-between max-w-screen-lg mb-5 px-4 mx-auto md:px-6 lg:px-8">
                     <button @click="goToDashboard" type="button"
                         class="flex gap-1 border items-center border-blue-500 text-blue-500 py-1 px-3 rounded-3xl">
@@ -44,7 +49,7 @@
                 </div>
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
-                        <div class="text-gray-500 text-sm">Last edited 25 January 2022.</div>
+                        <div class="text-gray-500 text-sm">Last edited {{ lastEditedDate }}.</div>
                         <a href="/schedule" target="blank"
                             class="flex items-center text-sm text-blue-500 gap-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -84,21 +89,16 @@
                         </div>
                         <div v-show="step1" class="max-w-lg p-4">
                             <div class="mb-4 w-full">
-                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event Name *
-                                </label>
-                                <input placeholder="30 min meeting" v-model="step1Data.name"
-                                    class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    type="text" required />
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event Name * </label>
+                                <input placeholder="30 min meeting" v-model="step1Data.name" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.name !== null}" type="text" required/>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.name !== null">{{ validationErrorMessages.name }}</small>
                             </div>
                             <div class="mb-4 w-full">
-                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Location *
-                                </label>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Location * </label>
                                 <div class="flex items-center gap-2">
                                     <div class="rounded-full bg-green-500 p-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path
-                                                d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
                                         </svg>
                                     </div>
                                     <div>
@@ -107,31 +107,22 @@
                                 </div>
                             </div>
                             <div class="mb-4 w-full">
-                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Description
-                                    * </label>
-                                <vue-editor id="editor" v-model="step1Data.description" :editorToolbar="customToolbar">
-                                </vue-editor>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Description * </label>
+                                <vue-editor id="editor" v-model="step1Data.description" :editorToolbar="customToolbar" :class="{'border border-red-500' : validationErrorMessages.description !== null}"></vue-editor>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.description !== null">{{ validationErrorMessages.description }}</small>
                             </div>
                             <div class="mb-4 w-full">
-                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event link *
-                                </label>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event link * </label>
                                 <div class="text-gray-500 text-sm mb-2">example.com/debarshi</div>
-                                <input placeholder="link" v-model="step1Data.link"
-                                    class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    type="text" required />
+                                <input placeholder="link" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.link !== null}" type="text" required/>
+                                <small class="text-red-500 mx-2" v-show="validationErrorMessages.link !== null">{{ validationErrorMessages.link }}</small>
                             </div>
                             <div class="mb-4 w-full">
-                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event color
-                                    * </label>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event color * </label>
                                 <div class="flex gap-2">
-                                    <div v-for="(color, i) in eventColors" :key="i" @click="step1Data.color = color"
-                                        class="rounded-full cursor-pointer w-8 h-8 flex items-center justify-center"
-                                        :style="`background-color:${color}`">
-                                        <svg v-if="color==step1Data.color" xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
+                                    <div v-for="(color, i) in eventColors" :key="i" @click="step1Data.color = color" class="rounded-full cursor-pointer w-8 h-8 flex items-center justify-center" :style="`background-color:${color}`">
+                                        <svg v-if="color==step1Data.color" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                         </svg>
                                     </div>
                                 </div>
@@ -430,6 +421,13 @@
                 durationDropdown: false,
                 beforeEventDropdown: false,
                 isDeleteConfirmed: false,
+                lastEditedDate: null,
+                isPageLoading: true,
+                validationErrorMessages: {
+                    name: null,
+                    description: null,
+                    link: null,
+                }
             }
         },
         components: {
@@ -440,8 +438,24 @@
         methods: {
             updateStep1() {
                 this.step1Processing = true
+                //step 1. validations
+                if(this.step1Data.name === "") {
+                    this.validationErrorMessages.name = "Event name required";
+                } else {
+                    this.validationErrorMessages.name = null;
+                }
+                if(this.step1Data.description === "" || this.step1Data.description === null) {
+                    this.validationErrorMessages.description = "Event description required";
+                } else {
+                    this.validationErrorMessages.description = null;
+                }
+                if(this.step1Data.link === "" || this.step1Data.link === null) {
+                    this.validationErrorMessages.link = "Event link required";
+                } else {
+                    this.validationErrorMessages.link = null;
+                }
+
                 this.$axios.post(`/api/events/${this.step1Data.id}`, this.step1Data).then(res => {
-                    console.log(res)
                     this.step1Data.id = res.data.data.id
                     this.step1Processing = false
                     this.step1 = false
@@ -450,8 +464,7 @@
                         heading: `Success!`,
                         content: `Event updated!`,
                     });
-                }).catch(err => {
-                    console.log(err)
+                }).catch(() => {
                     this.step1Processing = false
                     this.$dtoast.pop({
                         preset: "error",
@@ -473,8 +486,12 @@
             deleteEvent() {
                 this.$axios.delete(`/api/events/${this.step1Data.id}`)
                     .then(() => {
+                        this.$dtoast.pop({
+                            preset: "success",
+                            heading: `Success!`,
+                            content: `Event deleted!`,
+                        });
                         this.$router.push('/');
-                        Fire.$emit('eventDeleted');
                     }).catch(() => {
                         this.$dtoast.pop({
                             preset: "error",
@@ -485,6 +502,7 @@
             }
         },
         mounted() {
+            this.isPageLoading = true;
             this.$axios.get(`/api/events/${this.$route.params.id}`)
                 .then(res => {
                     this.step1Data.id = res.data.data.id;
@@ -492,12 +510,15 @@
                     this.step1Data.description = res.data.data.description;
                     this.step1Data.link = res.data.data.link;
                     this.step1Data.color = res.data.data.color;
+                    this.lastEditedDate = res.data.data.updated_at;
+                    this.isPageLoading = false;
                 }).catch(() => {
                     this.$dtoast.pop({
                         preset: "error",
                         heading: `Error!`,
                         content: `Something when wrong, redirecting to home...`,
                     });
+                    this.isPageLoading = false;
                     window.setTimeout(() => {
                         this.$router.push('/');
                     }, 2000);
@@ -511,5 +532,13 @@
     .mx-datepicker-range {
         width: 100% !important;
     }
-
+	.blue-circle-1{
+		animation-delay: 0.1s;
+	}
+	.blue-circle-2{
+		animation-delay: 0.3s;
+	}
+	.blue-circle-3{
+		animation-delay: 0.5s;
+	}
 </style>
