@@ -65,6 +65,16 @@ Vue.use(DToaster, {
 });
 
 
+// error handling - need deleted
+Vue.config.errorHandler = err => {
+    console.log('Exception: ', err)
+}
+
+window.onerror = function (message, source, lineno, colno, error) {
+    console.log('Exception: ', error)
+}
+
+
 new Vue({
     el: '#app',
     store,
