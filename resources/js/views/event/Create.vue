@@ -1500,4 +1500,3 @@ export default {
   width: 100% !important;
 }
 </style>
-
