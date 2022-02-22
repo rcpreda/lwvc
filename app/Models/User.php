@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Signal');
     }
 
+     public function Events(){
+        return $this->hasMany('App\Models\Event');
+    }
+
     public function Schedules(){
         return $this->hasMany('App\Models\Schedule');
     }
