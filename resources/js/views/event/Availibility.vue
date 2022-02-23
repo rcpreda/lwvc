@@ -53,26 +53,181 @@
                                 <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
                                     <div class="my-3 flex-1">
                                         <div class="flex items-center gap-2">
-                                            <input type="checkbox" class="cursor-pointer">
+                                            <input type="checkbox" class="cursor-pointer" 
+                                            :id="item"  
+                                            @click='check(item,$event)'
+                                            v-model="availability[item].length>0?true:false"
+                                            :checked="availability[item].length>0"
+                                            >
                                             <span class="font-medium">{{ item.toUpperCase() }}</span>
                                         </div>
                                     </div>
                                     <div class="flex flex-1 gap-2 justify-between">
                                         <div>
                                             <div v-for="(sch, i) in availability[item]" :key="i">
-                                                <div class="flex gap-2 my-2 items-center">
+                                                <div class="flex gap-2 my-2 items-center" style="width:500px">
                                                     <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
                                                     </svg>
                                                     <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
-                                                </div>
+
+
+                                                    <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can"></i></a>
+
+                                                <div class="timediv">
+                                                <a
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addSundayvalue(
+                                                item,i
+                                                )
+                                                "
+                                                v-show="
+                                                i == 0
+
+                                                "
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                <div class="showdivicon"  v-show="
+                                                i == 0
+
+                                                ">
+                                                <a
+                                                href="javascript:void(0);"
+                                                @click="showDropdown(item,$event)"
+                                                >
+                                                <i class="fa-regular fa-copy"></i>
+                                                </a>
+                                                    <div  class="multiselect" v-if="selectedValues[item][0].show">
+                                            <ul class="px-2 py-2 bcolor">
+                                            <li class="px-1 py-1"><p>Copy Items to</p></li>
+                                            <li
+                                            class="px-1 py-1 dissty"
+                                            v-for="(option, index) in options"
+                                            :key="index"
+                                            >
+
+                                            <label :for="index">{{ option.value.charAt(0).toUpperCase() + option.value.slice(1)  }}
+
+                                                 <input
+                                            class="inputstyle"
+                                            type="checkbox"
+                                            :id="index"
+                                            :value="option.value"
+                                            :checked="selectedValues[item][0].selectedvalue.includes(option.value)"
+                                            :disabled="option.value==item"
+                                            @click="onCheck(option.value,$event,item)"
+                                            />
+
+                                            </label>
+                                           
+
+                                            </li>
+
+                                            <li class="px-1 py-1 butsty">
+                                            <button class="applybtn" @click="onApply(item)">Apply</button>
+                                            </li>
+                                            </ul>
                                             </div>
+
+                                       
+
+
+                                        </div>
+                                        </div>
+                                                
+
+                                                </div>
+
+                                
+
+                                            </div>
+
+
+                                              
                                         </div>
                                     </div>
+
+                                    <div class="flex flex-1 gap-2 justify-between" v-if="availability[item].length==0">
+                                        <div>
+                                            <div >
+                                                <div class="flex gap-2 my-2 items-center">
+                                                    <p>Unavailable</p>
+
+                                                <div class="timediv">
+                                                <a
+                                                
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addSundayvalue(
+                                                item,0
+                                                )
+                                                "
+                                               
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                 <a
+                                                href="javascript:void(0);"
+                                                @click="showDropdown(item,$event)"
+                                                >
+                                                <i class="fa-regular fa-copy"></i>
+                                                </a>
+                                                        <div  class="multiselect" v-if="selectedValues[item][0].show">
+                                            <ul class="px-2 py-2 bcolor">
+                                            <li class="px-1 py-1"><p>Copy Items to</p></li>
+                                            <li
+                                            class="px-1 py-1 dissty"
+                                            v-for="(option, index) in options"
+                                            :key="index"
+                                            >
+
+                                            <label :for="index">{{ option.value.charAt(0).toUpperCase() + option.value.slice(1)  }}</label>
+                                            <input
+                                            class="inputstyle"
+                                            type="checkbox"
+                                            :id="index"
+                                            :value="option.value"
+                                            :checked="selectedValues[item][0].selectedvalue.includes(option.value)"
+                                            @click="onCheck(option.value,$event,item)"
+                                            />
+
+                                            </li>
+
+                                            <li class="px-1 py-1 butsty">
+                                            <button class="applybtn" @click="onApply(item)">Apply</button>
+                                            </li>
+                                            </ul>
+                                            </div>
+                                        
+                                               
+                                   
+
+                                                
+                                        </div>
+
+                                                
+
+                                                </div>
+                                        
+
+                                            </div>
+
+
+
+                                            </div>
+
+
+                                              
+                                        </div>
+                                    </div>
+                                      
+                                  
                                 </div>
                             </div>
-                            <div>
+                            <div class="px-5">
                                 <button @click="saveSchedule()" class="bg-blue-500 text-white px-5 py-1 rounded">Save</button>
                             </div>
                         </div>
@@ -91,6 +246,8 @@ export default {
     data(){
         return {
             events: null,
+            isCheck:false,
+            show:false,
             availability: {
                 sunday: [
                     {
@@ -134,7 +291,118 @@ export default {
                         close: '',
                     }
                 ]
-            }
+            },
+            selectedValues: { 
+            sunday:[
+
+               { 
+                show:false,
+                isCheck:false,
+                selectedvalue:
+                [
+                    "sunday"
+                ],
+
+                }
+                    
+            ],
+              monday:[
+
+              {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "monday"
+                ] 
+                }
+            ],
+            tuesday:[
+                {
+                
+                show:false,
+                isCheck:false,
+                selectedvalue:
+                [
+                    "tuesday"
+                ] 
+                }
+            ],
+            wednesday:[
+               {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "wednesday"
+                ] 
+                }
+            ],
+            thursday:[
+               {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "thursday"
+                ] 
+                }
+            ],
+            friday:[
+                {
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "friday"
+                ] 
+                }
+            ],
+            
+            saturday:[
+                {
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "saturday"
+                ] 
+                }
+            ]
+            },
+             options: [
+                {
+                    text:'SUN',
+                    value:'sunday',
+                },
+                {
+                    text:'MON',
+                    value:'monday',
+                },
+                {
+                    text:'TUE',
+                    value:'tuesday',
+                },
+                {
+                    text:'WED',
+                    value:'wednesday',
+                },
+                {
+                    text:'THU',
+                    value:'thursday',
+                },
+                {
+                    text:'FRI',
+                    value:'friday',
+                },
+                {
+                    text:'SAT',
+                    value:'saturday',
+                }
+            ],
         }
     },
     components: {
@@ -143,17 +411,149 @@ export default {
     },
     methods: {
         saveSchedule(){
+
+            console.log(this.availability);
             this.$axios.post('/api/schedule', {
                 // availability: JSON.stringify(this.availability)
                 availability: this.availability
             }).then((res) => {
-                console.log(res)
-            })
-        }
+
+                 this.$dtoast.pop({
+                    preset: "success",
+                    heading: `Success!`,
+                    content: `Working hours added!`,
+                });
+            }).catch(() => {
+                
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: `Error!`,
+                    content: `Something when wrong, please try again!`,
+                });
+            });
+        },
+
+         addSundayvalue(index,intervalindex) {
+
+            //console.log(index+'--'+intervalindex);
+            // let item=index;
+             console.log(index);
+
+            //console.log(this.availability.item);
+            const prevData=this.availability[index].slice(-1)[0];
+
+            console.log(prevData);
+            let prev_start_time="";
+            let prev_end_time="";
+
+            if(!prevData){
+                    prev_start_time="09:00 am";
+                    prev_end_time="11:00 am";
+
+            }else{
+
+                    prev_start_time=prevData['open'];
+                    prev_end_time=prevData['close'];
+            }
+
+
+            this.availability[index].push({
+                open: prev_start_time,
+                close: prev_end_time,
+
+            });
+        },
+          removeSundayvalue(index,intervalindex) {
+
+            //console.log(this.availability[index]);
+            this.availability[index].splice(intervalindex, 1);
+            this.isCheck = false;
+        },
+         check(index,event) {
+
+            this.selectedValues[index][0].isCheck = !this.selectedValues[index][0].isCheck;
+
+            if(event.target.checked){
+
+                if(!this.availability[index] || this.availability[index].length<1)
+                {
+                        this.availability[index].push({
+                        open: "09:00",
+                        close: "11:00",
+
+                        });
+                }
+
+
+            }else{
+
+                this.availability[index].splice(0, this.availability[index].length);
+            }
+
+        },
+          showDropdown(index,event) {
+
+        this.selectedValues[index][0].show = !this.selectedValues[index][0].show;
+        console.log(this.selectedValues[index]);
+
+        },
+          onCheck(val,event,item) {
+
+            var selectedindex;
+        // this.selectedValues.findIndex(function (entry, i) {
+
+        // if (entry.weekday == inputval) {
+        // selectedindex = i;
+
+        // return true;
+        // }
+        // });
+
+       
+
+       //console.log(selectedindex);
+
+            if(event.target.checked){
+                //console.log('checked');
+                 this.selectedValues[item][0].selectedvalue.push(val);
+
+
+            }else{
+                 //console.log('unchecked');
+                this.selectedValues[item][0].selectedvalue.splice(this.selectedValues[item][0].selectedvalue.indexOf(val), 1);
+
+                 //this.sundayinputs.splice(0, this.sundayinputs.length);
+
+            }
+        //this.selected = val;
+
+        console.log(this.selectedValues[item]);
+        },
+          onApply(indexval){
+
+            //console.log(indexval);
+             //console.log(this.availableDates);
+            this.selectedValues[indexval][0].show = false;
+
+
+           this.selectedValues[indexval][0].selectedvalue.forEach((value,index )=>{
+
+            if(indexval!=value){
+
+                this.availability[value]=this.availability[indexval].slice();
+            }
+
+
+           });
+
+       }
     },
     mounted() {
-        this.$axios.get(`/api/events`).then( res => {
-            this.events = res.data.data
+        this.$axios.get(`/api/schedule`).then( res => {
+
+            console.log(res.data.data.availability);
+            this.availability = JSON.parse(res.data.data.availability);
+            //this.events = res.data.data
         })
     },
 }

@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
 {
+
+    public function index(Request $request){
+
+        $userid=auth()->id();
+        $getSchedule =Schedule::where('user_id',$userid)->orderBy('id','desc')->first();
+         return response()->json([
+            "success" => true,
+            "data" => $getSchedule
+        ], 201);
+
+    }
     public function store(Request $request, Schedule $schedule){
         
         $validator = Validator::make($request->all(), [
-            'availability' => 'required|array',
-            'availability' => 'required|json'
+            'availability' => 'required|array'
+            //'availability' => 'required|json'
         ]);
 
         // return gettype($request->availability);
