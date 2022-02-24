@@ -42,12 +42,13 @@
                             </div>
                             <div class="flex text-sm text-blue-500 gap-3">
                                 <a href="#">Edit</a>
-                                <a href="#">Default</a>
+                                <a href="javascript:void(0)" @click="showDiv('default');">Default</a>
                                 <a href="#">Delete</a>
+                                <a href="javascript:void(0)" @click="showDiv('calendar');" >Calendar View</a>
                             </div>
                         </div>
                         <hr>
-                        <div class="px-5 pt-5 w-full">
+                        <div v-if="showmaindiv" class="px-5 pt-5 w-full">
                             <div class="font-medium">Set your weekly hours</div>
                             <div class="mt-5 w-full md:w-6/12 divide-y">
                                 <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
@@ -227,10 +228,21 @@
                                   
                                 </div>
                             </div>
-                            <div class="px-5">
+
+                              <div v-if="showdiv" class="px-5 pt-5 w-full">
+
+                            <CalendarView></CalendarView>
+                           
+                            
+                            
+
+                        </div>
+                            <div class="px-5 py-5">
                                 <button @click="saveSchedule()" class="bg-blue-500 text-white px-5 py-1 rounded">Save</button>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -241,13 +253,18 @@
 <script>
 import Navbar from '../../components/Navbar.vue'
 import VueTimepicker from 'vue2-timepicker'
+import CalendarView from '../../components/CalendarView.vue'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+
 export default {
     data(){
-        return {
+        return { 
             events: null,
             isCheck:false,
             show:false,
+            showdiv:false,
+            showmaindiv:true,
+            events:[],
             availability: {
                 sunday: [
                     {
@@ -403,11 +420,14 @@ export default {
                     value:'saturday',
                 }
             ],
+     
         }
     },
     components: {
         Navbar,
-        VueTimepicker
+        VueTimepicker,
+        CalendarView,
+      
     },
     methods: {
         saveSchedule(){
@@ -500,18 +520,6 @@ export default {
           onCheck(val,event,item) {
 
             var selectedindex;
-        // this.selectedValues.findIndex(function (entry, i) {
-
-        // if (entry.weekday == inputval) {
-        // selectedindex = i;
-
-        // return true;
-        // }
-        // });
-
-       
-
-       //console.log(selectedindex);
 
             if(event.target.checked){
                 //console.log('checked');
@@ -522,11 +530,7 @@ export default {
                  //console.log('unchecked');
                 this.selectedValues[item][0].selectedvalue.splice(this.selectedValues[item][0].selectedvalue.indexOf(val), 1);
 
-                 //this.sundayinputs.splice(0, this.sundayinputs.length);
-
             }
-        //this.selected = val;
-
         console.log(this.selectedValues[item]);
         },
           onApply(indexval){
@@ -546,7 +550,29 @@ export default {
 
            });
 
-       }
+       },
+       showDiv(type){
+
+        //alert();
+        if(type=='default'){
+
+           
+            this.showdiv = false;
+            this.showmaindiv = true;
+        }
+        if(type=='calendar'){
+
+            this.showdiv = true;
+            this.showmaindiv = false;
+
+            
+        }
+        
+
+       },
+        handleDateClick: function(arg) {
+      alert('date click! ' + arg.dateStr)
+    }
     },
     mounted() {
         this.$axios.get(`/api/schedule`).then( res => {
@@ -563,4 +589,51 @@ export default {
     .mx-datepicker-range {
         width: 100% !important;
     }
+
+/deep/ .custom-calendar.vc-container {
+  --day-border: 1px solid #b8c2cc;
+  --day-border-highlight: 1px solid #b8c2cc;
+  --day-width: 90px;
+  --day-height: 90px;
+  --weekday-bg: #f8fafc;
+  --weekday-border: 1px solid #eaeaea;
+  border-radius: 0;
+  width: 100%;
+  & .vc-header {
+    background-color: #f1f5f8;
+    padding: 10px 0;
+  }
+  & .vc-weeks {
+    padding: 0;
+  }
+  & .vc-weekday {
+    background-color: var(--weekday-bg);
+    border-bottom: var(--weekday-border);
+    border-top: var(--weekday-border);
+    padding: 5px 0;
+  }
+  & .vc-day {
+    padding: 0 5px 3px 5px;
+    text-align: left;
+    height: var(--day-height);
+    min-width: var(--day-width);
+    background-color: white;
+    &.weekday-1,
+    &.weekday-7 {
+      background-color: #eff8ff;
+    }
+    &:not(.on-bottom) {
+      border-bottom: var(--day-border);
+      &.weekday-1 {
+        border-bottom: var(--day-border-highlight);
+      }
+    }
+    &:not(.on-right) {
+      border-right: var(--day-border);
+    }
+  }
+  & .vc-day-dots {
+    margin-bottom: 5px;
+  }
+}
 </style>

@@ -63,5 +63,6 @@ export default new Router({
             name: 'ShowEvent',
             component: ShowEventView
         },
+        
     ]
 })
