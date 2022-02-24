@@ -1,14 +1,15 @@
 <template>
   <div class="text-center section">
-    <h2 class="h2">Custom Calendars</h2>
+    <h2 class="h2">Working Calendars</h2>
     <p class="text-lg font-medium text-gray-600 mb-6">
-      Roll your own calendars using scoped slots
+      Set your weekly hours
     </p>
     <vc-calendar
       class="custom-calendar max-w-full"
-      :min-date='new Date()'
-      :masks="masks"
+      :min-date="new Date()"
+      :masks="masks"  
       :attributes="attributes"
+      title-position="left"
       disable-page-swipe
       is-expanded
     >
@@ -42,19 +43,14 @@ export default {
       masks: {
         weekdays: 'WWW',
 
-      },
-     
+      },     
       attributes: [
+      
         {
           key: 1,
-          highlight: {
-            backgroundColor: 'blue',
-            // Other properties are available too, like `height` & `borderRadius`
-          },
           customData: {
-            title: 'Lunch with mom.',
-            start_time:"10:20",
-            class: 'bg-red-600 text-white',
+            title: '10:00-11:00',
+            class: 'bg-red-600 text-white'
           },
           dates: new Date(year, month, 1),
         },
@@ -136,4 +132,5 @@ export default {
   },
 };
 </script>
+
 
