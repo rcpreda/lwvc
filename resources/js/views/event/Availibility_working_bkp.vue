@@ -53,7 +53,7 @@
                             <div class="mt-5 w-full md:w-6/12 divide-y">
                                 <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
                                     <div class="my-3 flex-1">
-                                        <div class="flex items-center gap-2" style="margin-top: 8px; width: 120px;">
+                                        <div class="flex items-center gap-2">
                                             <input type="checkbox" class="cursor-pointer" 
                                             :id="item"  
                                             @click='check(item,$event)'
@@ -63,10 +63,10 @@
                                             <span class="font-medium">{{ item.toUpperCase() }}</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-1 gap-2 justify-between" v-if="availability[item].length>0">
+                                    <div class="flex flex-1 gap-2 justify-between">
                                         <div>
                                             <div v-for="(sch, i) in availability[item]" :key="i">
-                                                <div class="flex gap-2 my-2 items-center" style="width:500px; margin-left: 40px;">
+                                                <div class="flex gap-2 my-2 items-center" style="width:500px">
                                                     <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -74,7 +74,7 @@
                                                     <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
 
 
-                                                    <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
+                                                    <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can"></i></a>
 
                                                 <div class="timediv">
                                                 <a
@@ -102,7 +102,7 @@
                                                 <i class="fa-regular fa-copy"></i>
                                                 </a>
                                                     <div  class="multiselect" v-if="selectedValues[item][0].show">
-                                            <ul class="px-2 py-2 bcolor" style="text-align: left;">
+                                            <ul class="px-2 py-2 bcolor">
                                             <li class="px-1 py-1"><p>Copy Items to</p></li>
                                             <li
                                             class="px-1 py-1 dissty"
@@ -112,7 +112,7 @@
 
                                             <label :for="index">{{ option.value.charAt(0).toUpperCase() + option.value.slice(1)  }}
 
-                                                 <input style="float: right;"
+                                                 <input
                                             class="inputstyle"
                                             type="checkbox"
                                             :id="index"
@@ -154,8 +154,8 @@
                                     <div class="flex flex-1 gap-2 justify-between" v-if="availability[item].length==0">
                                         <div>
                                             <div >
-                                                <div class="flex gap-2 my-2 items-center" >
-                                                    <p style="margin-right:130px">Unavailable</p>
+                                                <div class="flex gap-2 my-2 items-center">
+                                                    <p>Unavailable</p>
 
                                                 <div class="timediv">
                                                 <a
@@ -255,7 +255,7 @@ import Navbar from '../../components/Navbar.vue'
 import VueTimepicker from 'vue2-timepicker'
 import CalendarView from '../../components/CalendarView.vue'
 import 'vue2-timepicker/dist/VueTimepicker.css'
-
+// import 'v-calendar/lib/v-calendar.min.css';
 
 export default {
     data(){
