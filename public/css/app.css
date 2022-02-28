@@ -537,6 +537,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-1 {
   margin-bottom: 0.25rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mt-4 {
   margin-top: 1rem;
 }
@@ -560,9 +563,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mt-8 {
   margin-top: 2rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .mb-4 {
   margin-bottom: 1rem;
@@ -590,9 +590,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mt-0\.5 {
   margin-top: 0.125rem;
-}
-.mr-1 {
-  margin-right: 0.25rem;
 }
 .block {
   display: block;
@@ -960,6 +957,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -990,10 +991,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .bg-transparent {
   background-color: transparent;
-}
-.bg-blue-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 .bg-gray-800 {
   --tw-bg-opacity: 1;
@@ -1044,6 +1041,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1063,10 +1064,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
-}
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 .py-3 {
   padding-top: 0.75rem;
@@ -1400,6 +1397,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .timediv{display: flex;float: left;justify-content: space-between;margin: 0 auto;padding: 10px 0;}
 .timediv a{padding: 2px;width: 35px;text-align: center;}
 .showdivicon{padding: 2px;width: 35px;text-align: center;}
+.vue__time-picker{
+    width: 7em !important;
+}
+.vue__time-picker input.display-time{
+
+    width: 90px !important;
+}
+.vue__time-picker .controls>*{
+    padding-right: 1em !important;
+}
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1656,7 +1663,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 1.75rem;
   }
 }
-
 
 
 

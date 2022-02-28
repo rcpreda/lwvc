@@ -32,7 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index']);
     Route::delete('/events/{event}', [EventController::class, 'destroy']);
+    Route::delete('/events/{event}', [EventController::class, 'destroy']);
 
     Route::post('/schedule', [ScheduleController::class, 'store']);
     Route::get('/schedule', [ScheduleController::class, 'index']);
+
+
+    Route::post('/eventschedule', [EventController::class, 'storeEeventSchedule']);
+    // Route::post('/eventschedule/{eventschedule}', [EventController::class, 'storeEeventSchedule']);
 });

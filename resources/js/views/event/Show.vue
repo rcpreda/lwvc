@@ -163,7 +163,7 @@
                             </div>
                             <div class="hidden md:block" v-show="step2">
                                 <button class="text-gray-600">Cancel</button>
-                                <button class="rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white">Save &
+                                <button class="rounded-2xl ml-4 bg-blue-500 px-3 py-1 font-bold text-white" @click.stop="updateStep2()" :disabled="step2Processing">Save &
                                     Close</button>
                             </div>
                         </div>
@@ -176,12 +176,17 @@
                                     </div>
                                     <div class="flex flex-col md:flex-row md:items-center mb-4">
                                         <div class="flex flex-1 items-center">
-                                            <input type="radio" class="cursor-pointer" name="date_range">
+                                            <input type="radio" class="cursor-pointer" name="date_range" v-model="step2Data.checkboxval" :checked="step2Data.checkboxval == 'no_of_days'" value="no_of_days">
                                             <input placeholder="30"
                                                 class="appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline"
-                                                type="text" required />
+                                                type="text" required  v-model="step2Data.noofdays.dayscount"/>
                                             <div class="relative ml-2 flex-1">
-                                                <button @click="dateRangeDropdwon = !dateRangeDropdwon"
+                                                  <select name="duration" v-model="step2Data.noofdays.type" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
+                                                    <option value="" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Select</option>
+                                                  <option value="Calendar days" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" title="Counts every day on the calendar including days you're unavailable">Calendar days</option>
+                                                <option value="Business days" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" title="Excludes weekends and only counts Mon - Fri">Business days</option>
+                                            </select>
+                                                <!-- <button @click="dateRangeDropdwon = !dateRangeDropdwon"
                                                     class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
                                                     <span>calendar days</span>
                                                     <svg fill="currentColor" viewBox="0 0 20 20"
@@ -191,22 +196,23 @@
                                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                </button>
-                                                <transition name="fade">
+                                                </button> -->
+
+                                                <!-- <transition name="fade">
                                                     <div v-show="dateRangeDropdwon" class="absolute w-full z-10">
                                                         <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
                                                             <div class="grid grid-cols-1 gap-1">
                                                                 <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                    href="#">
+                                                                    href="javascript:void(0)">
                                                                     <div class="text-gray-800 rounded-lg">
                                                                         <div>calendar days</div>
-                                                                        <div class="text-gray-400 text-xs mt-2">Counts
+                                                                        <div class="text-gray-400 text-xs mt-2" >Counts
                                                                             every day on the calendar including days
                                                                             you're unavailable</div>
                                                                     </div>
                                                                 </a>
                                                                 <a class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                    href="#">
+                                                                    href="javascript:void(0)">
                                                                     <div class="text-gray-800 rounded-lg">
                                                                         <div>business days</div>
                                                                         <div class="text-gray-400 text-xs mt-2">Excludes
@@ -216,20 +222,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </transition>
+                                                </transition> -->
                                             </div>
+                                            
                                         </div>
                                         <div class="ml-2 text-right">into the future</div>
                                     </div>
                                     <div class="flex items-center">
-                                        <input type="radio" class="cursor-pointer" name="date_range">
+                                        <input type="radio" class="cursor-pointer" name="date_range" v-model="step2Data.checkboxval" :checked="step2Data.checkboxval == 'daterange'" value="daterange">
                                         <div class="flex flex-1 ml-4 gap-2 items-center">
                                             <div class="">Within a date range</div>
                                             <div class="flex-1">
-                                                <date-picker v-model="dateRange" range></date-picker>
+                                                <date-picker  
+                                               v-model="dateRange" type="date" range placeholder="Select date range"
+                                                ></date-picker>
                                             </div>
                                         </div>
                                     </div>
+                                    <small class="text-red-500 mx-2" v-show="validationErrorMessages.checkboxval !== null">{{ validationErrorMessages.checkboxval }}</small>
                                 </div>
                             </div>
                             <div class="border-b">
@@ -240,7 +250,17 @@
                                         long as 12 hours.</div>
                                     <div class="flex items-center mb-4">
                                         <div class="relative flex-1">
-                                            <button @click="durationDropdown = !durationDropdown"
+
+                                             <select name="duration" v-model="step2Data.duration" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
+                                                  <option value="" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Select</option>
+                                                <option value="15 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">15 min</option>
+                                                <option value="30 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">30 min</option>
+                                                <option value="45 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">45 min</option>
+                                                <option value="60 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">60 min</option>
+                                            </select>
+
+
+                                            <!-- <button @click="durationDropdown = !durationDropdown"
                                                 class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
                                                 <span>15 min</span>
                                                 <svg fill="currentColor" viewBox="0 0 20 20"
@@ -250,8 +270,8 @@
                                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                            </button>
-                                            <transition name="fade">
+                                            </button> -->
+                                            <!-- <transition name="fade">
                                                 <div v-show="durationDropdown" class="absolute w-full z-10">
                                                     <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
                                                         <div class="grid grid-cols-1 gap-1">
@@ -274,9 +294,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </transition>
+                                            </transition> -->
                                         </div>
                                     </div>
+                                     <small class="text-red-500 mx-2" v-show="validationErrorMessages.duration !== null">{{ validationErrorMessages.duration }}</small>
                                 </div>
                             </div>
                             <div class="border-b">
@@ -286,7 +307,7 @@
                                     <div class="mb-4 text-gray-500">To override your hours on specific dates, update
                                         your schedule under Availability.</div>
                                     <div class="mb-4 border rounded-md">
-                                        <table class="w-full">
+                                        <!-- <table class="w-full">
                                             <tbody class="text-sm font-normal text-gray-700">
                                                 <tr>
                                                     <td class="px-4 py-4">SUN</td>
@@ -317,7 +338,189 @@
                                                     <td class="px-4 py-4 text-gray-400">Unavailable</td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table> -->
+
+                        <div class="px-5 pt-5 w-full">
+                           <!--  <div class="font-medium">Set your weekly hours</div> -->
+                            <div class="mt-5 w-full md:w-6/12 divide-y">
+                                <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
+                                    <div class="my-3 flex-1">
+                                        <div class="flex items-center gap-2" style="margin-top: 8px; width: 20px;">
+                                            <input type="checkbox" class="cursor-pointer" 
+                                            :id="item"  
+                                            @click='check(item,$event)'
+                                            v-model="availability[item].length>0?true:false"
+                                            :checked="availability[item].length>0"
+                                            >
+                                            <span class="font-medium">{{ item.substring(0,3).toUpperCase() }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 gap-2 justify-between" v-if="availability[item].length>0">
+                                        <div>
+                                            <div v-for="(sch, i) in availability[item]" :key="i">
+                                                <div class="flex gap-2 my-2 items-center" style="width:350px; margin-left: 40px;">
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a" ></vue-timepicker>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+
+
+                                                    <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
+
+                                                <div class="timediv">
+                                                <a
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addSundayvalue(
+                                                item,i
+                                                )
+                                                "
+                                                v-show="
+                                                i == 0
+
+                                                "
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                <div class="showdivicon"  v-show="
+                                                i == 0
+
+                                                ">
+                                                <a
+                                                href="javascript:void(0);"
+                                                @click="showDropdown(item,$event)"
+                                                >
+                                                <i class="fa-regular fa-copy"></i>
+                                                </a>
+                                                    <div  class="multiselect" v-if="selectedValues[item][0].show">
+                                            <ul class="px-2 py-2 bcolor" style="text-align: left;">
+                                            <li class="px-1 py-1"><p>Copy Items to</p></li>
+                                            <li
+                                            class="px-1 py-1 dissty"
+                                            v-for="(option, index) in options"
+                                            :key="index"
+                                            >
+
+                                            <label :for="index">{{ option.value.charAt(0).toUpperCase() + option.value.slice(1)  }}
+
+                                                 <input style="float: right;"
+                                            class="inputstyle"
+                                            type="checkbox"
+                                            :id="index"
+                                            :value="option.value"
+                                            :checked="selectedValues[item][0].selectedvalue.includes(option.value)"
+                                            :disabled="option.value==item"
+                                            @click="onCheck(option.value,$event,item)"
+                                            />
+
+                                            </label>
+                                           
+
+                                            </li>
+
+                                            <li class="px-1 py-1 butsty">
+                                            <button class="applybtn" @click="onApply(item)">Apply</button>
+                                            </li>
+                                            </ul>
+                                            </div>
+
+                                       
+
+
+                                        </div>
+                                        </div>
+                                                
+
+                                                </div>
+
+                                
+
+                                            </div>
+
+
+                                              
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-1 gap-2 justify-between" v-if="availability[item].length==0">
+                                        <div>
+                                            <div >
+                                                <div class="flex gap-4 my-2 items-center" >
+                                                    <p style="margin-right:187px;margin-left:41px">Unavailable</p>
+
+                                                <div class="timediv">
+                                                <a
+                                                
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addSundayvalue(
+                                                item,0
+                                                )
+                                                "
+                                               
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                 <a
+                                                href="javascript:void(0);"
+                                                @click="showDropdown(item,$event)"
+                                                >
+                                                <i class="fa-regular fa-copy"></i>
+                                                </a>
+                                                        <div  class="multiselect" v-if="selectedValues[item][0].show">
+                                            <ul class="px-2 py-2 bcolor">
+                                            <li class="px-1 py-1"><p>Copy Items to</p></li>
+                                            <li
+                                            class="px-1 py-1 dissty"
+                                            v-for="(option, index) in options"
+                                            :key="index"
+                                            >
+
+                                            <label :for="index">{{ option.value.charAt(0).toUpperCase() + option.value.slice(1)  }}</label>
+                                            <input
+                                            class="inputstyle"
+                                            type="checkbox"
+                                            :id="index"
+                                            :value="option.value"
+                                            :checked="selectedValues[item][0].selectedvalue.includes(option.value)"
+                                            @click="onCheck(option.value,$event,item)"
+                                            />
+
+                                            </li>
+
+                                            <li class="px-1 py-1 butsty">
+                                            <button class="applybtn" @click="onApply(item)">Apply</button>
+                                            </li>
+                                            </ul>
+                                            </div>
+                                        
+                                               
+                                   
+
+                                                
+                                        </div>
+
+                                                
+
+                                                </div>
+                                        
+
+                                            </div>
+
+
+
+                                            </div>
+
+
+                                              
+                                        </div>
+                                    </div>
+                                      
+                                  
+                                </div>
+                            </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -328,10 +531,17 @@
                                     <div class="mb-4 text-gray-500">Give yourself some buffer time to prepare for or
                                         wrap up from booked Calendly events.</div>
                                     <div class="flex items-center mb-4">
-                                        <input type="checkbox" class="cursor-pointer" name="date_range">
+                                        <input type="checkbox" class="cursor-pointer" name="date_range" v-model="step2Data.isCheckBeforeEvent" @click="beforeEvent()">
                                         <div class="ml-4">Before event</div>
                                         <div class="relative ml-2 flex-1">
-                                            <button @click="beforeEventDropdown = !beforeEventDropdown"
+                                            <select name="beforeevent" v-model="step2Data.beforeevent" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline" :disabled="step2Data.isCheckBeforeEvent== false">
+                                                  <option value="" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Select</option>
+                                                <option value="5 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">5 min</option>
+                                                <option value="10 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">10 min</option>
+                                                <option value="15 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">15 min</option>
+                                                <option value="20 min" class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">20 min</option>
+                                            </select>
+                                            <!--<button @click="beforeEventDropdown = !beforeEventDropdown"
                                                 class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
                                                 <span>15 min</span>
                                                 <svg fill="currentColor" viewBox="0 0 20 20"
@@ -341,13 +551,20 @@
                                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                            </button>
-                                            <transition name="fade">
+                                            </button>-->
+                                            <!--<transition name="fade">
                                                 <div v-show="beforeEventDropdown" class="absolute w-full z-10">
                                                     <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
                                                         <div class="grid grid-cols-1 gap-1">
+
+                                                            <select class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                                                                <option value="">5 min </option>
+                                                                <option value="">5 min </option>
+                                                                <option value="">5 min </option>
+                                                                <option value="">5 min </option>
+                                                            </select>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                href="#">
+                                                                href="#" >
                                                                 <div>5 min</div>
                                                             </a>
                                                             <a class="rounded-md p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
@@ -365,16 +582,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </transition>
+                                            </transition>-->
                                         </div>
                                     </div>
+
+                                     <small class="text-red-500 mx-2" v-show="validationErrorMessages.beforeevent !== null">{{ validationErrorMessages.beforeevent }}</small>
                                 </div>
                             </div>
                         </div>
                         <div v-show="step2" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
                                 <button class="text-gray-600">Cancel</button>
-                                <button class="rounded-2xl ml-4 bg-blue-500 font-bold px-3 py-1 text-white">Save &
+                                <button class="rounded-2xl ml-4 bg-blue-500 font-bold px-3 py-1 text-white" @click.stop="updateStep2()" :disabled="step2Processing">Save &
                                     Close</button>
                             </div>
                         </div>
@@ -392,10 +611,13 @@
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
     import Navbar from '../../components/Navbar.vue'
+    import VueTimepicker from 'vue2-timepicker'
+    import 'vue2-timepicker/dist/VueTimepicker.css'
 
     export default {
         data() {
             return {
+                dateRange: [],
                 step1Data: {
                     id: null,
                     name: "30 min Meeting",
@@ -403,8 +625,29 @@
                     link: null,
                     color: '#c94f16',
                 },
+                step2Data:{
+                    id:null,
+                    user_id:null,
+                    event_id:null,
+                    checkboxval:"",
+                    beforeevent:"",
+                    duration:"",
+                    isCheckBeforeEvent:false,
+                    noofdays:{
+
+                        type:'',
+                        dayscount:'',
+                    },
+                    //dateRange:[new Date(2019, 7, 1), new Date(2019, 7, 30)],
+
+
+                    
+
+                },
+
                 step1Processing: false,
-                dateRange: null,
+                step2Processing: false,
+               
                 step1: false,
                 step2: false,
                 customToolbar: [
@@ -427,13 +670,178 @@
                     name: null,
                     description: null,
                     link: null,
+                    checkboxval: null,
+                    beforeevent:null,
+                    duration:null,
+                },
+            events: null,
+            isCheck:false,
+            show:false,
+            showdiv:false,
+            showmaindiv:true,
+            events:[],
+                availability: {
+                sunday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                monday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                tuesday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                wednesday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                thursday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ],
+                friday: [
+                    {
+                        open: '',
+                        close: '',
+                    },
+                ],
+                saturday: [
+                    {
+                        open: '',
+                        close: '',
+                    }
+                ]
+            },
+            selectedValues: { 
+            sunday:[
+
+               { 
+                show:false,
+                isCheck:false,
+                selectedvalue:
+                [
+                    "sunday"
+                ],
+
                 }
-            }
+                    
+            ],
+              monday:[
+
+              {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "monday"
+                ] 
+                }
+            ],
+            tuesday:[
+                {
+                
+                show:false,
+                isCheck:false,
+                selectedvalue:
+                [
+                    "tuesday"
+                ] 
+                }
+            ],
+            wednesday:[
+               {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "wednesday"
+                ] 
+                }
+            ],
+            thursday:[
+               {
+                
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "thursday"
+                ] 
+                }
+            ],
+            friday:[
+                {
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "friday"
+                ] 
+                }
+            ],
+            
+            saturday:[
+                {
+                 show:false,
+                 isCheck:false,
+                selectedvalue:
+                [
+                    "saturday"
+                ] 
+                }
+            ]
+            },
+             options: [
+                {
+                    text:'SUN',
+                    value:'sunday',
+                },
+                {
+                    text:'MON',
+                    value:'monday',
+                },
+                {
+                    text:'TUE',
+                    value:'tuesday',
+                },
+                {
+                    text:'WED',
+                    value:'wednesday',
+                },
+                {
+                    text:'THU',
+                    value:'thursday',
+                },
+                {
+                    text:'FRI',
+                    value:'friday',
+                },
+                {
+                    text:'SAT',
+                    value:'saturday',
+                }
+            ],
+        }
         },
         components: {
             VueEditor,
             DatePicker,
-            Navbar
+            Navbar,
+            VueTimepicker
         },
         methods: {
             updateStep1() {
@@ -472,7 +880,182 @@
                         content: `Something when wrong, please try again`,
                     });
                 })
+
             },
+
+              updateStep2() {
+               // alert();
+                 this.step2Processing = true
+                //step 2. validations
+
+                console.log(this.step2Data.dateRange);
+                if(this.step2Data.checkboxval === "") {
+                    this.validationErrorMessages.checkboxval = "Date Range blank is required";
+                }
+                if(this.step2Data.checkboxval === "no_of_days" && (this.step2Data.noofdays.dayscount=='' || this.step2Data.noofdays.type=='')) {
+                    this.validationErrorMessages.checkboxval = "No of days is required";
+                }
+                if(this.step2Data.checkboxval === "daterange" && this.dateRange.length==0 ){
+
+                    this.validationErrorMessages.checkboxval = "Date Range is required";
+
+                }
+                if(this.step2Data.duration === ""){
+
+                    this.validationErrorMessages.duration = "Duration is required";
+
+                }
+
+                 if(this.step2Data.isCheck === true && this.step2Data.beforeevent==''){
+
+                    this.validationErrorMessages.beforeevent = "Before event is required";
+
+                }
+                // else {
+                //     this.validationErrorMessages.name = null;
+                // }
+                // if(this.step1Data.description === "" || this.step1Data.description === null) {
+                //     this.validationErrorMessages.description = "Event description required";
+                // } else {
+                //     this.validationErrorMessages.description = null;
+                // }
+                // if(this.step1Data.link === "" || this.step1Data.link === null) {
+                //     this.validationErrorMessages.link = "Event link required";
+                // } else {
+                //     this.validationErrorMessages.link = null;
+                // }
+
+                var postdata={
+
+                    step2:this.step2Data,
+                    availabledates:this.availability,
+                    dateRange:this.dateRange,
+                };
+
+                this.$axios.post(`/api/eventschedule`, postdata).then(res => {
+
+                    console.log(res);
+                    this.step2Data.id = res.data.data.id
+                    this.step2Processing = false
+                    this.step2 = false
+                    this.$dtoast.pop({
+                        preset: "success",
+                        heading: `Success!`,
+                        content: `Event Schedule updated!`,
+                     });
+                }).catch(() => {
+                    console.log('catch');
+                    this.step2Processing = false
+                    this.$dtoast.pop({
+                        preset: "error",
+                        heading: `Error!`,
+                        content: `Something when wrong, please try again`,
+                    });
+                })
+
+            },
+
+
+            addSundayvalue(index,intervalindex) {
+
+            //console.log(index+'--'+intervalindex);
+            // let item=index;
+             console.log(index);
+
+            //console.log(this.availability.item);
+            const prevData=this.availability[index].slice(-1)[0];
+
+            console.log(prevData);
+            let prev_start_time="";
+            let prev_end_time="";
+
+            if(!prevData){
+                    prev_start_time="09:00 am";
+                    prev_end_time="11:00 am";
+
+            }else{
+
+                    prev_start_time=prevData['open'];
+                    prev_end_time=prevData['close'];
+            }
+
+
+            this.availability[index].push({
+                open: prev_start_time,
+                close: prev_end_time,
+
+            });
+        },
+          removeSundayvalue(index,intervalindex) {
+
+            //console.log(this.availability[index]);
+            this.availability[index].splice(intervalindex, 1);
+            this.isCheck = false;
+        },
+         check(index,event) {
+
+            this.selectedValues[index][0].isCheck = !this.selectedValues[index][0].isCheck;
+
+            if(event.target.checked){
+
+                if(!this.availability[index] || this.availability[index].length<1)
+                {
+                        this.availability[index].push({
+                        open: "09:00",
+                        close: "11:00",
+
+                        });
+                }
+
+
+            }else{
+
+                this.availability[index].splice(0, this.availability[index].length);
+            }
+
+        },
+          showDropdown(index,event) {
+
+        this.selectedValues[index][0].show = !this.selectedValues[index][0].show;
+        console.log(this.selectedValues[index]);
+
+        },
+          onCheck(val,event,item) {
+
+            var selectedindex;
+
+            if(event.target.checked){
+                //console.log('checked');
+                 this.selectedValues[item][0].selectedvalue.push(val);
+
+
+            }else{
+                 //console.log('unchecked');
+                this.selectedValues[item][0].selectedvalue.splice(this.selectedValues[item][0].selectedvalue.indexOf(val), 1);
+
+            }
+        console.log(this.selectedValues[item]);
+        },
+          onApply(indexval){
+
+            //console.log(indexval);
+             //console.log(this.availableDates);
+            this.selectedValues[indexval][0].show = false;
+
+
+           this.selectedValues[indexval][0].selectedvalue.forEach((value,index )=>{
+
+            if(indexval!=value){
+
+                this.availability[value]=this.availability[indexval].slice();
+            }
+
+
+           });
+
+       },
+
+            
             goToDashboard() {
                 this.$router.push('/');
             },
@@ -499,12 +1082,23 @@
                             content: `Something when wrong, please try again!`,
                         });
                     });
+            },
+            beforeEvent(){
+
+               this.step2Data.isCheckBeforeEvent=!this.step2Data.isCheckBeforeEvent;
+
+               console.log(this.step2Data.isCheckBeforeEvent);
+
             }
         },
         mounted() {
+
+             
             this.isPageLoading = true;
             this.$axios.get(`/api/events/${this.$route.params.id}`)
                 .then(res => {
+
+                    console.log(res.data);
                     this.step1Data.id = res.data.data.id;
                     this.step1Data.name = res.data.data.name;
                     this.step1Data.description = res.data.data.description;
@@ -512,6 +1106,30 @@
                     this.step1Data.color = res.data.data.color;
                     this.lastEditedDate = res.data.data.updated_at;
                     this.isPageLoading = false;
+
+if(res.data.data.eventschedule!=null){
+
+     this.step2Data.id = res.data.data.eventschedule.id;
+                      this.step2Data.event_id = res.data.data.id;
+                      this.step2Data.checkboxval = res.data.data.eventschedule.checked_type;
+                      this.step2Data.beforeevent = res.data.data.eventschedule.before_event;
+                      this.step2Data.duration = res.data.data.eventschedule.duration;
+                      this.step2Data.user_id = res.data.data.eventschedule.user_id;
+
+                      if(res.data.data.eventschedule.checked_type=='daterange'){
+                        this.dateRange = JSON.parse(res.data.data.eventschedule.date_range);
+                    }else{
+                        this.step2Data.noofdays = res.data.data.eventschedule.date_range;
+                    }
+                      
+                      
+                      this.availability = JSON.parse(res.data.data.eventschedule.availabledates);
+
+
+}
+                       
+                      console.log(this.step2Data.dateRange);
+
                 }).catch(() => {
                     this.$dtoast.pop({
                         preset: "error",

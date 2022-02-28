@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\EventBookingSchedule;
 
 class Event extends Model
 {
@@ -20,5 +21,10 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function eventschedule()
+    {
+        return $this->hasOne(EventBookingSchedule::class,'event_id');
     }
 }
