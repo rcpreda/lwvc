@@ -130,4 +130,10 @@
     padding-right: 1em !important;
 }
 
+.viewbuttons{
+    display: flex;
+    float: right;
+    margin-right: 10px;
+}
+
 

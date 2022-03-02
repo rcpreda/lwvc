@@ -312,25 +312,46 @@
                                 </div>
                             </div>
                             <div class="border-b">
-
-                                <div class="viewbuttons gap-2 mt-5">
-                                    
-
-                                    <button class="" type="button" @click="changeView('list')"><i class="fas fa-list"></i> List view </button>
-                                    <button class="" type="button" @click="changeView('calendar')"><i class="fas fa-calendar"></i> Calendar view </button>
-
-                                </div>
-
-                                <div v-show="isListView">
                                 <div class="mb-4 max-w-lg p-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Weekly
                                         Hours </label>
                                     <div class="mb-4 text-gray-500">To override your hours on specific dates, update
                                         your schedule under Availability.</div>
                                     <div class="mb-4 border rounded-md">
-                                       
+                                        <!-- <table class="w-full">
+                                            <tbody class="text-sm font-normal text-gray-700">
+                                                <tr>
+                                                    <td class="px-4 py-4">SUN</td>
+                                                    <td class="px-4 py-4 text-gray-400">Unavailable</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">MON</td>
+                                                    <td class="px-4 py-4 text-gray-400">9:00 am – 5:00 pm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">TUE</td>
+                                                    <td class="px-4 py-4 text-gray-400">9:00 am – 5:00 pm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">WED</td>
+                                                    <td class="px-4 py-4 text-gray-400">9:00 am – 5:00 pm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">THU</td>
+                                                    <td class="px-4 py-4 text-gray-400">9:00 am – 5:00 pm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">FRI</td>
+                                                    <td class="px-4 py-4 text-gray-400">9:00 am – 5:00 pm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-4">SAT</td>
+                                                    <td class="px-4 py-4 text-gray-400">Unavailable</td>
+                                                </tr>
+                                            </tbody>
+                                        </table> -->
 
-                            <div class="px-5 pt-5 w-full" >
+                        <div class="px-5 pt-5 w-full">
                            <!--  <div class="font-medium">Set your weekly hours</div> -->
                             <div class="mt-5 w-full md:w-6/12 divide-y">
                                 <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
@@ -511,18 +532,8 @@
                                 </div>
                             </div>
 
-
-                             
-
                                     </div>
                                 </div>
-                            </div>
-
-                            <div v-show="isCalendarView">
-                                <CalendarView :availabledata="availability"></CalendarView>
-                            </div>
-
-                                
                             </div>
                             <div class="">
                                 <div class="mb-4 max-w-lg p-4">
@@ -589,7 +600,7 @@
                                      <small class="text-red-500 mx-2" v-show="validationErrorMessages.beforeevent !== null">{{ validationErrorMessages.beforeevent }}</small>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                         <div v-show="step2" class="w-full flex justify-center md:justify-end items-center p-4 border-t">
                             <div>
                                 <button class="text-gray-600">Cancel</button>
@@ -621,7 +632,6 @@
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
     import Navbar from '../../components/Navbar.vue'
-    import CalendarView from '../../components/CalendarView.vue'
     import VueTimepicker from 'vue2-timepicker'
     import 'vue2-timepicker/dist/VueTimepicker.css'
 
@@ -629,8 +639,6 @@
         data() {
             return {
                 dateRange: null,
-                isListView:true,
-                isCalendarView:false,
                 step1Data: {
                     id: null,
                     name: "30 min Meeting",
@@ -854,8 +862,7 @@
             VueEditor,
             DatePicker,
             Navbar,
-            VueTimepicker,
-            CalendarView
+            VueTimepicker
         },
         methods: {
             updateStep1() {
@@ -1141,17 +1148,6 @@
 
                 //alert(event.target.value);
                 this.step2Data.checkboxval = event.target.value;
-            },
-            changeView(viewType){
-
-                if(viewType=='list'){
-                    this.isCalendarView = false;
-                    this.isListView = true;
-                }
-                if(viewType=='calendar'){
-                    this.isCalendarView = true;
-                    this.isListView = false;
-                }
             }
         },
         mounted() {
@@ -1215,11 +1211,6 @@ if(res.data.data.eventschedule!=null){
                       this.availability = JSON.parse(res.data.data.eventschedule.availabledates);
 
 
-}
-
-if(res.data.data.defaultavailability!=null){
-
-    this.availability = JSON.parse(res.data.data.defaultavailability);
 }
                        
                       console.log(this.step2Data.dateRange);

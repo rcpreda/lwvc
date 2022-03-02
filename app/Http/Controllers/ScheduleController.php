@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use App\Models\EventBookingSchedule;
 use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
@@ -41,12 +42,50 @@ class ScheduleController extends Controller
         if(!$schedule){
             $schedule = new Schedule;
         }
-        $schedule->name = 'test';
-        $schedule->timezone = 'UTC';
-        $schedule->user_id = auth()->id();
-        $schedule->availability = json_encode($request->availability);
 
-        $schedule->save();
+        $check = Schedule::where('user_id',auth()->id())->first();
+
+        if(!$check){
+
+            $schedule->name = 'test';
+            $schedule->timezone = 'UTC';
+            $schedule->user_id = auth()->id();
+            $schedule->availability = json_encode($request->availability);
+
+            $schedule->save();
+
+           
+
+        }else{
+
+           $schedule = Schedule::where('user_id',auth()->id())->first();
+
+            $schedule->name = 'test';
+            $schedule->timezone = 'UTC';
+            $schedule->user_id = auth()->id();
+            $schedule->availability = json_encode($request->availability);
+
+            $schedule->save();
+          
+
+        }
+
+        $checkCustomeSchedule=EventBookingSchedule::where('user_id',auth()->id())->first();
+
+        if($checkCustomeSchedule){
+
+            EventBookingSchedule::where('user_id',auth()->id())->update([
+
+                'availabledates' => json_encode($request->availability)
+
+            ]);
+            
+            // $checkCustomeSchedule->availabledates = json_encode($request->availability);
+
+            // $checkCustomeSchedule->save();
+
+        }
+      
         
         return response()->json([
             "success" => true,

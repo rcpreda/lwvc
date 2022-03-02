@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventBookingSchedule;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -47,6 +48,19 @@ class EventController extends Controller
     {
 
         $event = Event::with('eventschedule')->where('events.id',$event->id)->first();
+
+        if($event->eventschedule==null){
+
+                $result = Schedule::where('user_id',$event->user_id)->first();
+
+                if($result){
+                    $event->defaultavailability = $result->availability;
+                }else{
+                    $event->defaultavailability = null;
+                }            
+        }else{
+            $event->defaultavailability = null;
+        }
         return response()->json([
             'success' => true,
             'data' => $event
@@ -72,6 +86,9 @@ class EventController extends Controller
                 'message' => 'Event not found'
             ], 404);
         } else {
+
+            EventBookingSchedule::where('user_id',$event->user_id)->where('event_id',$event->id)->delete();
+
             $event->delete();
             return response()->json([
                 'success' => true,

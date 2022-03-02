@@ -1,6 +1,6 @@
 <template>
   <div class="text-center section">
-    <h2 class="h2">Working Calendars</h2>
+    <!-- <h2 class="h2">Working Calendars</h2> -->
     <p class="text-lg font-medium text-gray-600 mb-6">
       Set your weekly hours
     </p>
