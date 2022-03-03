@@ -60,6 +60,9 @@
   <vc-date-picker v-model="date" mode="datepicker" />
 </div> -->
 
+<!-- Modal -->
+
+
         
         
       </template>

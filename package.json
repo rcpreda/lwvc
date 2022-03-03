@@ -25,6 +25,8 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "bootstrap": "^5.1.3",
+        "bootstrap-vue": "^2.21.2",
         "dotenv": "^14.2.0",
         "dtoaster": "^0.1.4",
         "moment-timezone": "^0.5.34",

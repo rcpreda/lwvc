@@ -10,6 +10,9 @@ import router from './router/routes'
 import VCalendar from 'v-calendar';
 import DToaster from 'dtoaster'
 import ToasterPresets from './config/json/toast_presets.json';
+//import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 Vue.prototype.$axios = axios;
@@ -64,7 +67,8 @@ Vue.use(DToaster, {
     position: 'top-left', //toasts container position on the screen
     containerOffset: '45px', //toasts container offset from top/bottom of the screen
 });
-
+// Vue.use(BootstrapVue)
+// Vue.use(IconsPlugin)
 
 new Vue({
     el: '#app',
