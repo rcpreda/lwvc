@@ -25,7 +25,7 @@
       </template> -->
       <template v-slot:day-content="{ day, attributes }" >
 
-         <div @click='dayClicked(day)' class="flex flex-col h-full z-10 overflow-hidden" v-bind:class="{ 'disableclass' : new Date(day.id)<new Date((new Date()).valueOf() - 1000*60*60*24)}" style="padding: 20px;">
+         <div @click="dayClicked(day)" class="flex flex-col h-full z-10 overflow-hidden hover:bg-sky-100 hover:border-red-800" v-bind:class="{ 'disableclass' : new Date(day.id)<new Date((new Date()).valueOf() - 1000*60*60*24)}" style="padding: 20px;">
           <span  v-bind:class="{ 'currentdate' : day.isToday==true}" style="margin-bottom: 5px;" >{{ day.day}}</span>
            <div class="flex-grow overflow-y-auto overflow-x-auto">
 
@@ -62,6 +62,89 @@
 
 <!-- Modal -->
 
+<!--delete modal end-->
+
+    <!--datepicker modal-->
+    <modal ref="datepickerModal">
+        <template v-slot:header>
+        <h1>Edit Schedule hours</h1>
+        </template>
+
+        <template v-slot:body style="height: 273px;background-color:gray">
+        <div class="mb-4">
+
+            <date-picker v-model="date" type="date" placeholder="Select date range"></date-picker>
+          </div>
+          <div class="mb-6">
+
+            <div v-if="newavailabledata[clickdayname].length>0" v-for="(sch, i) in newavailabledata[clickdayname]" :key="i">
+                                                <div class="flex gap-2 my-2 items-center" style="width:315px; margin-left: 132px;">
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+
+
+                                                    <a href="javascript:void(0);" @click="removevalue(clickdayname,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
+                                                      <a
+                                                
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addvalue(
+                                                clickdayname,i
+                                                )
+                                                "
+                                                 v-show="
+                                                i == 0
+
+                                                "
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                  </div>
+            </div>
+
+            <div v-if="newavailabledata[clickdayname].length==0">
+
+                  <div class="flex gap-2 my-2 items-center" style="width:315px; margin-left: 216px;">
+                                                   <p>Unavailable</p>
+
+
+                                                    
+                                                      <a
+                                                
+                                                href="javascript:void(0);"
+                                                @click="
+                                                addvalue(
+                                                clickdayname,0
+                                                )
+                                                "
+                                                
+                                                >
+                                                <i class="fa fa-plus"></i>
+                                                </a>
+                                                  </div>
+
+            </div>
+
+
+        
+
+        </div>
+
+        </template>
+
+        <template v-slot:footer>
+        <div>
+        <button @click="$refs.datepickerModal.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;float: left;">Cancel</button>
+        <button @click="changeSchedule()" style="float:right" class="bg-red-500 text-white px-5 py-1 rounded">Apply</button>
+        </div>
+        </template>
+    </modal>
+
+    <!--datepicker modal end-->
+
 
         
         
@@ -86,18 +169,21 @@
 </template>
 
 <script>
+//import Modal from "../components/Modal.vue";
 import 'v-calendar/src/utils/theme.js'
 export default {
   name:"CalendarView",
-  props: { availabledata: Object },
+  props: { availabledata: Object,scheduleid: Number },
 
   data() {
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
     return {
-      date: new Date(),
+      date: new Date(2022,2,10),
       timezone: '',
       isClicked:[],
+      clickdayname:"",
+      newavailabledata:null,
       masks: {
         weekdays: 'WWW',
 
@@ -197,23 +283,142 @@ export default {
         //   dates: new Date(year, month, 25),
         // },
       ],
+    //   components: {
+    //     Modal
+      
+    // },
     };
   },
   methods: {
     dayClicked(day) {
       console.log(day);
+      this.newavailabledata = JSON.parse(JSON.stringify(this.availabledata));
 
-      this.isClicked.push(day.day);
+      //this.newavailabledata=null;
+
+      //console.log(this.availabledata);
+      //console.log(this.newavailabledata);
+      var clickyear = day.date.getFullYear();
+      var clickmonth = day.date.getMonth();
+      var clickday = day.date.getDate();
+      var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+      var dayname = days[day.date.getDay()];
+      this.clickdayname = dayname;
+
+      console.log(dayname);
+
+      this.date = new Date(clickyear,clickmonth,clickday);
+this.$refs.datepickerModal.openModal();
+      //this.isClicked.push(day.day);
       //alert(day.day);
       //this.selectedDay = day;
     },
+        addvalue(index,intervalindex) {
+
+
+
+            //console.log(index+'--'+intervalindex);
+            // let item=index;
+             console.log(index);
+             console.log(this.newavailabledata);
+
+            //console.log(this.availability.item);
+            const prevData=this.newavailabledata[index].slice(-1)[0];
+
+            console.log(prevData);
+            let prev_start_time="";
+            let prev_end_time="";
+
+            if(!prevData){
+                    prev_start_time="09:00 am";
+                    prev_end_time="11:00 am";
+
+            }else{
+
+                    prev_start_time=prevData['open'];
+                    prev_end_time=prevData['close'];
+            }
+
+
+            this.newavailabledata[index].push({
+                open: prev_start_time,
+                close: prev_end_time,
+
+            });
+        },
+          removevalue(index,intervalindex) {
+
+            //console.log(this.availability[index]);
+            this.newavailabledata[index].splice(intervalindex, 1);
+            //this.isCheck = false;
+        },
+        changeSchedule(){
+
+          console.log(this.date);
+          console.log(this.scheduleid);
+
+          //this.availabledata = JSON.parse(JSON.stringify(this.newavailabledata));
+
+          console.log(this.newavailabledata);
+
+            this.$axios.post(`/api/schedule`,{
+
+               availability: this.newavailabledata,
+                schedule_id: this.scheduleid,
+            }).then( res => {
+
+              var newdata = this.newavailabledata;
+              //this.availabledata = JSON.parse(JSON.stringify(this.newavailabledata));
+              //this.availabledata  = this.newavailabledata;
+              this.$refs.datepickerModal.closeModal();
+             console.log(res.data);
+                 this.$dtoast.pop({
+                    preset: "success",
+                    heading: `Success!`,
+                    content: `Working hours added!`,
+                });
+
+                  setTimeout(function () {
+                     window.location.reload();
+                 }, 1000);
+
+                 //window.location.reload();
+
+
+
+            // this.schedules = res.data.data;
+
+            // this.availability = JSON.parse(res.data.data[0].availability);
+            // this.schedulename = res.data.data[0].name;
+            // this.schedule_name = res.data.data[0].name;
+            // this.scheduleId = res.data.data[0].id;
+            // this.is_default = res.data.data[0].is_default;
+            //this.isActive = true;
+            //this.events = res.data.data
+        }).catch(() => {
+                this.$refs.datepickerModal.closeModal();
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: `Error!`,
+                    content: `Something when wrong, please try again!`,
+                });
+            });
+
+
+          // console.log(this.);
+        },
+
   },
 };
 </script>
 <style type="text/css">
+  .overflow-hidden {
+  overflow: hidden;
+}
 
   .disableclass{
     background-color: #f7f6f6;
+    pointer-events: none;
   }
   .currentdate{
     margin-left: 28px;

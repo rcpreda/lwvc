@@ -51,7 +51,7 @@
                                 <a href="javascript:void(0)" @click="$refs.modalName.openModal()">Edit</a>
 
 
-                                <a  href="javascript:void(0)" @click="showDiv('default');">Default</a>
+                                <a v-if="is_default==1"  href="javascript:void(0)" @click="setDefault();">Set as default</a>
 
 
                                 <a v-if="is_default==1" href="javascript:void(0)" @click="$refs.deleteModal.openModal()">Delete</a>
@@ -253,7 +253,7 @@
 
                               <div v-if="showdiv" class="px-5 pt-5 w-full">
 
-                            <CalendarView :availabledata="availability"></CalendarView>
+                            <CalendarView :availabledata="availability" :scheduleid="scheduleId"></CalendarView>
 
                            
                             
@@ -276,80 +276,86 @@
 
                     </div>
 
-                    <!-- Edit Modal -->
+<!-- Edit Modal -->
     <modal ref="modalName">
-      <template v-slot:header>
+        <template v-slot:header>
         <h1>Edit Schedule Name</h1>
-      </template>
+        </template>
 
-      <template v-slot:body>
-         <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-       Schedule Name
-      </label>
-      <input v-model="schedule_name" type="text" name="schedule_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Working Hours,Exclusive Hours..">
-    </div>
-        
-      </template>
-
-      <template v-slot:footer>
-        <div>
-          <button @click="$refs.modalName.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
-          <button @click="saveScheduleName('edit')" style="float:right" class="bg-blue-500 text-white px-5 py-1 rounded">Save</button>
+        <template v-slot:body>
+        <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Schedule Name
+        </label>
+        <input v-model="schedule_name" type="text" name="schedule_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Working Hours,Exclusive Hours..">
         </div>
-      </template>
+
+        </template>
+
+        <template v-slot:footer>
+        <div>
+        <button @click="$refs.modalName.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
+        <button @click="saveScheduleName('edit')" style="float:right" class="bg-blue-500 text-white px-5 py-1 rounded">Save</button>
+        </div>
+        </template>
     </modal>
 <!-- edit modal end -->
 
 <!-- create modal-->
     <modal ref="newmodalName">
-      <template v-slot:header>
+        <template v-slot:header>
         <h1>New Schedule</h1>
-      </template>
+        </template>
 
-      <template v-slot:body>
-         <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-       Schedule Name
-      </label>
-      <input v-model="new_schedule_name" type="text" name="new_schedule_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Working Hours,Exclusive Hours..">
-    </div>
-        
-      </template>
-
-      <template v-slot:footer>
-        <div>
-          <button @click="$refs.newmodalName.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
-          <button @click="saveScheduleName('new')" style="float:right" class="bg-blue-500 text-white px-5 py-1 rounded">Create</button>
+        <template v-slot:body>
+        <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Schedule Name
+        </label>
+        <input v-model="new_schedule_name" type="text" name="new_schedule_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Working Hours,Exclusive Hours..">
         </div>
-      </template>
+
+        </template>
+
+        <template v-slot:footer>
+        <div>
+        <button @click="$refs.newmodalName.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
+        <button @click="saveScheduleName('new')" style="float:right" class="bg-blue-500 text-white px-5 py-1 rounded">Create</button>
+        </div>
+        </template>
     </modal>
     <!--create modal end-->
 
     <!--delete modal-->
-          <modal ref="deleteModal">
-      <template v-slot:header>
+    <modal ref="deleteModal">
+        <template v-slot:header>
         <h1>Delete Schedule</h1>
-      </template>
+        </template>
 
-      <template v-slot:body>
-         <div class="mb-4">
-      
-      <p class="text-lg">Are you sure that you want to delete this schedule?</p>
-     
-    </div>
-        
-      </template>
+        <template v-slot:body>
+        <div class="mb-4">
 
-      <template v-slot:footer>
-        <div>
-          <button @click="$refs.deleteModal.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
-          <button @click="deleteSchedule()" style="float:right" class="bg-red-500 text-white px-5 py-1 rounded">Delete</button>
+        <p class="text-lg">Are you sure that you want to delete this schedule?</p>
+
         </div>
-      </template>
+
+        </template>
+
+        <template v-slot:footer>
+        <div>
+        <button @click="$refs.deleteModal.closeModal()" class="text-black px-5 py-1 rounded" style="background-color:#e8e9e9;">Cancel</button>
+        <button @click="deleteSchedule()" style="float:right" class="bg-red-500 text-white px-5 py-1 rounded">Delete</button>
+        </div>
+        </template>
     </modal>
 
-    <!--delete modal end-->
+    <!-- delete modaal end-->
+
+
+
+    
+
+    
                 </div>
             </div>
         </div>
@@ -854,7 +860,27 @@ export default {
         })
 
 
-    }
+    },
+    setDefault(){
+
+        this.is_default = 0;
+        var scheduleid = this.scheduleId;
+
+         this.$axios.get(`/api/schedule/setdefault/${scheduleid}`).then( res => {
+
+            console.log(res.data.data); 
+
+             this.schedules = res.data.data;
+
+            // this.availability = JSON.parse(res.data.data[0].availability);
+            // this.schedulename = res.data.data[0].name;
+            // this.schedule_name = res.data.data[0].name;
+            // this.scheduleId = res.data.data[0].id;
+            // this.is_default = res.data.data[0].is_default;
+            //this.isActive = true;
+            //this.events = res.data.data
+        })
+    },
 
 
     },
@@ -878,7 +904,7 @@ export default {
 </script>
 
 <style scoped>
-    <style lang="scss">
+    
 .overflow-hidden {
   overflow: hidden;
 }

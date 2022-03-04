@@ -4,6 +4,11 @@ import 'dtoaster/dist/dtoaster.css'
 import Vue from 'vue'
 import App from './App.vue'
 import VideoCallApp from './components/App.vue'
+import Modal from './components/Modal.vue'
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+import VueTimepicker from 'vue2-timepicker'
+import 'vue2-timepicker/dist/VueTimepicker.css'
 import store from './store'
 import VueRouter from 'vue-router'
 import router from './router/routes'
@@ -69,6 +74,11 @@ Vue.use(DToaster, {
 });
 // Vue.use(BootstrapVue)
 // Vue.use(IconsPlugin)
+
+Vue.component("Modal", Modal)
+Vue.component("DatePicker", DatePicker)
+Vue.component("VueTimepicker", VueTimepicker)
+
 
 new Vue({
     el: '#app',

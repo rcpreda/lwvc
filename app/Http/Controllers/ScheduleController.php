@@ -13,7 +13,7 @@ class ScheduleController extends Controller
     public function index(Request $request){
 
         $userid=auth()->id();
-        $getSchedule =Schedule::where('user_id',$userid)->orderBy('id','asc')->get();
+        $getSchedule =Schedule::where('user_id',$userid)->orderBy('is_default','asc')->get();
          return response()->json([
             "success" => true,
             "data" => $getSchedule
@@ -65,6 +65,12 @@ class ScheduleController extends Controller
 
             $schedule->save();
 
+             return response()->json([
+            "success" => true,
+            "message" => 'edit',
+            "data" => $schedule
+        ], 201);
+
            
 
         }else{
@@ -77,6 +83,12 @@ class ScheduleController extends Controller
             $schedule->availability = json_encode($request->availability);
 
             $schedule->save();
+
+             return response()->json([
+            "success" => true,
+            "message"=>'saave',
+            "data" => $schedule
+        ], 201);
           
 
         }
@@ -99,6 +111,12 @@ class ScheduleController extends Controller
 
             // $checkCustomeSchedule->save();
 
+             return response()->json([
+            "success" => true,
+            "message" => 'edit schedule',
+            "data" => $schedule
+        ], 201);
+
         }
 
         }
@@ -106,10 +124,7 @@ class ScheduleController extends Controller
        
       
         
-        return response()->json([
-            "success" => true,
-            "data" => $schedule
-        ], 201);
+       
     }
 
     public function update(Request $request){
@@ -199,6 +214,23 @@ class ScheduleController extends Controller
 
                     ], 422);
         }
+
+
+    }
+
+    public function setDefault(Request $request){
+
+        $userid=auth()->id();
+
+        Schedule::query()->update(['is_default'=>'1']);
+
+        Schedule::where('id',$request->id)->update(['is_default'=>'0']);
+        $getSchedule =Schedule::where('user_id',$userid)->orderBy('is_default','asc')->get();
+
+             return response()->json([
+                    "success" => true,
+                    "data" => $getSchedule
+                    ], 200);  
 
 
     }
