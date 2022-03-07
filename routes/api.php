@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/schedule', [ScheduleController::class, 'store']);
     Route::get('/schedule', [ScheduleController::class, 'index']);
+    Route::get('/schedule/{id?}', [ScheduleController::class, 'getEventDetails']);
     Route::get('/schedule/setdefault/{id?}', [ScheduleController::class, 'setDefault']);
     Route::get('/schedule/getIndividual/{id?}', [ScheduleController::class, 'getIndividualData']);
     Route::post('/schedule/update', [ScheduleController::class, 'update']);

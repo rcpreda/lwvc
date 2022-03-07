@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use App\Models\User;
+use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,6 +20,34 @@ class ScheduleController extends Controller
             "success" => true,
             "data" => $getSchedule
         ], 201);
+
+    }
+
+    public function getEventDetails(Request $request){
+
+        $userid=auth()->id();
+
+        if($userid){
+
+            $user = User::find($userid);
+
+            $getSchedule =Event::where('id',$request->id)->with(['eventschedule'])->first();
+            $getSchedule->userdetails = $user;
+
+         return response()->json([
+            "success" => true,
+            "data" => $getSchedule
+        ], 201);
+
+        }else{
+
+             return response()->json([
+                'success' => false,
+                'error'=>'Something went wrong'
+            ], 422);
+
+        }
+        
 
     }
 
@@ -67,7 +97,6 @@ class ScheduleController extends Controller
 
              return response()->json([
             "success" => true,
-            "message" => 'edit',
             "data" => $schedule
         ], 201);
 
@@ -86,7 +115,6 @@ class ScheduleController extends Controller
 
              return response()->json([
             "success" => true,
-            "message"=>'saave',
             "data" => $schedule
         ], 201);
           
@@ -113,7 +141,6 @@ class ScheduleController extends Controller
 
              return response()->json([
             "success" => true,
-            "message" => 'edit schedule',
             "data" => $schedule
         ], 201);
 

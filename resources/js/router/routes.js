@@ -44,7 +44,7 @@ export default new Router({
             component: CreateEventView
         },
         {
-            path: '/schedule',
+            path: '/schedule/:id',
             name: 'ScheduleEvent',
             component: ScheduleEventView
         },

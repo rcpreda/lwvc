@@ -70,6 +70,8 @@ export default {
     mounted(){
         this.timezones = momentTimezone.tz.names();
         this.selectedTimezone = momentTimezone.tz.guess()
+
+        console.log(this.selectedTimezone);
     }
 }
 </script>

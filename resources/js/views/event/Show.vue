@@ -50,7 +50,7 @@
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
                         <div class="text-gray-500 text-sm">Last edited {{ lastEditedDate }}.</div>
-                        <a href="/schedule" target="blank"
+                        <router-link :to="'/schedule/' + step1Data.id" target="_blank"
                             class="flex items-center text-sm text-blue-500 gap-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -58,7 +58,7 @@
                                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                             view live page
-                        </a>
+                        </router-link>
                     </div>
                     <!-- Step 1 -->
                     <div class="w-full bg-white border hover:border-gray-400">
