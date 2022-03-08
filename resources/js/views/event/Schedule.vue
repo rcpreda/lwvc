@@ -98,11 +98,13 @@
 <script>
 import TimezoneSelector from '../../components/TimezoneSelector.vue'
 import moment from "moment";
+// import { mapState, mapActions } from "vuex";
 export default {
     name: 'EventLink',
     data(){
         return {
             eventId:null,
+            userId:null,
             userName:"",
             eventName:"",
             duration:"",
@@ -121,7 +123,10 @@ export default {
     computed: {
         formattedSelectedDate(){
             return moment(this.selectedDate).format('dddd, MMMM DD')
-        }
+        },
+    // ...mapState("schedule", {
+    //   pageName: (state) => state.pageName,
+    // }),
     },
     components: {
         TimezoneSelector
@@ -222,9 +227,45 @@ export default {
                 var bookslot = this.availablehours[this.activeTime];
                 var seelcteddate = this.selectedDate;
 
+                var changetime = moment.tz('Arctic/Longyearbyen').toString();
+
+            var newTZ= moment().tz("Asia/Calcutta");
+            var oldTZ = moment().tz("America/New_York");
+            var difference = newTZ.subtract(oldTZ, 'seconds')
+            difference = difference.format("HH:mm");
+            var sec= difference.split(":");
+            var timeInMin = (sec[0] * 60) + sec[1];
+            console.log("timeinminute",timeInMin);
+
+            var scheduleDetails= {
+                'schedule_timeZone':tz,
+                'schedule_selectDate':seelcteddate,
+                'schedule_selectSlot':bookslot,
+                'schedule_eventID':this.eventId,
+                'schedule_userID':this.userId,
+                'schedule_userName':this.userName,
+                'schedule_duration':this.duration,
+                'schedule_eventName':this.eventName,
+            };
+
+
+            // }tz,
+            // this.$store.state.schedule_selectDate = seelcteddate,
+            // this.$store.state.schedule_selectSlot = bookslot,
+            // this.$store.state.schedule_eventID = this.eventId,
+            // this.$store.state.schedule_userID = this.userId,
+            // this.$store.state.schedule_userName = this.userName,
+            // this.$store.state.schedule_duration = this.duration,
+            // this.$store.state.schedule_eventName = this.eventName,
+
+            localStorage.setItem('scheduleDetails', JSON.stringify(scheduleDetails));
+
+            this.$router.push({ path: '/schedule/confirm/event' });
+
                 console.log(bookslot);
                 console.log(seelcteddate);
                 console.log(tz);
+                //console.log(this.$store.state.schedule_userName);
             }
 
             // $router.push({ path: '/schedule/confirm' })
@@ -239,12 +280,15 @@ export default {
                    // var checktype = typeof JSON.parse(res.data.data.eventschedule.date_range);
                    
                     this.eventId = res.data.data.id;
+                    this.userId = res.data.data.user_id;
                     this.userName = res.data.data.userdetails.name;
                     this.eventName = res.data.data.name;
                     this.duration = res.data.data.eventschedule.duration;
                     this.meetingDetails = res.data.data.description;
                     this.availabledatesvalue = res.data.data.eventschedule.availabledates;
                     //this.selectedDate = new Date();
+
+
 
                   var weekdaays = {'sunday':1,'monday':2,'tuesday':3,'wednesday':4,'thursday':5,'friday':6,'saturday':7};
 

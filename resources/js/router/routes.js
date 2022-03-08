@@ -49,12 +49,12 @@ export default new Router({
             component: ScheduleEventView
         },
         {
-            path: '/schedule/confirm',
+            path: '/schedule/confirm/event',
             name: 'ScheduleConfirm',
             component: ScheduleConfirmView
         },
         {
-            path: '/schedule/confirmation',
+            path: '/schedule/confirmation/event',
             name: 'ScheduleConfirmation',
             component: ScheduleConfirmationView
         },

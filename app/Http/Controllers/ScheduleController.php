@@ -7,6 +7,7 @@ use App\Models\Schedule;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\EventBookingSchedule;
+use App\Models\Slotbooking;
 use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
@@ -259,6 +260,62 @@ class ScheduleController extends Controller
                     "data" => $getSchedule
                     ], 200);  
 
+
+    }
+
+    public function saveSlot(Request $request){
+
+         $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'description' => 'required'
+            
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                $validator->errors()
+            ], 422);
+        }else{
+
+            $slotBooking = new Slotbooking;
+            //$allData = [
+                $slotBooking->name =$request->name;
+                $slotBooking->email =$request->email;
+                $slotBooking->description=$request->description;
+                $slotBooking->user_id=$request->userId;
+                $slotBooking->event_id=$request->eventid;
+                $slotBooking->confirmdate=$request->date;
+                $slotBooking->timezone=$request->timeZone;
+                $slotBooking->slot=$request->slot;
+                $slotBooking->save();
+
+            //];
+
+           // $insertSlot = Slotbooking::insert($allData);
+
+                $details = [
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'description'=>$request->description,
+                    'timezone'=>$request->timeZone,
+                    'slot'=>$request->slot,
+                    'eventname'=>$request->eventname,
+                    'newdateval'=>$request->newdateval
+
+
+                ];
+
+                \Mail::to($request->email)->send(new \App\Mail\SlotBookingMail($details));
+
+             return response()->json([
+                    "success" => true,
+                    "data" => $slotBooking
+                    ], 200);
+
+
+        }
 
     }
 }

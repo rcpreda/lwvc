@@ -26,11 +26,11 @@
                         <div class="w-full font-medium p-5 md:p-10 flex justify-center">
                             <div class="w-full md:w-6/12">
                                 <div class="text-center font-medium mb-4 text-xl">Confirmed</div>
-                                <div class="text-center mb-4 font-normal">You are scheduled with Debarshi Das.</div>
+                                <div class="text-center mb-4 font-normal">You are scheduled with {{scheduleDetails.schedule_userName }}.</div>
                                 <hr>
                                 <div class="flex gap-2 mt-4">
                                     <div class="w-5 h-5 mt-1 bg-red-500 rounded-full"></div>
-                                    <div class="text-xl flex-1">30 Minute Meeting</div>
+                                    <div class="text-xl flex-1">{{scheduleDetails.schedule_eventName}}</div>
                                 </div>
                                 <div class="flex gap-2 mt-4">
                                     <div class="w-5 mt-1">
@@ -38,7 +38,7 @@
                                             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <div class="flex-1">2:30am - 3:00am, Saturday, January 29, 2022</div>
+                                    <div class="flex-1">{{ slotDuration+', '+ newdate  }}</div>
                                 </div>
                                 <div class="flex gap-2 mt-4">
                                     <div class="w-5 mt-1">
@@ -46,7 +46,7 @@
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <div class="">India Standard Time</div>
+                                    <div class="">{{ scheduleDetails.schedule_timeZone  }}</div>
                                 </div>
                                 <div class="flex gap-2 mt-4">
                                     <div class="w-5 mt-1">
@@ -68,8 +68,58 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
+    data(){
 
+        return{
+            scheduleDetails:null,
+            newdate:"",
+            slotDuration:"",
+        }
+    },
+    mounted(){
+
+         const monthNames=["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+        ];
+
+         const weekdaays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+         this.scheduleDetails = JSON.parse(localStorage.getItem('scheduleDetails'));
+
+
+console.log(this.scheduleDetails.schedule_selectDate);
+
+         var month = new Date(this.scheduleDetails.schedule_selectDate).getMonth();
+         var monthname = monthNames[month];
+
+         var day = new Date(this.scheduleDetails.schedule_selectDate).getDay();
+         var dayname = weekdaays[day];
+
+         var date = new Date(this.scheduleDetails.schedule_selectDate).getDate();
+         var year = new Date(this.scheduleDetails.schedule_selectDate).getFullYear();
+
+         this.newdate = dayname+', '+monthname+' '+date+', '+year;
+
+         var duration = parseInt(this.scheduleDetails.schedule_duration.split(" ")[0]);
+         var time = parseInt(this.scheduleDetails.schedule_selectSlot.split(" ")[0]);
+
+         if(month<10){
+            var monthwith = "0"+month;
+         }else{
+            var monthwith = month;
+         }
+
+         var newdaate = year+'-'+monthwith+'-'+date;
+
+         var getdate = new Date(newdaate+' '+this.scheduleDetails.schedule_selectSlot);
+
+          var newduration = moment(getdate).add(15, 'minutes').format('hh:mm A');
+
+          this.slotDuration = this.scheduleDetails.schedule_selectSlot+'-'+newduration;
+
+    }
 }
 </script>
 
