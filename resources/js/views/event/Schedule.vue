@@ -140,7 +140,7 @@ export default {
                 var tz = moment.tz.guess();
                 var timedifference = new Date().getTimezoneOffset();
 
-                console.log("timezone",timedifference);
+                // console.log("timezone",timedifference);
 
                 // var timezone = this.timezone.momentTimezone.tz.names();
                 // console.log("timezone",timezone);
@@ -157,7 +157,7 @@ export default {
                 var clickDay_name = weekdaays_val[clickDate_day];
                 var availabledates = JSON.parse(this.availabledatesvalue);
 
-                 console.log(availabledates[clickDay_name].length);
+                 // console.log(availabledates[clickDay_name].length);
 
                  var openval = availabledates[clickDay_name][0].open;
 
@@ -171,20 +171,20 @@ export default {
                 
 
 
-                 //console.log(availabledates[clickDay_name][0].open);
-                 //console.log(availabledates[clickDay_name][0].close);
+                 // console.log(availabledates[clickDay_name][0].open);
+                 // console.log(availabledates[clickDay_name][0].close);
 
                  var dt = moment(openval, ["h:mm a"]).format("HH:mm");
                  var dt1 = moment(closeval, ["h:mm a"]).format("HH:mm");
-                 console.log('change format');
-                 console.log(dt);
-                 console.log(dt1);
+                 // console.log('change format');
+                 // console.log(dt);
+                 // console.log(dt1);
 
                 this.availablehours = this.returnTimesInBetween(dt, dt1);
 
-                console.log(this.availablehours);
+                // console.log(this.availablehours);
 
-                //console.log(availabledates[clickDay_name][0].open.split(":"));
+                // console.log(availabledates[clickDay_name][0].open.split(":"));
 
 
             
@@ -235,7 +235,7 @@ export default {
             difference = difference.format("HH:mm");
             var sec= difference.split(":");
             var timeInMin = (sec[0] * 60) + sec[1];
-            console.log("timeinminute",timeInMin);
+            // console.log("timeinminute",timeInMin);
 
             var scheduleDetails= {
                 'schedule_timeZone':tz,
@@ -262,10 +262,10 @@ export default {
 
             this.$router.push({ path: '/schedule/confirm/event' });
 
-                console.log(bookslot);
-                console.log(seelcteddate);
-                console.log(tz);
-                //console.log(this.$store.state.schedule_userName);
+                // console.log(bookslot);
+                // console.log(seelcteddate);
+                // console.log(tz);
+                // console.log(this.$store.state.schedule_userName);
             }
 
             // $router.push({ path: '/schedule/confirm' })
@@ -275,7 +275,7 @@ export default {
             this.$axios.get(`/api/schedule/${this.$route.params.id}`)
                 .then(res => {
 
-                    console.log(res.data.data.eventschedule);
+                    // console.log(res.data.data.eventschedule);
 
                    // var checktype = typeof JSON.parse(res.data.data.eventschedule.date_range);
                    
@@ -301,12 +301,12 @@ export default {
 
                             this.weekdaysval.push(weekdaays[value]);
                         }
-                    //console.log(newval[value].length);
+                    // console.log(newval[value].length);
                    
                     });
 
-                     //console.log("newData",newval[value]);
-                    console.log( this.weekdaysval);
+                     // console.log("newData",newval[value]);
+                    // console.log( this.weekdaysval);
 
 
                      var getdaaterange = JSON.parse(res.data.data.eventschedule.date_range);
@@ -334,7 +334,7 @@ export default {
 
                             this.maxdate  = new Date(end_date_year,end_date_month,end_date_day);
 
-                            console.log('calendar',start_date) ;
+                            // console.log('calendar',start_date) ;
 
                         }else{
 
@@ -347,7 +347,7 @@ export default {
                           
                         }
 
-                        console.log(start_date);
+                        // console.log(start_date);
 
 
                             var endDate = "", noOfDaysToAdd = parseInt(getdaaterange.dayscount), count = 0;
@@ -355,7 +355,7 @@ export default {
                             endDate = new Date(start_date.setDate(start_date.getDate() + 1));
                             if(endDate.getDay() != 0 && endDate.getDay() != 6){
 
-                                console.log(endDate.getDay());
+                                // console.log(endDate.getDay());
                             //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
                             count++;
                             }
@@ -365,12 +365,12 @@ export default {
                         var end_date_month = endDate.getMonth();
                         var end_date_day = endDate.getDate();
 
-                            console.log("startdate",start_date);
+                            // console.log("startdate",start_date);
                             //this.selectedDate = new Date();
 
                             this.maxdate  = new Date(end_date_year,end_date_month,end_date_day);
 
-                            console.log("enddate",endDate);
+                            // console.log("enddate",endDate);
 
                         }
                     }else{
@@ -390,11 +390,11 @@ export default {
 
 
 
-                        console.log('false');
+                        // console.log('false');
                     }
 
 
-                    console.log(getdaaterange);
+                    // console.log(getdaaterange);
 
 
 

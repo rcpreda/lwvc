@@ -73,7 +73,7 @@ export default {
     data(){
 
         return{
-            scheduleDetails:null,
+            scheduleDetails:{},
             newdate:"",
             slotDuration:"",
         }
@@ -89,7 +89,7 @@ export default {
          this.scheduleDetails = JSON.parse(localStorage.getItem('scheduleDetails'));
 
 
-console.log(this.scheduleDetails.schedule_selectDate);
+// console.log(this.scheduleDetails.schedule_selectDate);
 
          var month = new Date(this.scheduleDetails.schedule_selectDate).getMonth();
          var monthname = monthNames[month];

@@ -100,7 +100,7 @@ import moment from "moment";
 export default {
     data(){
         return {
-           scheduleDetails:null,
+           scheduleDetails:{},
            newdate:"",
            eventName:"",
            slotDuration:"",
@@ -179,7 +179,7 @@ export default {
                 eventname:this.eventName,
             }).then((res) => {
 
-                console.log(res);
+                // console.log(res);
                  this.$dtoast.pop({
                     preset: "success",
                     heading: `Success!`,
@@ -217,7 +217,7 @@ export default {
          this.scheduleDetails = JSON.parse(localStorage.getItem('scheduleDetails'));
 
 
-console.log(this.scheduleDetails.schedule_selectDate);
+// console.log(this.scheduleDetails.schedule_selectDate);
 
          var month = new Date(this.scheduleDetails.schedule_selectDate).getMonth();
          var monthname = monthNames[month];
@@ -256,7 +256,7 @@ console.log(this.scheduleDetails.schedule_selectDate);
 
           this.eventName = this.scheduleDetails.schedule_eventName;
          
-         console.log(newduration);
+         // console.log(newduration);
 
         
     }
