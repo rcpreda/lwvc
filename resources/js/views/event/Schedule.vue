@@ -159,6 +159,38 @@ export default {
 
                  // console.log(availabledates[clickDay_name].length);
 
+                 var timesArray = [];
+
+                 availabledates[clickDay_name].map(item => {
+
+                    console.log("loopthroughmap",item);
+
+                    var starttime = moment(item.open,'HH:mm').add(15, 'minutes').format('hh:mm A');
+                    var endtime = moment(item.close,'HH:mm').format('hh:mm A');
+                    timesArray.push(starttime);
+                    if(starttime>endtime){
+
+                        console.log(starttime);
+                    }
+
+
+
+
+                    
+
+                    //var dt = moment(item.open, ["h:mm a"]).format("HH:mm");
+                    //var dt1 = moment(item.close, ["h:mm a"]).format("HH:mm");
+
+
+
+
+
+                 })
+
+                 //console.log(starttime);
+
+
+
                  var openval = availabledates[clickDay_name][0].open;
 
                  if(availabledates[clickDay_name].length==1){
@@ -174,20 +206,46 @@ export default {
                  // console.log(availabledates[clickDay_name][0].open);
                  // console.log(availabledates[clickDay_name][0].close);
 
-                 var dt = moment(openval, ["h:mm a"]).format("HH:mm");
-                 var dt1 = moment(closeval, ["h:mm a"]).format("HH:mm");
+                 var dt = moment(openval, ["HH:mm"]).format("hh:mm");
+                 var dt1 = moment(closeval, ["HH:mm"]).format("hh:mm");
                  // console.log('change format');
                  // console.log(dt);
                  // console.log(dt1);
 
-                this.availablehours = this.returnTimesInBetween(dt, dt1);
+                //this.availablehours = this.returnTimesInBetween(openval, closeval);
 
-                // console.log(this.availablehours);
+                // var newval = '2016-08-10'+' '+openval;
+                // var newval2 = '2016-08-10'+' '+ closeval;
+
+                var intervalminutes = parseInt(this.duration);
+                this.availablehours = this.intervals(openval, closeval, intervalminutes);
+
+                 // console.log('allhours', gethours);
 
                 // console.log(availabledates[clickDay_name][0].open.split(":"));
 
 
             
+            },
+
+            intervals(startString, endString, intervaltime) {
+            var start = moment(startString, 'HH:mm');
+            var end = moment(endString, 'HH:mm');
+
+            // round starting minutes up to nearest 15 (12 --> 15, 17 --> 30)
+            // note that 59 will round up to 60, and moment.js handles that correctly
+            start.minutes(Math.ceil(start.minutes() / intervaltime) * intervaltime);
+
+            var result = [];
+
+            var current = moment(start);
+
+            while (current <= end) {
+            result.push(current.format('hh:mm A'));
+            current.add(intervaltime, 'minutes');
+            }
+
+            return result;
             },
 
             getGenTime:(timeString) => {
@@ -223,6 +281,9 @@ export default {
             },
             bookSlot(){
 
+             
+
+
                 var tz = moment.tz.guess();
                 var bookslot = this.availablehours[this.activeTime];
                 var seelcteddate = this.selectedDate;
@@ -236,6 +297,15 @@ export default {
             var sec= difference.split(":");
             var timeInMin = (sec[0] * 60) + sec[1];
             // console.log("timeinminute",timeInMin);
+            var chageDateformat = moment(seelcteddate).format('YYYY-MM-DD');
+
+                this.$axios.get(`/api/slot/check/${this.$route.params.id}/${bookslot}/${chageDateformat}`)
+                .then(res => {
+
+                    console.log("response",res);
+
+
+                })
 
             var scheduleDetails= {
                 'schedule_timeZone':tz,

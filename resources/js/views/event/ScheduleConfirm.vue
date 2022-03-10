@@ -245,7 +245,7 @@ export default {
 
          var getdate = new Date(newdaate+' '+this.scheduleDetails.schedule_selectSlot);
 
-          var newduration = moment(getdate).add(15, 'minutes').format('hh:mm A');
+          var newduration = moment(getdate).add(duration, 'minutes').format('hh:mm A');
 
           this.slotDuration = this.scheduleDetails.schedule_selectSlot+'-'+newduration;
 

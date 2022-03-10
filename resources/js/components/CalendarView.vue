@@ -32,7 +32,7 @@
             <div  v-for="(item, i) in availabledata" :key="i" style="font-size:11px;">
               <p v-if="weekdays[0][day.weekday]==i" v-for="(times, j) in availabledata[i]" :key="j">
                 
-                  {{times.open+'-'+times.close }}
+                  {{moment(times.open) +'-'+moment(times.close) }}
               </p>
              
 
@@ -79,11 +79,11 @@
 
             <div v-if="newavailabledata[clickdayname].length>0" v-for="(sch, i) in newavailabledata[clickdayname]" :key="i">
                                                 <div class="flex gap-2 my-2 items-center" style="width:315px; margin-left: 132px;">
-                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="HH:mm"></vue-timepicker>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
                                                     </svg>
-                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="HH:mm"></vue-timepicker>
 
 
                                                     <a href="javascript:void(0);" @click="removevalue(clickdayname,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
@@ -171,6 +171,7 @@
 <script>
 //import Modal from "../components/Modal.vue";
 import 'v-calendar/src/utils/theme.js'
+import moment from "moment";
 export default {
   name:"CalendarView",
   props: { availabledata: Object,scheduleid: Number },
@@ -290,6 +291,9 @@ export default {
     };
   },
   methods: {
+     moment(date) {
+            return moment(date,'HH:mm').format('hh:mm a');
+        },
     dayClicked(day) {
       console.log(day);
       this.newavailabledata = JSON.parse(JSON.stringify(this.availabledata));

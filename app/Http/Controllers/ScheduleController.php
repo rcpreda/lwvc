@@ -9,7 +9,7 @@ use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use App\Models\Slotbooking;
 use Illuminate\Support\Facades\Validator;
-
+use Date;
 class ScheduleController extends Controller
 {
 
@@ -317,5 +317,72 @@ class ScheduleController extends Controller
 
         }
 
+    }
+
+    public function getScheduledEvents(Request $request){
+
+        $userid=auth()->id();
+        $arrayList=[];
+        $i=0;
+
+        if($userid){
+
+            $slotbooking = Slotbooking::where('user_id',$userid)->groupBy('confirmdate')->get();
+
+            foreach ($slotbooking as $key => $value) {
+
+                $getDetails = Slotbooking::select('slotbookings.*','users.*','events.*')
+                    ->join('users','slotbookings.user_id','=','users.id')
+                    ->join('events','slotbookings.event_id','=','events.id')
+                    ->where('slotbookings.user_id','=',$userid)
+                    ->where('slotbookings.confirmdate','=',$value['confirmdate'])
+                    ->get();
+
+
+                    $arrayList[$value['confirmdate']] = $getDetails;
+                    $i++;
+                // code...
+            }
+
+            return response()->json([
+            "success" => true,
+            "data" => $arrayList
+            ], 200);
+
+        }else{
+
+             return response()->json([
+                'success' => false,
+                'errors' =>'Something went wrong'
+            ], 422);
+        }
+
+      
+    }
+
+    function checkSchedule(Request $request){
+
+         $userid=auth()->id();
+
+
+        $check = Slotbooking::where('user_id',$userid)
+                    ->where('event_id',$request->id)
+                    ->where('confirmdate',$request->selectdate)
+                    ->get();
+
+                    foreach($check as $key=>$value){
+
+
+                    $getslot = explode('-',$value['confirmdate'])[0];
+
+                    //$date1 = 
+                    }
+
+
+
+            return response()->json([
+            "success" => true,
+            "data" => $check
+            ], 200);        
     }
 }

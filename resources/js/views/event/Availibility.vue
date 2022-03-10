@@ -89,11 +89,11 @@
                                         <div>
                                             <div v-for="(sch, i) in availability[item]" :key="i">
                                                 <div class="flex gap-2 my-2 items-center" style="width:500px; margin-left: 40px;">
-                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="HH:mm"></vue-timepicker>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
                                                     </svg>
-                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="HH:mm"></vue-timepicker>
 
 
                                                     <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
@@ -368,6 +368,7 @@ import Modal from "../../components/Modal";
 import VueTimepicker from 'vue2-timepicker'
 import CalendarView from '../../components/CalendarView.vue'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import moment from "moment";
 
 
 export default {
@@ -592,8 +593,8 @@ export default {
             let prev_end_time="";
 
             if(!prevData){
-                    prev_start_time="09:00 am";
-                    prev_end_time="11:00 am";
+                    prev_start_time="09:00";
+                    prev_end_time="11:00";
 
             }else{
 

@@ -3,11 +3,11 @@
         <Navbar/>
         <div class="w-full bg-white border-t shadow-lg">
             <div class="flex gap-10 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
-                <a href="" class="hover:border-gray-300 border-blue-500 border-b-4 py-4">Event Types</a>
-                <a href="" class="hover:border-gray-300 border-white border-b-4 py-4">Scheduled Events</a>
+                <a href="javascript:void(0)" class="hover:border-gray-300 border-b-4 py-4" @click="openTab('event_types')" v-bind:class="[eventtypes ? 'border-blue-500' : 'border-white']">Event Types</a>
+                <a href="javascript:void(0)" class="hover:border-gray-300 border-blue-500 border-b-4 py-4" @click="openTab('schedule_event')" v-bind:class="[scheduleevents ? 'border-blue-500' : 'border-white']">Scheduled Events</a>
             </div>
         </div>
-        <div class="antialiased pt-5 pb-28">
+        <div class="antialiased pt-5 pb-28" v-show="eventtypes">
             <div class="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800">
                 <div class="max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
@@ -57,6 +57,49 @@
                 </div>
             </div>
         </div>
+
+        <div class="antialiased pt-5 pb-28" v-show="scheduleevents">
+            <div class="w-full">
+                <div class="max-w-screen-lg mt-4 mx-auto shadow-md">
+
+                    <div class="w-full bg-white border-t shadow-lg">
+                    <div class="flex gap-10 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
+                    <a href="javascript:void(0)" class="hover:border-gray-300 border-b-4 py-4" @click="openTab2('upcoming')" v-bind:class="[upcoming ? 'border-blue-500' : 'border-white']">Upcoming</a>
+                    <a href="javascript:void(0)" class="hover:border-gray-300 border-blue-500 border-b-4 py-4" @click="openTab2('pending')" v-bind:class="[pending ? 'border-blue-500' : 'border-white']">Pending</a>
+                    </div>
+                    </div>
+
+                    <div class="w-full bg-white" v-show="upcoming">
+                        <div class="w-full" v-for="i in Object.keys(scheduleDetails)" :key="i">
+                            <div class="w-full bg-gray-200 px-8 py-4">
+                                <p>{{ i }}</p>
+
+                            </div>
+                            <div class="flex w-full bg-white px-8 py-4" v-for="(item,index) in scheduleDetails[i]">
+
+                                <div class=" flex w-2/6 gap-2">
+                                    <div class="roundshape" v-bind:style="{ 'background-color': item.color}"></div>
+                                    <p>{{ item.slot }}</p>
+                                </div>
+                                <div class="w-2/6">
+                                    <p><b>{{ item.slot }}</b></p>
+                                    <p>details</p>
+                                </div>
+                                <div class="w-2/6">
+                                    <p>Action</p>
+                                </div>
+                                
+                            </div>
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+        </div>
     </div>
 </template>
 
@@ -66,8 +109,14 @@ import Navbar from '../../components/Navbar.vue'
 export default {
     data(){
         return {
-           events: null,
-           userName: null,
+            upcoming:true,
+            pending:false,
+            eventtypes:true,
+            scheduleevents:false,
+            events: null,
+            userName: null,
+
+            scheduleDetails:{},
         }
     },
     components: {
@@ -77,6 +126,53 @@ export default {
         goToShowEvent(eventId) {
             this.$router.push(`/event/show/${eventId}`);
         },
+        openTab(tabType){
+
+            if(tabType=='event_types'){
+                this.eventtypes = true;
+                this.scheduleevents = false;
+               
+
+            }else{
+
+                this.$axios.get(`/api/event-schedule-list`).then( res => {
+               console.log(res);
+
+                this.scheduleDetails = res.data.data;
+
+                console.log(res.data.data);
+                this.eventtypes = false;
+                this.scheduleevents = true;
+                this.upcoming = true;
+
+
+
+                })
+
+
+
+               
+
+            }
+
+           
+        },
+        openTab2(tabType){
+
+             if(tabType=='upcoming'){
+
+                this.upcoming = true;
+                this.pending = false;
+
+            }else{
+
+                this.pending = true;
+                this.upcoming = false;
+
+            }
+
+
+        }
     },
     mounted() {
         var userData = JSON.parse(localStorage.getItem('auth-user'));
@@ -91,5 +187,10 @@ export default {
 <style scoped>
     .mx-datepicker-range {
         width: 100% !important;
+    }
+    .roundshape{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
     }
 </style>

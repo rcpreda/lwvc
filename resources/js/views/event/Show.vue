@@ -349,11 +349,11 @@
                                         <div>
                                             <div v-for="(sch, i) in availability[item]" :key="i">
                                                 <div class="flex gap-2 my-2 items-center" style="width:350px; margin-left: 40px;">
-                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="hh:mm a" ></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.open" input-class="rounded outline-none" format="HH:mm" ></vue-timepicker>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
                                                     </svg>
-                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="hh:mm a"></vue-timepicker>
+                                                    <vue-timepicker v-model="sch.close" input-class="rounded outline-none" format="HH:mm"></vue-timepicker>
 
 
                                                     <a href="javascript:void(0);" @click="removeSundayvalue(item,i)"><i class="fa-solid fa-trash-can" style="margin-left: 10px;"></i></a>
@@ -618,6 +618,7 @@
     import {
         VueEditor
     } from "vue2-editor";
+    import moment from "moment";
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
     import Navbar from '../../components/Navbar.vue'
@@ -902,7 +903,7 @@
                  this.step2Processing = true
                 //step 2. validations
 
-                console.log(this.step2Data.checkboxval);
+                // console.log(this.step2Data.checkboxval);
                 if(this.step2Data.checkboxval === "") {
                     //console.log('1st');
                     this.validationErrorMessages.checkboxval = "Check atleast one daterange checkbox";
@@ -965,7 +966,7 @@
 
                     this.$axios.post(`/api/eventschedule`, postdata).then(res => {
 
-                    console.log(res);
+                    // console.log(res);
                     this.step2Data.id = res.data.data.id
                     this.step2Processing = false
                     this.step2 = false
@@ -984,7 +985,7 @@
                         content: `Event Schedule updated!`,
                      });
                 }).catch(() => {
-                    console.log('catch');
+                    // console.log('catch');
                     this.step2Processing = false
                     this.$dtoast.pop({
                         preset: "error",
@@ -1004,18 +1005,18 @@
 
             //console.log(index+'--'+intervalindex);
             // let item=index;
-             console.log(index);
+             // console.log(index);
 
             //console.log(this.availability.item);
             const prevData=this.availability[index].slice(-1)[0];
 
-            console.log(prevData);
+            // console.log(prevData);
             let prev_start_time="";
             let prev_end_time="";
 
             if(!prevData){
-                    prev_start_time="09:00 am";
-                    prev_end_time="11:00 am";
+                    prev_start_time="09:00";
+                    prev_end_time="11:00";
 
             }else{
 
@@ -1061,7 +1062,7 @@
           showDropdown(index,event) {
 
         this.selectedValues[index][0].show = !this.selectedValues[index][0].show;
-        console.log(this.selectedValues[index]);
+        // console.log(this.selectedValues[index]);
 
         },
           onCheck(val,event,item) {
@@ -1078,7 +1079,7 @@
                 this.selectedValues[item][0].selectedvalue.splice(this.selectedValues[item][0].selectedvalue.indexOf(val), 1);
 
             }
-        console.log(this.selectedValues[item]);
+        // console.log(this.selectedValues[item]);
         },
           onApply(indexval){
 
@@ -1134,7 +1135,7 @@
                 this.step2Data.beforeevent = null;
                }
 
-               console.log(this.step2Data.isCheckBeforeEvent);
+               // console.log(this.step2Data.isCheckBeforeEvent);
 
             },
             checkvalue(event){
@@ -1156,12 +1157,29 @@
         },
         mounted() {
 
+        // var x = 30; //minutes interval
+        // var times = []; // time array
+        // var tt = 0; // start time
+        // var ap = ['AM', 'PM']; // AM-PM
+
+        // //loop to increment the time and push results in array
+        // for (var i=0;tt<24*60; i++) {
+        // var hh = Math.floor(tt/60); // getting hours of day in 0-24 format
+        // var mm = (tt%60); // getting minutes of the hour in 0-55 format
+        // times[i] = ("0" + (hh % 12)).slice(-2) + ':' + ("0" + mm).slice(-2) + ap[Math.floor(hh/12)];
+
+        //  // pushing data in array in [00:00 - 12:00 AM/PM format]
+        // tt = tt + x;
+        // }
+
+        // console.log("timeinterval",times);
+
              
             this.isPageLoading = true;
             this.$axios.get(`/api/events/${this.$route.params.id}`)
                 .then(res => {
 
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.step1Data.id = res.data.data.id;
                     this.step1Data.name = res.data.data.name;
                     this.step1Data.description = res.data.data.description;
@@ -1179,8 +1197,8 @@ if(res.data.data.eventschedule!=null){
                       
                       this.step2Data.checkboxval = res.data.data.eventschedule.checked_type;
                       this.step2Data.beforeevent = res.data.data.eventschedule.before_event;
-                      console.log('beforeevent');
-                      console.log(this.step2Data.beforeevent);
+                      // console.log('beforeevent');
+                      // console.log(this.step2Data.beforeevent);
 
                       if(this.step2Data.beforeevent!=null){
 
@@ -1194,8 +1212,8 @@ if(res.data.data.eventschedule!=null){
                       if(res.data.data.eventschedule.checked_type=='daterange'){
                         //this.dateRange = JSON.parse(res.data.data.eventschedule.date_range);
                         var daterange =JSON.parse( res.data.data.eventschedule.date_range);
-                        console.log('fullyear');
-                        console.log(daterange[0]);
+                        // console.log('fullyear');
+                        // console.log(daterange[0]);
                         var start_date = new Date(daterange[0]);
                         var start_date_year = start_date.getFullYear();
                         var start_date_month = start_date.getMonth();
@@ -1222,7 +1240,7 @@ if(res.data.data.defaultavailability!=null){
     this.availability = JSON.parse(res.data.data.defaultavailability);
 }
                        
-                      console.log(this.step2Data.dateRange);
+                      // console.log(this.step2Data.dateRange);
 
                 }).catch(() => {
                     this.$dtoast.pop({

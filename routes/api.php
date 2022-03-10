@@ -44,6 +44,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/schedule/delete/{id?}', [ScheduleController::class, 'delete']);
 
 
+    Route::get('/event-schedule-list', [ScheduleController::class, 'getScheduledEvents']);
+    Route::get('/slot/check/{id?}/{slot?}/{selectdate?}', [ScheduleController::class, 'checkSchedule']);
+
+
+
+
     Route::post('/eventschedule', [EventController::class, 'storeEeventSchedule']);
     // Route::post('/eventschedule/{eventschedule}', [EventController::class, 'storeEeventSchedule']);
 });

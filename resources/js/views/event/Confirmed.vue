@@ -89,7 +89,7 @@ export default {
          this.scheduleDetails = JSON.parse(localStorage.getItem('scheduleDetails'));
 
 
-// console.log(this.scheduleDetails.schedule_selectDate);
+ console.log(this.scheduleDetails);
 
          var month = new Date(this.scheduleDetails.schedule_selectDate).getMonth();
          var monthname = monthNames[month];
@@ -115,7 +115,7 @@ export default {
 
          var getdate = new Date(newdaate+' '+this.scheduleDetails.schedule_selectSlot);
 
-          var newduration = moment(getdate).add(15, 'minutes').format('hh:mm A');
+          var newduration = moment(getdate).add(duration, 'minutes').format('hh:mm A');
 
           this.slotDuration = this.scheduleDetails.schedule_selectSlot+'-'+newduration;
 
