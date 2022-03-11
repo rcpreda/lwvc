@@ -307,7 +307,7 @@ class ScheduleController extends Controller
 
                 ];
 
-                \Mail::to($request->email)->send(new \App\Mail\SlotBookingMail($details));
+                //\Mail::to($request->email)->send(new \App\Mail\SlotBookingMail($details));
 
              return response()->json([
                     "success" => true,
@@ -327,27 +327,103 @@ class ScheduleController extends Controller
 
         if($userid){
 
-            $slotbooking = Slotbooking::where('user_id',$userid)->groupBy('confirmdate')->get();
+            if (isset($request->startdate)) {
+                
 
-            foreach ($slotbooking as $key => $value) {
+                    $slotbooking = Slotbooking::where('user_id',$userid)->groupBy('confirmdate')->get();
 
-                $getDetails = Slotbooking::select('slotbookings.*','users.*','events.*')
-                    ->join('users','slotbookings.user_id','=','users.id')
-                    ->join('events','slotbookings.event_id','=','events.id')
-                    ->where('slotbookings.user_id','=',$userid)
-                    ->where('slotbookings.confirmdate','=',$value['confirmdate'])
-                    ->get();
+                    foreach ($slotbooking as $key => $value) {
+
+                    // $getDetails = Slotbooking::select('slotbookings.*','users.*','events.*')
+                    //     ->join('users','slotbookings.user_id','=','users.id')
+                    //     ->join('events','slotbookings.event_id','=','events.id')
+                    //     ->where('slotbookings.user_id','=',$userid)
+                    //     ->where('slotbookings.confirmdate','=',$value['confirmdate'])
+                    //     ->get();
+
+                        if(strtotime($value['confirmdate'])>=strtotime($request->startdate) &&  strtotime($value['confirmdate'])<=strtotime($request->enddate)){
+
+
+                                $getDetails = Slotbooking::with(['user','event'])->where('slotbookings.user_id','=',$userid)->where('slotbookings.confirmdate','=',$value['confirmdate'])->get();
+
+
+                                $arrayList[$value['confirmdate']] = $getDetails;
+                                $i++;
+
+                        }
+
+                   
+                    // code...
+                    }
+
+                    return response()->json([
+                    "success" => true,
+                    'message'=>$request->startdate,
+                    "data" => $arrayList
+                    ], 200);
+            }else if(isset($request->type) && $request->type=='upcoming'){
+
+
+                  $slotbooking = Slotbooking::where('user_id',$userid)->where('confirmdate','>',date('Y-m-d'))->groupBy('confirmdate')->get();
+
+                    foreach ($slotbooking as $key => $value) {
+
+                    // $getDetails = Slotbooking::select('slotbookings.*','users.*','events.*')
+                    //     ->join('users','slotbookings.user_id','=','users.id')
+                    //     ->join('events','slotbookings.event_id','=','events.id')
+                    //     ->where('slotbookings.user_id','=',$userid)
+                    //     ->where('slotbookings.confirmdate','=',$value['confirmdate'])
+                    //     ->get();
+
+
+
+                    $getDetails = Slotbooking::with(['user','event'])->where('slotbookings.user_id','=',$userid)->where('slotbookings.confirmdate','=',$value['confirmdate'])->get();
 
 
                     $arrayList[$value['confirmdate']] = $getDetails;
                     $i++;
-                // code...
+                    // code...
+                    }
+
+                    return response()->json([
+                    "success" => true,
+                    'message'=>$request->type,
+                    "data" => $arrayList
+                    ], 200);
+
+
+            }else if(isset($request->type) && $request->type=='past'){
+
+                   $slotbooking = Slotbooking::where('user_id',$userid)->where('confirmdate','<',date('Y-m-d'))->groupBy('confirmdate')->get();
+
+                    foreach ($slotbooking as $key => $value) {
+
+                    // $getDetails = Slotbooking::select('slotbookings.*','users.*','events.*')
+                    //     ->join('users','slotbookings.user_id','=','users.id')
+                    //     ->join('events','slotbookings.event_id','=','events.id')
+                    //     ->where('slotbookings.user_id','=',$userid)
+                    //     ->where('slotbookings.confirmdate','=',$value['confirmdate'])
+                    //     ->get();
+
+
+
+                    $getDetails = Slotbooking::with(['user','event'])->where('slotbookings.user_id','=',$userid)->where('slotbookings.confirmdate','=',$value['confirmdate'])->get();
+
+
+                    $arrayList[$value['confirmdate']] = $getDetails;
+                    $i++;
+                    // code...
+                    }
+
+                    return response()->json([
+                    "success" => true,
+                    'message'=>$request->type,
+                    "data" => $arrayList
+                    ], 200);
+
             }
 
-            return response()->json([
-            "success" => true,
-            "data" => $arrayList
-            ], 200);
+          
 
         }else{
 

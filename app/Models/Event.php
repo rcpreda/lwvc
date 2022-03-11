@@ -27,4 +27,8 @@ class Event extends Model
     {
         return $this->hasOne(EventBookingSchedule::class,'event_id');
     }
+
+     public function Eventslot(){
+        return $this->hasMany('App\Models\Slotbooking','event_id');
+    }
 }
