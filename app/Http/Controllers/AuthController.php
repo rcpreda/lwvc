@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -23,11 +24,16 @@ class AuthController extends Controller
             ], 422);
         }
 
+
+
         $user = new User;
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->username = strtolower(str_replace(" ", "", $request->name)).User::max('id').mt_rand(1111,9999);
+        // $user->slug = Str::slug($request->name);
+
         $user->save();
 
         return response()->json([

@@ -20,12 +20,12 @@
                         <div class="flex items-center gap-2 text-sm">
                             <div>
                                 <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">
-                                    {{ (userName == null) ? '' : userName.charAt(0) }}
+                                    {{ (userName == null) ? '' : userName.charAt(0).toUpperCase() }}
                                 </div>
                             </div>
                             <div class="flex flex-col">
-                                <div>{{ userName }}</div>
-                                <div class="text-blue-500">example.com/{{ userName }}</div>
+                                <div>{{ user_name }}</div>
+                                <div class="text-blue-500">{{ hostname }}/{{ userName }}</div>
                             </div>
                         </div>
                         <div>
@@ -235,6 +235,8 @@ export default {
             scheduleevents:false,
             events: null,
             userName: null,
+            user_name: null,
+            hostname:"",
 
             scheduleDetails:{},
         }
@@ -437,7 +439,12 @@ export default {
     },
     mounted() {
         var userData = JSON.parse(localStorage.getItem('auth-user'));
-        this.userName = userData.name;
+
+        console.log(userData);
+        console.log(location.hostname);
+        this.userName = userData.username;
+        this.user_name = userData.name;
+        this.hostname = window.location.host;
         this.$axios.get(`/api/events`).then( res => {
             this.events = res.data.data
         })

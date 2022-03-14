@@ -69,12 +69,25 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::all();
 
-        return response()->json([
+        $userid=auth()->id();
+        if($userid){
+
+            $events = Event::where('user_id','=',$userid)->get();
+
+            return response()->json([
             'success' => true,
             'data' => $events
-        ]);
+            ]);
+
+        }else{
+
+             return response()->json([
+                'success' => false,
+                'message' => 'User not loggedin'
+            ], 404);
+        }
+        
     }
 
 

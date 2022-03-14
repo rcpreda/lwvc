@@ -78,6 +78,65 @@
                                     <input type="text" v-model="invitee_email" class="border py-2 px-2 w-full mt-2 rounded-md">
                                     <small class="text-red-500 mx-2" v-show="validationErrorMessages.invitee_email !== null">{{ validationErrorMessages.invitee_email }}</small>
                                 </div>
+                          
+
+                                <div class="mt-4">
+                                    <label for="name">Select Calendar</label>
+                                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-2 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" v-model="calendar_type" @click="openReminderOption">
+                                        <option value="">Select</option>   
+                                        <option value="google_calendar">Google Calendar</option>
+                                        <option value="application_calendar">Application Calendar</option>
+                                        
+                                        </select>
+                                 
+                                    <small class="text-red-500 mx-2" v-show="validationErrorMessages.calendar_type !== null">{{ validationErrorMessages.calendar_type }}</small>
+                                </div>
+                                <div v-show="openremindar">
+
+
+                                        <div class="mt-4" >
+                                                <label for="name">Reminder Before</label>
+                                            <div class="flex">
+                                            <div class="form-check form-check-inline px-2">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="10_min" value="10 minutes" v-model="reminder">
+                                            <label class="form-check-label inline-block text-gray-800" for="10_min">10 minutes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="30_min" value="30 minutes" v-model="reminder">
+                                            <label class="form-check-label inline-block text-gray-800" for="30_min">30 minutes</label>
+                                            </div>
+                                             <div class="form-check form-check-inline px-2">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="1_hour" value="1 hour" v-model="reminder">
+                                            <label class="form-check-label inline-block text-gray-800" for="1_hour">1 hour</label>
+                                            </div>
+                                             <div class="form-check form-check-inline">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="1_day" value="1 day" v-model="reminder">
+                                            <label class="form-check-label inline-block text-gray-800" for="1_day">1 day</label>
+                                            </div>
+                                           
+                                            </div>
+
+                                            <small class="text-red-500 mx-2" v-show="validationErrorMessages.reminder !== null">{{ validationErrorMessages.reminder }}</small>
+                                        </div>
+
+                                        <div class="mt-4">
+                                                <label for="name">Reminder Notification</label>
+                                            <div class="flex">
+                                            <div class="form-check form-check-inline px-2">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="sms" value="sms" v-model="reminder_notification">
+                                            <label class="form-check-label inline-block text-gray-800" for="sms">SMS</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="email" value="email" v-model="reminder_notification">
+                                            <label class="form-check-label inline-block text-gray-800" for="email">Email</label>
+                                            </div>
+                                           
+                                            </div>
+                                            <small class="text-red-500 mx-2" v-show="validationErrorMessages.reminder_notification !== null">{{ validationErrorMessages.reminder_notification }}</small>
+                                        </div>
+                                </div>
+
+
                                 <div class="mt-4">
                                     <label for="name">Please share anything that will help prepare for our meeting.</label>
                                     <textarea v-model="invitee_description" class="border py-2 px-2 w-full mt-2 rounded-md"></textarea>
@@ -111,10 +170,17 @@ export default {
            invitee_name:"",
            invitee_email:"",
            invitee_description:"",
+           calendar_type:"",
+           openremindar:false,
+           reminder_notification:[],
+           reminder:[],
             validationErrorMessages: {
                     invitee_name: null,
                     invitee_email: null,
-                    invitee_description:null
+                    invitee_description:null,
+                    calendar_type:null,
+                    reminder:null,
+                    reminder_notification:null,
                    
                 },
         }
@@ -161,6 +227,45 @@ export default {
                 this.validationErrorMessages.invitee_description=null;
             }
 
+            if(this.calendar_type==""){
+
+                 processSave = false;
+
+                 this.validationErrorMessages.calendar_type = "Calendar is required";
+            }else{
+                this.validationErrorMessages.calendar_type = null;
+            }
+
+             if(this.calendar_type!="" && this.calendar_type=="application_calendar"){
+
+                if(this.reminder.length==0){
+
+                processSave = false;
+
+                this.validationErrorMessages.reminder = "Reminder is required";
+
+                }else{
+                    this.validationErrorMessages.reminder = null;
+                }
+
+                 if(this.reminder_notification.length==0){
+
+                processSave = false;
+
+                this.validationErrorMessages.reminder_notification = "Reminder Notification is required";
+
+                }else{
+                    this.validationErrorMessages.reminder_notification = null;
+                }
+
+                
+            }else{
+                this.validationErrorMessages.reminder = null;
+                 this.validationErrorMessages.reminder_notification = null;
+            }
+
+
+
 
             if(processSave == true){
 
@@ -177,6 +282,9 @@ export default {
                 timeZone:this.timezone,
                 newdateval:this.newdate,
                 eventname:this.eventName,
+                calendar_type:this.calendar_type,
+                reminder:this.reminder,
+                reminder_notification:this.reminder_notification,
             }).then((res) => {
 
                 // console.log(res);
@@ -202,6 +310,17 @@ export default {
 
             
             
+
+        },
+        openReminderOption(){
+            if(this.calendar_type =="application_calendar"){
+
+                this.openremindar = true;
+            }else{
+                this.reminder_notification = [];
+                this.reminder = [];
+                this.openremindar = false;
+            }
 
         }
         

@@ -268,7 +268,10 @@ class ScheduleController extends Controller
          $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
-            'description' => 'required'
+            'description' => 'required',
+            'calendar_type' => 'required',
+            'reminder' => 'required_if:calendar_type,application_calendar',
+            'reminder_notification' => 'required_if:calendar_type,application_calendar',
             
         ]);
 
@@ -289,6 +292,9 @@ class ScheduleController extends Controller
                 $slotBooking->confirmdate=$request->date;
                 $slotBooking->timezone=$request->timeZone;
                 $slotBooking->slot=$request->slot;
+                $slotBooking->calendar_type=$request->calendar_type;
+                $slotBooking->reminder_before=json_encode($request->reminder);
+                $slotBooking->reminder_notify_by=json_encode($request->reminder_notification);
                 $slotBooking->save();
 
             //];

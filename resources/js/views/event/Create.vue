@@ -168,6 +168,7 @@
                 <input
                   placeholder="30 min meeting"
                   v-model="step1Data.name"
+                  @change ="generateSlug"
                   class="
                     appearance-none
                     border
@@ -239,7 +240,7 @@
                   Event link *
                 </label>
                 <div class="text-gray-500 text-sm mb-2">
-                  example.com/debarshi
+                  {{hostname}}/{{user_Name}}
                 </div>
                 <input
                   placeholder="link"
@@ -1061,6 +1062,10 @@ import Navbar from '../../components/Navbar.vue'
 export default {
     data(){
         return {
+          user_Name:null,
+          user_name:null,
+          hostname:null,
+
             step1Data: {
                 id: null,
                 name: "30 min Meeting",
@@ -1485,13 +1490,33 @@ export default {
 
             })
 
-       }
+       },
+       generateSlug(){
+
+          this.step1Data.link = this.convertToSlug(this.step1Data.name);
+       },
+       convertToSlug(Text) {
+  return Text.toLowerCase()
+             .replace(/ /g, '-')
+             .replace(/[^\w-]+/g, '');
+}
       
     },
     created(){
 
         //alert();
     },
+    mounted(){
+       var userData = JSON.parse(localStorage.getItem('auth-user'));
+
+        console.log(userData);
+        console.log(location.hostname);
+        this.user_Name = userData.username;
+        this.user_name = userData.name;
+        this.hostname = window.location.host;
+
+        this.step1Data.link = this.convertToSlug(this.step1Data.name);
+    }
 }
 </script>
 
