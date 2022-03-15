@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\User;
-//use App\Models\Event;
+use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use App\Models\Slotbooking;
 use Illuminate\Support\Facades\Validator;
 use Date;
-use Spatie\GoogleCalendar\Event;
+//use Spatie\GoogleCalendar\Event;
 class ScheduleController extends Controller
 {
 
@@ -18,7 +18,7 @@ class ScheduleController extends Controller
 
         $userid=auth()->id();
         $getSchedule =Schedule::where('user_id',$userid)->orderBy('is_default','asc')->get();
-         $events = Event::get();
+         //$events = Event::get();
          return response()->json([
             "success" => true,
             "data" => $getSchedule
