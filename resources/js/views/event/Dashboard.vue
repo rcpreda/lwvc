@@ -64,7 +64,7 @@
 
                     <div class="w-full bg-white border-t shadow-lg">
                     <div class="flex gap-10 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
-                    <a href="javascript:void(0)" class="hover:border-gray-300 border-b-4 py-4" @click="openTab2('upcoming')" v-bind:class="[upcoming ? 'border-blue-500' : 'border-white']">Upcoming</a>
+                    <!-- <a href="javascript:void(0)" class="hover:border-gray-300 border-b-4 py-4" @click="openTab2('upcoming')" v-bind:class="[upcoming ? 'border-blue-500' : 'border-white']">Upcoming</a> -->
                     <a href="javascript:void(0)" class="hover:border-gray-300 border-blue-500 border-b-4 py-4" @click="openTab2('past')" v-bind:class="[past ? 'border-blue-500' : 'border-white']">Past</a>
                       <a href="javascript:void(0)" class="hover:border-gray-300 border-blue-500 border-b-4 py-4" @click="openTab2('daterange')" v-bind:class="[daterange ? 'border-blue-500' : 'border-white']">Date Range</a>
 
@@ -79,7 +79,7 @@
                     <div class="w-full bg-white" v-if="preLoader==false">
 
                         
-                       <p v-if="dateRange!=null" class="px-2 py-4"><b>{{getdaterangeFormat()}}</b></p>
+                       <p v-if="dateRange!=null && daterange==true" class="px-2 py-4"><b>{{getdaterangeFormat()}}</b></p>
                         <div v-if="Object.keys(scheduleDetails).length>0" class="w-full" v-for="i in Object.keys(scheduleDetails)" :key="i">
 
                             <div v-show="new Date(i)>new Date()">
@@ -257,7 +257,7 @@ export default {
                
 
             }else{
-                var type = 'upcoming';
+                var type = 'past';
                 this.$axios.get(`/api/event-schedule-list/${type}`).then( res => {
                // console.log(res);
 
@@ -266,9 +266,11 @@ export default {
                 console.log(this.scheduleDetails);
                 this.eventtypes = false;
                 this.scheduleevents = true;
-                this.upcoming = true;
+                this.past = true;
 
                 this.preLoader = false;
+                 this.dateRange = null;
+                 this.daterange = false;
 
 
 
@@ -337,6 +339,7 @@ export default {
                 this.upcoming = false;
                 this.daterange = true;
                 this.$refs.modalName.openModal()
+                this.dateRange = null;
 
             }
 

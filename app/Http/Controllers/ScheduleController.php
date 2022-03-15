@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\User;
-use App\Models\Event;
+//use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use App\Models\Slotbooking;
 use Illuminate\Support\Facades\Validator;
 use Date;
+use Spatie\GoogleCalendar\Event;
 class ScheduleController extends Controller
 {
 
@@ -17,10 +18,50 @@ class ScheduleController extends Controller
 
         $userid=auth()->id();
         $getSchedule =Schedule::where('user_id',$userid)->orderBy('is_default','asc')->get();
+         $events = Event::get();
          return response()->json([
             "success" => true,
             "data" => $getSchedule
         ], 201);
+
+//          $event = new Event();
+// $event->name = 'A new event';
+// $event->description = 'Event description';
+// $event->startDateTime = Carbon::now();
+// $event->endDateTime = Carbon::now()->addHour();
+
+// $calendar = GoogleCalendarFactory::createForCalendarId('jitmaity2203@gmail.com');
+// $calendar->insertEvent($event);
+
+
+
+
+
+//dd($events);
+        //create a new event
+        // $event = new Event;
+
+        // $event->name = 'A new event';
+        // $event->description = 'Event description';
+        // $event->startDateTime = Carbon\Carbon::now();
+        // $event->endDateTime = Carbon\Carbon::now()->addHour();
+        // $event->addAttendee([
+        // 'email' => 'palashnayak1997@gmail.com',
+        // 'name' => 'Palash Nayak',
+        // 'comment' => 'Lorum ipsum',
+        // ]);
+        // $event->addAttendee(['email' => 'jitmaity2203@gmail.com']);
+
+        // $event->save();
+
+        // Event::create([
+        // 'name' => 'A new event',
+        // 'startDateTime' => Carbon\Carbon::now(),
+        // 'endDateTime' => Carbon\Carbon::now()->addHour(),
+        // ]);
+
+
+
 
     }
 
