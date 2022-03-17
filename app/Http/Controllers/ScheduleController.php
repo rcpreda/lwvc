@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\User;
@@ -9,56 +8,407 @@ use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use App\Models\Slotbooking;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use Google_Client;
+use Google_Service_Calendar;
+use Google_Service_Calendar_Calendar;
+use Google_Service_Calendar_Event;
+use Google_Service_Calendar_EventDateTime;
 use Date;
-//use Spatie\GoogleCalendar\Event;
+use DateTime;
 class ScheduleController extends Controller
 {
 
+    protected $client;
+
+    public function __construct()
+    {
+        $client = new Google_Client();
+        $client->setAuthConfig('client_secret.json');
+        $client->addScope(Google_Service_Calendar::CALENDAR);
+        $client->setSubject('abc.com');
+
+        $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
+        $client->setHttpClient($guzzleClient);
+        $this->client = $client;
+    }
+
+    public function check(){
+
+         session_start();
+
+          // return response()->json([
+          //   "success" => true,
+          //   "message" =>"callback",
+          //   "data" => $this->oauth()
+          //   ], 201);
+
+         $requesturl =  json_decode(file_get_contents(public_path('token.json')));;
+
+
+         if(isset($requesturl) && $requesturl->access_token!=''){
+
+            $this->client->setAccessToken($_SESSION['access_token']);
+        
+
+             return response()->json([
+            "success" => true,
+            "message"=>"getdetails",
+            "data" => gettype($requesturl)
+            ], 201); 
+         }else{
+
+             return response()->json([
+            "success" => true,
+            "message" =>"callback",
+            "data" => $this->oauth()
+            ], 201);
+
+         }
+        // if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+        //     $this->client->setAccessToken($_SESSION['access_token']);
+        //     $service = new Google_Service_Calendar($this->client);
+
+        //     $calendarId = 'primary';
+
+        //     $results = $service->events->listEvents($calendarId);
+        //     // return $results->getItems();
+
+        //     return response()->json([
+        //     "success" => true,
+        //     "message"=>"getdetails",
+        //     "data" => $results->getItems()
+        //     ], 201);
+
+        //     //echo "ok2";
+
+        // } else {
+
+        //     //$this->oauth
+
+        //     return response()->json([
+        //     "success" => true,
+        //     "message" =>"callback",
+        //     "data" => $this->oauth()
+        //     ], 201);
+        //     //echo "ok1";
+        //     // return redirect()->route('oauthCallback');
+        // }
+    }
+
+      public function oauth()
+    {
+        // echo "in";
+        // session_start();
+        $requesturl = request()->getHttpHost();
+        $rurl = 'http://localhost:8000/api/oauth';
+        $this->client->setRedirectUri($rurl);
+        if (!isset($_GET['code'])) {
+            $auth_url = $this->client->createAuthUrl();
+            $filtered_url = filter_var($auth_url, FILTER_SANITIZE_URL);
+            return array('type'=>'reload','url'=>$filtered_url);
+
+           // echo $filtered_url;
+        } else {
+
+            session_start();
+            $this->client->authenticate($_GET['code']);
+            $_SESSION['access_token'] = $this->client->getAccessToken();
+            $this->client->setAccessToken($_SESSION['access_token']);
+             // $calendarId = 'primary';
+
+             file_put_contents(public_path('token.json'), json_encode($_SESSION['access_token']));
+
+            return redirect('http://localhost:3000/schedule/confirm/event');
+            // $results = $service->events->listEvents($calendarId);
+            //$this->check();
+            // return $results->getItems();
+             //return array('type'=>'component','url'=>$results->getItems());
+
+            //$this->client->setAccessToken($_SESSION['access_token']);
+            // $service = new Google_Service_Calendar($this->client);
+
+            // $calendarId = 'primary';
+
+            // $results = $service->events->listEvents($calendarId);
+            // // return $results->getItems();
+
+            // return response()->json([
+            // "success" => true,
+            // "message"=>"getdetails",
+            // "data" => array('type'=>'component','data'=>$results->getItems())
+            // ], 201);
+            // return array('type'=>'component','url'=>'');
+            // return "http://localhost:3000/api/oauth";
+        }
+    }
+
+    public function saveSlot(Request $request){
+
+        session_start();
+
+        if($request->calendar_type=='google_calendar'){
+
+            $startdate = $request->date.' '.explode('-',$request->slot)[0];
+            $enddate = $request->date.' '.explode('-',$request->slot)[1];
+
+            // $date1 = new DateTime($startdate);
+            // $newdate1 = $date1->format('Y-m-d/TH:i:s');
+
+            // $date2 = new DateTime($enddate);
+            // $newdate2 = $date2->format('Y-m-d/TH:i:s');
+
+        // $startDateTime = date('Y-m-d h:i:s', strtotime($startdate));
+        // $endDateTime = date('Y-m-d h:i:s', strtotime($enddate));
+
+            $startDateTime = Carbon::now();
+        $endDateTime = Carbon::now()->addHour();
+
+        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+            $this->client->setAccessToken($_SESSION['access_token']);
+            $service = new Google_Service_Calendar($this->client);
+
+            $calendarId = 'primary';
+            $event = new Google_Service_Calendar_Event([
+                'summary' => $request->eventname,
+                'description' => $request->description,
+                'start' => array(
+                'dateTime' => $startDateTime,
+                'timeZone' => 'UTC',
+                ),
+                'end' => array(
+                'dateTime' =>  $endDateTime,
+                'timeZone' => 'UTC',
+                ),
+                // 'start' => ['dateTime' => $startDateTime],
+                // 'end' => ['dateTime' => $endDateTime],
+                'attendees' => array(
+                array('email' => $request->email),
+               
+               
+                ),
+                'reminders' => ['useDefault' => true],
+            ]);
+            $results = $service->events->insert($calendarId, $event);
+            if (!$results) {
+
+                return response()->json([
+                    "success" => false,
+                    "message" => 'Something went wrong',
+                    "data" => null
+                    ], 422);
+
+
+                // return response()->json(['status' => 'error', 'message' => 'Something went wrong']);
+            }
+            
+        } else {
+
+             return response()->json([
+                    "success" => true,
+                    "message" => 'oauthCallback',
+                    "data" => null
+                    ], 422);
+            // return response()->json(['status' => 'success', 'message' => 'oauthCallback']);
+            //redirect()->route('oauthCallback');
+        }
+
+        }
+       
+
+         $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'description' => 'required',
+            'calendar_type' => 'required',
+            'reminder' => 'required_if:calendar_type,application_calendar',
+            'reminder_notification' => 'required_if:calendar_type,application_calendar',
+            
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                $validator->errors()
+            ], 422);
+        }else{
+
+            $slotBooking = new Slotbooking;
+            //$allData = [
+                $slotBooking->name =$request->name;
+                $slotBooking->email =$request->email;
+                $slotBooking->description=$request->description;
+                $slotBooking->user_id=$request->userId;
+                $slotBooking->event_id=$request->eventid;
+                $slotBooking->confirmdate=$request->date;
+                $slotBooking->timezone=$request->timeZone;
+                $slotBooking->slot=$request->slot;
+                $slotBooking->calendar_type=$request->calendar_type;
+                $slotBooking->reminder_before=json_encode($request->reminder);
+                $slotBooking->reminder_notify_by=json_encode($request->reminder_notification);
+                $slotBooking->save();
+
+            //];
+
+           // $insertSlot = Slotbooking::insert($allData);
+
+                $details = [
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'description'=>$request->description,
+                    'timezone'=>$request->timeZone,
+                    'slot'=>$request->slot,
+                    'eventname'=>$request->eventname,
+                    'newdateval'=>$request->newdateval
+
+
+                ];
+
+                 $startdate = $request->date.' '.explode('-',$request->slot)[0];
+
+               
+                 // $newstartdate =date('Y-m-d\TH:i:s', $startdate);
+
+                //\Mail::to($request->email)->send(new \App\Mail\SlotBookingMail($details));
+
+                //return response()->json(['status' => 'success', 'message' => 'Event Created']);
+             return response()->json([
+                    "success" => true,
+                    "data" => $newdate
+                    ], 200);
+
+
+        }
+
+    }
+
+//     function getClient()
+// {
+//     $client = new Google_Client();
+//     $client->setApplicationName('Web client 1');
+//     $client->setScopes(Google_Service_Calendar::CALENDAR);
+//     // $client->setAuthConfig('client_secret.json');
+//     $client->setAccessType('offline');
+//      $client->setSubject('abc.com');
+//      $client->setClientSecret('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');
+
+//     $client->setPrompt('select_account consent');
+
+//     // Load previously authorized token from a file, if it exists.
+//     // The file token.json stores the user's access and refresh tokens, and is
+//     // created automatically when the authorization flow completes for the first
+//     // time.
+//     $tokenPath = public_path('token.json');
+
+//     echo $tokenPath;
+//     if (file_exists($tokenPath)) {
+//         $accessToken = json_decode(file_get_contents($tokenPath), true);
+//         $client->setAccessToken($accessToken);
+//     }
+
+//     // If there is no previous token or it's expired.
+//     if ($client->isAccessTokenExpired()) {
+//         // Refresh the token if possible, else fetch a new one.
+//         if ($client->getRefreshToken()) {
+//             $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+//         } else {
+//             // Request authorization from the user.
+//             $authUrl = $client->createAuthUrl();
+//             printf("Open the following link in your browser:\n%s\n", $authUrl);
+//             print 'Enter verification code: ';
+//             $authCode = trim(fgets(STDIN));
+
+//             // Exchange authorization code for an access token.
+//             $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+//             $client->setAccessToken($accessToken);
+
+//             // Check to see if there was an error.
+//             if (array_key_exists('error', $accessToken)) {
+//                 throw new Exception(join(', ', $accessToken));
+//             }
+//         }
+//         // Save the token to a file.
+//         if (!file_exists(dirname($tokenPath))) {
+//             mkdir(dirname($tokenPath), 0700, true);
+//         }
+//         file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+//     }
+//     return $client;
+// }
+
+
+
     public function index(Request $request){
 
+        session_start();
         $userid=auth()->id();
         $getSchedule =Schedule::where('user_id',$userid)->orderBy('is_default','asc')->get();
          //$events = Event::get();
-         return response()->json([
+        
+
+
+//          // Get the API client and construct the service object.
+// $client = $this->getClient();
+// $service = new Google_Service_Calendar($client);
+
+// // Print the next 10 events on the user's calendar.
+// $calendarId = 'primary';
+// $optParams = array(
+//   'maxResults' => 10,
+//   'orderBy' => 'startTime',
+//   'singleEvents' => true,
+//   'timeMin' => date('c'),
+// );
+// $results = $service->events->listEvents($calendarId, $optParams);
+// $events = $results->getItems();
+
+// if (empty($events)) {
+//     print "No upcoming events found.\n";
+// } else {
+//     print "Upcoming events:\n";
+//     foreach ($events as $event) {
+//         $start = $event->start->dateTime;
+//         if (empty($start)) {
+//             $start = $event->start->date;
+//         }
+//         printf("%s (%s)\n", $event->getSummary(), $start);
+//     }
+// }
+
+        //  $client = new Google_Client();
+        // $authUrl = $client->createAuthUrl();
+        //return redirect($authUrl);
+
+ // return response()->json([
+ //            "success" => true,
+ //            "data" => $getSchedule
+ //        ], 201);
+
+        //echo "ok";
+        
+        //  if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+        //     $this->client->setAccessToken($_SESSION['access_token']);
+        //     $service = new Google_Service_Calendar($this->client);
+
+        //     $calendarId = 'primary';
+
+        //     $results = $service->events->listEvents($calendarId);
+        //     return $results->getItems();
+
+
+        //     //echo "ok2";
+
+        // } else {
+        //     //echo "ok1";
+        //     return redirect()->route('oauthCallback');
+        // }
+
+        return response()->json([
             "success" => true,
             "data" => $getSchedule
         ], 201);
+       
 
-//          $event = new Event();
-// $event->name = 'A new event';
-// $event->description = 'Event description';
-// $event->startDateTime = Carbon::now();
-// $event->endDateTime = Carbon::now()->addHour();
-
-// $calendar = GoogleCalendarFactory::createForCalendarId('jitmaity2203@gmail.com');
-// $calendar->insertEvent($event);
-
-
-
-
-
-//dd($events);
-        //create a new event
-        // $event = new Event;
-
-        // $event->name = 'A new event';
-        // $event->description = 'Event description';
-        // $event->startDateTime = Carbon\Carbon::now();
-        // $event->endDateTime = Carbon\Carbon::now()->addHour();
-        // $event->addAttendee([
-        // 'email' => 'palashnayak1997@gmail.com',
-        // 'name' => 'Palash Nayak',
-        // 'comment' => 'Lorum ipsum',
-        // ]);
-        // $event->addAttendee(['email' => 'jitmaity2203@gmail.com']);
-
-        // $event->save();
-
-        // Event::create([
-        // 'name' => 'A new event',
-        // 'startDateTime' => Carbon\Carbon::now(),
-        // 'endDateTime' => Carbon\Carbon::now()->addHour(),
-        // ]);
 
 
 
@@ -303,68 +653,7 @@ class ScheduleController extends Controller
 
 
     }
-
-    public function saveSlot(Request $request){
-
-         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'description' => 'required',
-            'calendar_type' => 'required',
-            'reminder' => 'required_if:calendar_type,application_calendar',
-            'reminder_notification' => 'required_if:calendar_type,application_calendar',
-            
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                $validator->errors()
-            ], 422);
-        }else{
-
-            $slotBooking = new Slotbooking;
-            //$allData = [
-                $slotBooking->name =$request->name;
-                $slotBooking->email =$request->email;
-                $slotBooking->description=$request->description;
-                $slotBooking->user_id=$request->userId;
-                $slotBooking->event_id=$request->eventid;
-                $slotBooking->confirmdate=$request->date;
-                $slotBooking->timezone=$request->timeZone;
-                $slotBooking->slot=$request->slot;
-                $slotBooking->calendar_type=$request->calendar_type;
-                $slotBooking->reminder_before=json_encode($request->reminder);
-                $slotBooking->reminder_notify_by=json_encode($request->reminder_notification);
-                $slotBooking->save();
-
-            //];
-
-           // $insertSlot = Slotbooking::insert($allData);
-
-                $details = [
-                    'name'=>$request->name,
-                    'email'=>$request->email,
-                    'description'=>$request->description,
-                    'timezone'=>$request->timeZone,
-                    'slot'=>$request->slot,
-                    'eventname'=>$request->eventname,
-                    'newdateval'=>$request->newdateval
-
-
-                ];
-
-                //\Mail::to($request->email)->send(new \App\Mail\SlotBookingMail($details));
-
-             return response()->json([
-                    "success" => true,
-                    "data" => $slotBooking
-                    ], 200);
-
-
-        }
-
-    }
+   
 
     public function getScheduledEvents(Request $request){
 

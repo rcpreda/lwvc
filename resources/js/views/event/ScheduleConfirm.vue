@@ -287,7 +287,7 @@ export default {
                 reminder_notification:this.reminder_notification,
             }).then((res) => {
 
-                // console.log(res);
+                 console.log(res);
                  this.$dtoast.pop({
                     preset: "success",
                     heading: `Success!`,
@@ -326,6 +326,29 @@ export default {
         
     },
     mounted(){
+
+         this.$axios.get(`/api/checklogin`)
+                .then(res => {
+
+                    if(res.data.message=="callback"){
+
+                         if(res.data.data.type=="reload"){
+                          window.location = res.data.data.url;
+                    }
+                    }
+
+                    // if(res.data.data.type=="reload"){
+                    //       window.location = res.data.data.url;
+                    // }else{
+                    //     this.$router.push({ path: '/schedule/confirm/event' });
+                    // }
+
+
+                    console.log("checklogin",res);
+                    
+                    
+
+                })
 
         const monthNames=["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"

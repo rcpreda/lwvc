@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignalController;
+use App\Http\Controllers\ScheduleController;
 
 
 Route::view('/{any}', 'app')->where('any', '.*')->name('app');
@@ -18,3 +19,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/signals', [SignalController::class, 'store']);
     Route::get('/signals/{signal}', [SignalController::class, 'show']);
 });
+
+Route::get('oauth', 'App\Http\Controllers\ScheduleController@oauth')->name('oauthCallback');
