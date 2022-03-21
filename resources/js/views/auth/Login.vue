@@ -53,8 +53,19 @@ export default {
                     localStorage.setItem('auth-user', JSON.stringify(res.data.data));
                     this.setAuthUser(res.data.data)
                     this.$router.push('/')
-                })
+                }).catch((err) => {
+
+                            this.$dtoast.pop({
+                                preset: "error",
+                                heading: `Error!`,
+                                content: `Provided credentials are wrong!`,
+                            });
+
+              
+                
+              
             });
+            })
         }
     }
 }

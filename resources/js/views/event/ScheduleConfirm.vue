@@ -287,15 +287,32 @@ export default {
                 reminder_notification:this.reminder_notification,
             }).then((res) => {
 
-                 console.log(res);
-                 this.$dtoast.pop({
+                console.log(res);
+
+                    if(res.data.success== false){
+
+                         
+                          window.location = res.data.data.url;
+                    }else{
+
+                     this.$dtoast.pop({
                     preset: "success",
                     heading: `Success!`,
                     content: `Slot confirm for this schedule`,
                 });
 
-                 this.$router.push({ path: '/schedule/confirmation/event' })
-            }).catch(() => {
+                     this.$router.push({ path: '/schedule/confirmation/event' })
+
+                  }
+
+
+                 //console.log(res.data.message);
+                
+
+                 
+            }).catch((err) => {
+
+              
                 
                 this.$dtoast.pop({
                     preset: "error",

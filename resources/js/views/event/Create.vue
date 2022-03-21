@@ -63,10 +63,11 @@
               class="
                 flex
                 items-center
-                text-sm text-blue-500
+                text-sm text-gray-500
                 gap-2
                 cursor-pointer
               "
+              style="pointer-events: none;"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
