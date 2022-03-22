@@ -76,8 +76,8 @@
                                     <div v-if="selectedDate" class="w-full md:w-4/12 h-full pt-5 flex flex-col">
                                         <div class="mb-5 px-5">{{ formattedSelectedDate }}</div>
                                         <div class="overflow-auto px-5 py-2">
-                                        <div v-for="(item,i) in availablehours" :key="i" @click="activeTime = i" class="flex gap-2 mb-3">
-                                                <div v-if="i!=activeTime" class="ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center">
+                                        <div v-for="(item,i) in availablehours" :key="i" @click="activeTime = i" class="flex gap-2 mb-3" v-bind:style= "[checkTime(item) ? {'background-color': '#e7edf1','pointer-events': 'none'} : '']">
+                                                <div v-if="i!=activeTime"  class="ring-1 w-full cursor-pointer hover:ring-2 ring-blue-500 ring-offset-0 text-blue-600 font-medium py-3 rounded-md text-center">
                                                     {{item}}
                                                 </div>
                                                 <div v-if="i==activeTime" class="w-6/12 py-3 cursor-pointer bg-gray-600 text-white rounded-md text-center">{{item}}</div>
@@ -136,6 +136,8 @@ export default {
             return moment();
         },
             onDateChange() {
+
+                console.log(this.selectedDate);
 
                 var tz = moment.tz.guess();
                 var timedifference = new Date().getTimezoneOffset();
@@ -330,20 +332,47 @@ export default {
 
             localStorage.setItem('scheduleDetails', JSON.stringify(scheduleDetails));
 
-            this.$router.push({ path: '/schedule/confirm/event' });
+            this.$router.push({ path: '/confirm/event' });
 
                 // console.log(bookslot);
                 // console.log(seelcteddate);
                 // console.log(tz);
                 // console.log(this.$store.state.schedule_userName);
+            },
+            checkTime(item){
+
+                let today = moment().format('YYYY-MM-DD HH:mm');
+                let todaydate = moment().format('YYYY-MM-DD');
+                let selecteddate = moment(this.selectedDate).format('YYYY-MM-DD');
+                let newdatetime = todaydate+' '+item;
+                let newdatetime1 = new Date(newdatetime);
+                let newdatetimeobj = moment(newdatetime1).format('YYYY-MM-DD HH:mm');
+
+                console.log(todaydate+'-'+selecteddate);
+                if(todaydate==selecteddate){
+
+                        if(today>newdatetimeobj){
+
+                        return true;                    
+                        }else{
+                        return false;
+                        }
+
+                }
+                
+
+
+                
             }
 
             // $router.push({ path: '/schedule/confirm' })
     },
     mounted(){
 
-            this.$axios.get(`/api/schedule/${this.$route.params.id}`)
+            this.$axios.get(`/api/schedule/${this.$route.params.userid}/${this.$route.params.eventname}`)
                 .then(res => {
+
+                    console.log(res);
 
                     // console.log(res.data.data.eventschedule);
 

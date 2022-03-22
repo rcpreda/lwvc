@@ -53,7 +53,7 @@ router.beforeEach((to, from, next) => {
     // because the condition is tru when where not going to login page (we are going to signup)
     // and we are not authenticated
     // so the solution is change the order of the logic or add new condition as shown below
-    if (to.name === "Signup" && !localStorage.getItem('auth-user')) {
+    if ((to.name === "Signup" || to.name ==='ScheduleEvent' || to.name ==='ScheduleConfirm' || to.name ==='ScheduleConfirmation') && !localStorage.getItem('auth-user')) {
         next()
     }
     else if (to.name !== 'Login' && !localStorage.getItem('auth-user')) {

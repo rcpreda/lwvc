@@ -35,10 +35,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/events/{event}', [EventController::class, 'destroy']);
 
     Route::post('/schedule', [ScheduleController::class, 'store']);
-    Route::post('/schedule/slot-confirm', [ScheduleController::class, 'saveSlot']);
+    // Route::post('/schedule/slot-confirm', [ScheduleController::class, 'saveSlot']);
     Route::get('/schedule', [ScheduleController::class, 'index']);
    
-    Route::get('/schedule/{id?}', [ScheduleController::class, 'getEventDetails']);
+    // Route::get('/schedule/{userid?}/{eventname?}', [ScheduleController::class, 'getEventDetails']);
     Route::get('/schedule/setdefault/{id?}', [ScheduleController::class, 'setDefault']);
     Route::get('/schedule/getIndividual/{id?}', [ScheduleController::class, 'getIndividualData']);
     Route::post('/schedule/update', [ScheduleController::class, 'update']);
@@ -48,7 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/event-schedule-list/{type?}{startdate?}/{enddate?}', [ScheduleController::class, 'getScheduledEvents']);
     Route::get('/slot/check/{id?}/{slot?}/{selectdate?}', [ScheduleController::class, 'checkSchedule']);
 
- Route::get('/checklogin', [ScheduleController::class, 'check']);
+ // Route::get('/checklogin', [ScheduleController::class, 'check']);
 
 
 
@@ -56,5 +56,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::post('/eventschedule/{eventschedule}', [EventController::class, 'storeEeventSchedule']);
 });
 
+Route::get('/checklogin', [ScheduleController::class, 'check']);
+Route::post('/schedule/slot-confirm', [ScheduleController::class, 'saveSlot']);
+Route::get('/schedule/{userid?}/{eventname?}', [ScheduleController::class, 'getEventDetails']);
 Route::resource('cal', ScheduleController::class);
 Route::get('oauth', [ScheduleController::class,'oauth'])->name('oauthCallback');

@@ -50,7 +50,7 @@
                 <div class="flex flex-col gap-2 max-w-screen-lg px-4 mx-auto md:px-6 lg:px-8">
                     <div class="w-full flex items-center justify-between mb-4">
                         <div class="text-gray-500 text-sm">Last edited {{ lastEditedDate }}.</div>
-                        <router-link :to="'/schedule/' + step1Data.id" target="_blank"
+                        <router-link :to="'/schedule/' + authDetails.username+'/'+step1Data.link" target="_blank"
                             class="flex items-center text-sm text-blue-500 gap-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -632,6 +632,7 @@
                 dateRange: null,
                 isListView:true,
                 isCalendarView:false,
+                authDetails:{},
                 step1Data: {
                     id: null,
                     name: "30 min Meeting",
@@ -1156,6 +1157,11 @@
             }
         },
         mounted() {
+
+        
+            let authdetails =  localStorage.getItem('auth-user');
+            this.authDetails = JSON.parse(authdetails);
+            // console.log(JSON.parse(this.authDetails).username);
 
         // var x = 30; //minutes interval
         // var times = []; // time array

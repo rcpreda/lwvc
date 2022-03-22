@@ -301,7 +301,7 @@ export default {
                     content: `Slot confirm for this schedule`,
                 });
 
-                     this.$router.push({ path: '/schedule/confirmation/event' })
+                     this.$router.push({ path: '/confirmation/event' })
 
                   }
 

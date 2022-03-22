@@ -44,17 +44,17 @@ export default new Router({
             component: CreateEventView
         },
         {
-            path: '/schedule/:id',
+            path: '/schedule/:userid/:eventname',
             name: 'ScheduleEvent',
-            component: ScheduleEventView
+            component: ScheduleEventView 
         },
         {
-            path: '/schedule/confirm/event',
+            path: '/confirm/event',
             name: 'ScheduleConfirm',
             component: ScheduleConfirmView
         },
         {
-            path: '/schedule/confirmation/event',
+            path: '/confirmation/event',
             name: 'ScheduleConfirmation',
             component: ScheduleConfirmationView
         },

@@ -152,7 +152,7 @@ class ScheduleController extends Controller
 
              file_put_contents(public_path('token.json'), json_encode($_SESSION['access_token']));
 
-            return redirect('http://localhost:3000/schedule/confirm/event');
+            return redirect('http://localhost:3000/confirm/event');
             // $results = $service->events->listEvents($calendarId);
             //$this->check();
             // return $results->getItems();
@@ -496,13 +496,13 @@ class ScheduleController extends Controller
 
     public function getEventDetails(Request $request){
 
-        $userid=auth()->id();
+        $username=$request->userid;
 
-        if($userid){
+        if($username){
 
-            $user = User::find($userid);
+            $user = User::where('username',$username)->first();
 
-            $getSchedule =Event::where('id',$request->id)->with(['eventschedule'])->first();
+            $getSchedule =Event::where('link',$request->eventname)->where('user_id',$user->id)->with(['eventschedule'])->first();
             $getSchedule->userdetails = $user;
 
          return response()->json([
