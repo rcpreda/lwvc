@@ -90,7 +90,7 @@
                         <div v-show="step1" class="max-w-lg p-4">
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event Name * </label>
-                                <input placeholder="30 min meeting" v-model="step1Data.name" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.name !== null}" type="text" required/>
+                                <input placeholder="30 min meeting" v-model="step1Data.name"  v-on:keyup ="generateSlug" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.name !== null}" type="text" required/>
                                 <small class="text-red-500 mx-2" v-show="validationErrorMessages.name !== null">{{ validationErrorMessages.name }}</small>
                             </div>
                             <div class="mb-4 w-full">
@@ -114,7 +114,7 @@
                             <div class="mb-4 w-full">
                                 <label class="block text-gray-700 text-sm font-medium mb-2" for="username"> Event link * </label>
                                 <div class="text-gray-500 text-sm mb-2">example.com/debarshi</div>
-                                <input placeholder="link" v-model="step1Data.link" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.link !== null}" type="text" required/>
+                                <input placeholder="link" v-model="step1Data.link" v-on:keyup ="generateSlug2" class="appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" :class="{'border-red-500' : validationErrorMessages.link !== null}" type="text" required/>
                                 <small class="text-red-500 mx-2" v-show="validationErrorMessages.link !== null">{{ validationErrorMessages.link }}</small>
                             </div>
                             <div class="mb-4 w-full">
@@ -865,37 +865,87 @@
                 //step 1. validations
                 if(this.step1Data.name === "") {
                     this.validationErrorMessages.name = "Event name required";
+
+                    this.step1Processing = false
                 } else {
                     this.validationErrorMessages.name = null;
                 }
                 if(this.step1Data.description === "" || this.step1Data.description === null) {
                     this.validationErrorMessages.description = "Event description required";
+                    this.step1Processing = false
                 } else {
                     this.validationErrorMessages.description = null;
                 }
                 if(this.step1Data.link === "" || this.step1Data.link === null) {
                     this.validationErrorMessages.link = "Event link required";
-                } else {
-                    this.validationErrorMessages.link = null;
-                }
-
-                this.$axios.post(`/api/events/${this.step1Data.id}`, this.step1Data).then(res => {
-                    this.step1Data.id = res.data.data.id
                     this.step1Processing = false
-                    this.step1 = false
-                    this.$dtoast.pop({
+                } else {
+                     var userData = JSON.parse(localStorage.getItem('auth-user'));
+               this.$axios.get(`/api/checklink/${userData.id}/${this.step1Data.link}`)
+            .then(res => {
+
+                console.log(res);
+              //console.log(res.data.data.id);
+              //console.log(this.$route.params.id);
+
+              if(res.data.success==false && res.data.data.id!=this.$route.params.id){
+                this.validationErrorMessages.link = "Link name already exists.";
+                this.step1Processing = false
+              }else{
+
+                        this.validationErrorMessages.link = null;
+
+                        if(this.step1Processing == true){
+
+
+                        //submit data
+                        this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data)
+                        .then(res => {
+                        this.step1Data.id = res.data.data.id
+                        this.step1Processing = false
+                        this.step1 = false
+                        this.$dtoast.pop({
                         preset: "success",
                         heading: `Success!`,
                         content: `Event updated!`,
-                    });
-                }).catch(() => {
-                    this.step1Processing = false
-                    this.$dtoast.pop({
+                        });
+                        // redirect to event show after creating event
+                        //this.$router.push(`/event/show/${this.step1Data.id}`);
+                        }).catch(() => {
+                        this.step1Processing = false;
+                        this.$dtoast.pop({
                         preset: "error",
                         heading: `Error!`,
-                        content: `Something when wrong, please try again`,
-                    });
-                })
+                        content: `Something when wrong, please try again!`,
+                        });
+                        });
+                        }
+
+          
+
+                  
+              }
+
+            })
+                }
+
+                // this.$axios.post(`/api/events/${this.step1Data.id}`, this.step1Data).then(res => {
+                //     this.step1Data.id = res.data.data.id
+                //     this.step1Processing = false
+                //     this.step1 = false
+                //     this.$dtoast.pop({
+                //         preset: "success",
+                //         heading: `Success!`,
+                //         content: `Event updated!`,
+                //     });
+                // }).catch(() => {
+                //     this.step1Processing = false
+                //     this.$dtoast.pop({
+                //         preset: "error",
+                //         heading: `Error!`,
+                //         content: `Something when wrong, please try again`,
+                //     });
+                // })
 
             },
 
@@ -1154,6 +1204,19 @@
                     this.isCalendarView = true;
                     this.isListView = false;
                 }
+            },
+            generateSlug(){
+
+            this.step1Data.link = this.convertToSlug(this.step1Data.name);
+            },
+            generateSlug2(){
+
+            this.step1Data.link = this.convertToSlug(this.step1Data.link);
+            },
+            convertToSlug(Text) {
+            return Text.toLowerCase()
+            .replace(/ /g, '-')
+            .replace(/[^\w-]+/g, '');
             }
         },
         mounted() {

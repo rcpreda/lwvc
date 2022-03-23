@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/events', [EventController::class, 'index']);
     Route::delete('/events/{event}', [EventController::class, 'destroy']);
     Route::delete('/events/{event}', [EventController::class, 'destroy']);
+    Route::get('/checklink/{userid?}/{linkname?}', [EventController::class, 'checkLink']);
 
     Route::post('/schedule', [ScheduleController::class, 'store']);
     // Route::post('/schedule/slot-confirm', [ScheduleController::class, 'saveSlot']);

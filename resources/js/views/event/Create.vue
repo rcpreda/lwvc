@@ -169,7 +169,7 @@
                 <input
                   placeholder="30 min meeting"
                   v-model="step1Data.name"
-                  @change ="generateSlug"
+                  v-on:keyup ="generateSlug"
                   class="
                     appearance-none
                     border
@@ -246,6 +246,7 @@
                 <input
                   placeholder="link"
                   v-model="step1Data.link"
+                  v-on:keyup ="generateSlug2"
                   class="
                     appearance-none
                     border
@@ -1063,6 +1064,7 @@ import Navbar from '../../components/Navbar.vue'
 export default {
     data(){
         return {
+          step1save:true,
           user_Name:null,
           user_name:null,
           hostname:null,
@@ -1282,42 +1284,119 @@ export default {
             this.step1Processing = true
             //step 1. validations
             if(this.step1Data.name === "") {
+
+           
                 this.validationErrorMessages.name = "Event name required";
+                this.step1Processing = false
             } else {
                 this.validationErrorMessages.name = null;
             }
             if(this.step1Data.description === "" || this.step1Data.description === null) {
                 this.validationErrorMessages.description = "Event description required";
+
+               this.step1Processing = false
             } else {
                 this.validationErrorMessages.description = null;
             }
             if(this.step1Data.link === "" || this.step1Data.link === null) {
+
+              this.step1Processing = false
                 this.validationErrorMessages.link = "Event link required";
             } else {
+
+              var userData = JSON.parse(localStorage.getItem('auth-user'));
+               this.$axios.get(`/api/checklink/${userData.id}/${this.step1Data.link}`)
+            .then(res => {
+
+              console.log(res);
+
+              if(res.data.success==false){
+                // this.step1save = false;
+
+                // console.log('in');
+                // console.log(this.step1save);
+
+                this.validationErrorMessages.link = "Link name already exists.";
+                this.step1Processing = false
+              }else{
+
                 this.validationErrorMessages.link = null;
+
+                if(this.step1Processing == true){
+
+
+                          //submit data
+                          this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data)
+                          .then(res => {
+                          this.step1Data.id = res.data.data.id
+                          this.step1Processing = false
+                          this.step1 = false
+                          this.$dtoast.pop({
+                          preset: "success",
+                          heading: `Success!`,
+                          content: `Event added!`,
+                          });
+                          // redirect to event show after creating event
+                          this.$router.push(`/event/show/${this.step1Data.id}`);
+                          }).catch(() => {
+                          this.step1Processing = false;
+                          this.$dtoast.pop({
+                          preset: "error",
+                          heading: `Error!`,
+                          content: `Something when wrong, please try again!`,
+                          });
+                          });
+                }
+
+          
+
+                  
+              }
+
+            })
+
+
+
+                // this.validationErrorMessages.link = null;
             }
 
-            //submit data
-            this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data)
-            .then(res => {
-                this.step1Data.id = res.data.data.id
-                this.step1Processing = false
-                this.step1 = false
-                this.$dtoast.pop({
-                    preset: "success",
-                    heading: `Success!`,
-                    content: `Event added!`,
-                });
-                // redirect to event show after creating event
-                this.$router.push(`/event/show/${this.step1Data.id}`);
-            }).catch(() => {
-                this.step1Processing = false;
-                this.$dtoast.pop({
-                    preset: "error",
-                    heading: `Error!`,
-                    content: `Something when wrong, please try again!`,
-                });
-            });
+             
+
+            //checkevent link exist or not
+
+            
+
+            
+
+            if(this.step1Processing == true && this.validationErrorMessages.link!=null){
+
+              console.log('in');
+
+            //      //submit data
+            // this.$axios.post(`/api/events/${this.step1Data.id ? this.step1Data.id : ''}`, this.step1Data)
+            // .then(res => {
+            //     this.step1Data.id = res.data.data.id
+            //     this.step1Processing = false
+            //     this.step1 = false
+            //     this.$dtoast.pop({
+            //         preset: "success",
+            //         heading: `Success!`,
+            //         content: `Event added!`,
+            //     });
+            //     // redirect to event show after creating event
+            //     this.$router.push(`/event/show/${this.step1Data.id}`);
+            // }).catch(() => {
+            //     this.step1Processing = false;
+            //     this.$dtoast.pop({
+            //         preset: "error",
+            //         heading: `Error!`,
+            //         content: `Something when wrong, please try again!`,
+            //     });
+            // });
+
+            }
+
+         
         },
         goToDashboard(){
             this.$router.push('/');
@@ -1495,6 +1574,10 @@ export default {
        generateSlug(){
 
           this.step1Data.link = this.convertToSlug(this.step1Data.name);
+       },
+       generateSlug2(){
+
+        this.step1Data.link = this.convertToSlug(this.step1Data.link);
        },
        convertToSlug(Text) {
   return Text.toLowerCase()

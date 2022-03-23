@@ -180,4 +180,29 @@ class EventController extends Controller
             'data' => $event
         ], 200);
     }
+
+    public function checkLink(Request $request){
+
+
+            $events = Event::where('user_id','=',$request->userid)->where('link','=',$request->linkname)->first();
+
+            if($events){
+
+                return response()->json([
+                'success' => false,
+                'data' => $events
+                ], 200);
+
+            }else{
+
+
+                return response()->json([
+                'success' => true,
+                'data' => $events
+                ], 200);
+
+            }
+
+
+    }
 }
