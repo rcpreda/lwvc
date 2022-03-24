@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Str;
+use DB;
 
 class AuthController extends Controller
 {
@@ -60,11 +61,29 @@ class AuthController extends Controller
         ], request()->has('remember'));
 
         if($success){
+
+             $username = strtolower(str_replace(" ", "", auth()->user()->name)).User::max('id').mt_rand(1111,9999);
+
+            if(auth()->user()->username== null){
+
+                DB::table('users')->where('id',auth()->user()->id)->update([
+
+                    'username' => $username
+
+                ]);
+
+                
+            }
+
             $request->session()->regenerate();
             return response()->json([
                 'success' => true,
                 'data' => auth()->user()
             ], 200);
+
+
+
+
         }
 
         return response()->json([

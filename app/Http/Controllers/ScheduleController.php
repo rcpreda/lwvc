@@ -41,6 +41,12 @@ class ScheduleController extends Controller
 
          session_start();
 
+         $url = env('APP_BACKEND_URL');
+
+         $datetime='';
+
+
+
           // return response()->json([
           //   "success" => true,
           //   "message" =>"callback",
@@ -50,9 +56,9 @@ class ScheduleController extends Controller
          $requesturl =  json_decode(file_get_contents(public_path('token.json')));;
          $checktime = $requesturl->expires_in;
 
-        $datetime = new DateTime('2010-12-30 23:21:46');
+        // $datetime = new DateTime('2010-12-30 23:21:46');
 
-        $datetime->format(DateTime::ATOM);
+        // $datetime->format(DateTime::ATOM);
 
 
          if(isset($requesturl) && $requesturl->access_token!=''){
@@ -82,7 +88,7 @@ class ScheduleController extends Controller
              return response()->json([
             "success" => true,
             "message"=>"getdetails",
-            "data" => $datetime
+            "data" => $url 
             ], 201); 
          }else{
 
@@ -129,7 +135,7 @@ class ScheduleController extends Controller
         // echo "in";
         // session_start();
         $requesturl = request()->getHttpHost();
-        $rurl = 'http://localhost:8000/api/oauth';
+        $rurl = env('APP_BACKEND_URL').'/'.'api/oauth';
         $this->client->setRedirectUri($rurl);
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();
@@ -151,8 +157,8 @@ class ScheduleController extends Controller
              // $calendarId = 'primary';
 
              file_put_contents(public_path('token.json'), json_encode($_SESSION['access_token']));
-
-            return redirect('http://localhost:3000/confirm/event');
+             $redirecturl = $rurl = env('APP_FRONT_URL').'/'.'confirm/event';
+            return redirect($redirecturl);
             // $results = $service->events->listEvents($calendarId);
             //$this->check();
             // return $results->getItems();
@@ -210,7 +216,7 @@ class ScheduleController extends Controller
                 // }else{
 
                         $requesturl = request()->getHttpHost();
-                        $rurl = 'http://localhost:8000/api/oauth';
+                        $rurl = env('APP_BACKEND_URL').'/'.'api/oauth';
                         $this->client->setRedirectUri($rurl);
                         if (!isset($_GET['code'])) {
                         $auth_url = $this->client->createAuthUrl();
@@ -261,7 +267,7 @@ class ScheduleController extends Controller
         } else {
 
             $requesturl = request()->getHttpHost();
-            $rurl = 'http://localhost:8000/api/oauth';
+            $rurl = env('APP_BACKEND_URL').'/'.'api/oauth';
             $this->client->setRedirectUri($rurl);
             if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();

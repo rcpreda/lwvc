@@ -344,6 +344,8 @@ export default {
     },
     mounted(){
 
+        console.log(this.$router);
+
          this.$axios.get(`/api/checklogin`)
                 .then(res => {
 
