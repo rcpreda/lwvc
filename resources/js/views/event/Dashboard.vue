@@ -50,7 +50,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
-                                <span>Copy Link</span>
+                                <span @click="copyURL(event.fullurl)" >Copy Link</span>
                             </div>
                         </div>
                     </div>
@@ -436,7 +436,24 @@ export default {
            
 
 
-            }
+            },
+
+        async copyURL(mytext) {
+        try {
+        await navigator.clipboard.writeText(mytext);
+             this.$dtoast.pop({
+                    preset: "success",
+                    heading: `Success!`,
+                    content: `Link copied.`,
+                });
+        } catch($e) {
+            this.$dtoast.pop({
+                    preset: "error",
+                    heading: `Error!`,
+                    content: `Something when wrong, please try again!`,
+                });
+        }
+        }
 
            
     },
@@ -449,7 +466,20 @@ export default {
         this.user_name = userData.name;
         this.hostname = window.location.host;
         this.$axios.get(`/api/events`).then( res => {
+
+            // console.log(res);
             this.events = res.data.data
+
+            let vueurl = window.location.origin + this.$route.path+'schedule'+'/';
+               // console.log(this.events[0]);
+
+                this.events.map(function(value, key) {
+
+                        let newurl = vueurl+value.user.username +'/'+value.link;                  
+
+                    value.fullurl = newurl;
+                console.log(value);
+                });
         })
     },
 }

@@ -47,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::get('/event-schedule-list/{type?}{startdate?}/{enddate?}', [ScheduleController::class, 'getScheduledEvents']);
-    Route::get('/slot/check/{id?}/{slot?}/{selectdate?}', [ScheduleController::class, 'checkSchedule']);
+    Route::get('/slot/check/{eventname?}/{slot?}/{selectdate?}', [ScheduleController::class, 'checkSchedule']);
 
  // Route::get('/checklogin', [ScheduleController::class, 'check']);
 

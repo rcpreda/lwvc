@@ -861,25 +861,106 @@ class ScheduleController extends Controller
 
          $userid=auth()->id();
 
+         $geteventdetails = Event::where('link',$request->eventname)->first();
 
-        $check = Slotbooking::where('user_id',$userid)
-                    ->where('event_id',$request->id)
-                    ->where('confirmdate',$request->selectdate)
-                    ->get();
+         $slotarray = [];
+
+         if($geteventdetails){
+
+                $check = Slotbooking::where('user_id',$userid)
+                ->where('event_id',$geteventdetails->id)
+                ->where('confirmdate',$request->selectdate)
+                ->get();
+
+                if(count($check)===0){
+
+                    return response()->json([
+                    "success" => true,
+                    "message"=>"notfound",
+                    "data" => $geteventdetails->id
+                    ], 200);
+
+                }else{
+
 
                     foreach($check as $key=>$value){
 
 
-                    $getslot = explode('-',$value['confirmdate'])[0];
 
+
+                    $getslot = explode('-',$value['slot'])[0];
+
+            $startdate = $request->selectdate.' '.explode('-',$value['slot'])[0];
+            $newstartdate = new DateTime($startdate);
+            $newstartdate1 = $newstartdate->format('Y-m-d H:i:s');
+
+
+            $selectedslot = $request->selectdate.' '.$request->slot;
+            $selectedslot1 = new DateTime($selectedslot);
+            $selectedslot2 = $selectedslot1->format('Y-m-d H:i:s');
+
+            $today = new DateTime();
+            $today1 = $today->format('Y-m-d H:i:s');
+
+            if($selectedslot2>$today1){
+
+                if($newstartdate1 == $selectedslot2){
+
+                    array_push($slotarray,$getslot);
+                }
+
+                
+
+            }
+
+            
+
+
+
+                    
                     //$date1 = 
                     }
 
+                    if(count($slotarray)>0){
+
+                        return response()->json([
+                        "success" => true,
+                        "message"=>"found",
+                        "data" => $slotarray
+                        ], 200);
+
+                    }else{
+
+                        return response()->json([
+                        "success" => true,
+                        "message"=>"notfound",
+                        "data" => $slotarray
+                        ], 200);
+
+                    }
+
+                   
+
+                }
+
+               
 
 
-            return response()->json([
-            "success" => true,
-            "data" => $check
-            ], 200);        
+
+               
+
+
+         }else{
+
+             return response()->json([
+                "success" => false,
+                "data" => '',
+                "message"=>'Event not found'
+                ], 200);
+
+
+         }
+
+                
     }
 }

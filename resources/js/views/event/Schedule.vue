@@ -290,35 +290,68 @@ export default {
                 var bookslot = this.availablehours[this.activeTime];
                 var seelcteddate = this.selectedDate;
 
-                var changetime = moment.tz('Arctic/Longyearbyen').toString();
+                console.log(bookslot);
+                console.log(seelcteddate);
 
-            var newTZ= moment().tz("Asia/Calcutta");
-            var oldTZ = moment().tz("America/New_York");
-            var difference = newTZ.subtract(oldTZ, 'seconds')
-            difference = difference.format("HH:mm");
-            var sec= difference.split(":");
-            var timeInMin = (sec[0] * 60) + sec[1];
-            // console.log("timeinminute",timeInMin);
+            //     var changetime = moment.tz('Arctic/Longyearbyen').toString();
+
+            // var newTZ= moment().tz("Asia/Calcutta");
+            // var oldTZ = moment().tz("America/New_York");
+            // var difference = newTZ.subtract(oldTZ, 'seconds')
+            // difference = difference.format("HH:mm");
+            // var sec= difference.split(":");
+            // var timeInMin = (sec[0] * 60) + sec[1];
+            // // console.log("timeinminute",timeInMin);
             var chageDateformat = moment(seelcteddate).format('YYYY-MM-DD');
 
-                this.$axios.get(`/api/slot/check/${this.$route.params.id}/${bookslot}/${chageDateformat}`)
+                this.$axios.get(`/api/slot/check/${this.$route.params.eventname}/${bookslot}/${chageDateformat}`)
                 .then(res => {
 
                     console.log("response",res);
 
+                    if(res.data.success==true){
+
+                        if(res.data.message=='found'){
+
+                            this.$dtoast.pop({
+                            preset: "error",
+                            heading: `Error!`,
+                            content: `Slot already selected`,
+                            });
+                        }else{
+
+                            var scheduleDetails= {
+                            'schedule_timeZone':tz,
+                            'schedule_selectDate':seelcteddate,
+                            'schedule_selectSlot':bookslot,
+                            'schedule_eventID':this.eventId,
+                            'schedule_userID':this.userId,
+                            'schedule_userName':this.userName,
+                            'schedule_duration':this.duration,
+                            'schedule_eventName':this.eventName,
+                            };
+
+                            localStorage.setItem('scheduleDetails', JSON.stringify(scheduleDetails));
+                            this.$router.push({ path: '/confirm/event' });
+
+
+
+                        }
+                    }else{
+
+
+                        this.$dtoast.pop({
+                            preset: "error",
+                            heading: `Error!`,
+                            content: `Event not found`,
+                            });
+
+                    }
+
 
                 })
 
-            var scheduleDetails= {
-                'schedule_timeZone':tz,
-                'schedule_selectDate':seelcteddate,
-                'schedule_selectSlot':bookslot,
-                'schedule_eventID':this.eventId,
-                'schedule_userID':this.userId,
-                'schedule_userName':this.userName,
-                'schedule_duration':this.duration,
-                'schedule_eventName':this.eventName,
-            };
+           
 
 
             // }tz,
@@ -330,9 +363,9 @@ export default {
             // this.$store.state.schedule_duration = this.duration,
             // this.$store.state.schedule_eventName = this.eventName,
 
-            localStorage.setItem('scheduleDetails', JSON.stringify(scheduleDetails));
+            
 
-            this.$router.push({ path: '/confirm/event' });
+            
 
                 // console.log(bookslot);
                 // console.log(seelcteddate);

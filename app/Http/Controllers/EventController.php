@@ -73,7 +73,7 @@ class EventController extends Controller
         $userid=auth()->id();
         if($userid){
 
-            $events = Event::where('user_id','=',$userid)->get();
+            $events = Event::with('user')->where('user_id','=',$userid)->get();
 
             return response()->json([
             'success' => true,

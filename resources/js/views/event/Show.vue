@@ -192,7 +192,7 @@
                                                 class="appearance-none ml-4 w-16 border rounded-md h-10 px-3 text-gray-700 leading-tight focus:border-blue-400 focus:outline-none focus:shadow-outline"
                                                 type="text" required  v-model="step2Data.noofdays.dayscount"/>
                                             <div class="relative ml-2 flex-1">
-                                                  <select name="duration" v-model="step2Data.noofdays.type" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline">
+                                                  <select name="duration" v-model="step2Data.noofdays.type" class="flex items-center justify-between border text-gray-700 w-full px-3 h-10 rounded-md focus:outline-none focus:shadow-outline" @change="checkCalendarType()">
                                                     <option value="" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Select</option>
                                                   <option value="Calendar days" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" title="Counts every day on the calendar including days you're unavailable" :selected="step2Data.noofdays.type=='Calendar days'">Calendar days</option>
                                                 <option value="Business days" class="rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline" title="Excludes weekends and only counts Mon - Fri" :selected="step2Data.noofdays.type=='Business days'">Business days</option>
@@ -333,7 +333,7 @@
                             <div class="px-5 pt-5 w-full" >
                            <!--  <div class="font-medium">Set your weekly hours</div> -->
                             <div class="mt-5 w-full md:w-6/12 divide-y">
-                                <div v-for="(item, i) in Object.keys(availability)" :key="i" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full ">
+                                <div v-for="(item, i) in Object.keys(availability)" :key="item" class="flex flex-col md:flex-row text-sm gap-4 py-4 w-full " :id="'day_' + item" v-bind:style= "[(step2Data.checkboxval == 'no_of_days' && step2Data.noofdays.type=='Business days'  && ( item=='sunday' || item=='saturday'  )) ? {'display':'none'} : '']" >
                                     <div class="my-3 flex-1">
                                         <div class="flex items-center gap-2" style="margin-top: 8px; width: 20px;">
                                             <input type="checkbox" class="cursor-pointer" 
@@ -1217,6 +1217,19 @@
             return Text.toLowerCase()
             .replace(/ /g, '-')
             .replace(/[^\w-]+/g, '');
+            },
+
+            checkCalendarType(){
+
+                if(this.step2Data.noofdays.type=='Business days'){
+
+                    this.availability['sunday']=[];
+                    this.availability['saturday']=[];
+                }
+                
+
+                console.log(this.step2Data.noofdays.type)
+
             }
         },
         mounted() {
