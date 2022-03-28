@@ -963,4 +963,27 @@ class ScheduleController extends Controller
 
                 
     }
+
+      public function getDefaultSchedule(Request $request){
+
+
+           $userid=auth()->id();
+        if($userid){
+
+            $default_schedule = Schedule::where('user_id','=',$userid)->where('is_default',0)->first();
+
+            return response()->json([
+            'success' => true,
+            'data' => $default_schedule
+            ],200);
+
+        }else{
+
+             return response()->json([
+                'success' => false,
+                'message' => 'User not loggedin'
+            ], 404);
+        }
+
+    }
 }

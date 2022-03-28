@@ -43,7 +43,7 @@
                         <div class="p-4 h-44">
                             <div @click="goToShowEvent(event.id)" class="font-medium text-lg hover:text-gray-400">{{ event.name }}</div>
                             <div class="text-sm py-2 truncate" v-html="event.description"></div>
-                            <a class="text-sm my-2 cursor-pointer text-blue-500 hover:border-b border-blue-500">view booking page</a>
+                            <a v-bind:href="event.fullurl" class="text-sm my-2 cursor-pointer text-blue-500 hover:border-b border-blue-500">view booking page</a>
                         </div>
                         <div class="p-4 flex border-t">
                             <div class="flex text-sm text-blue-500 items-center cursor-pointer">
