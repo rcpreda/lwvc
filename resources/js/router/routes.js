@@ -9,6 +9,7 @@ import AvailibilityView from '../views/event/Availibility.vue'
 import LoginView from '../views/auth/Login.vue'
 import SignupView from '../views/auth/Signup.vue'
 import ShowEventView from '../views/event/Show.vue';
+import AccountSettingView from '../views/account_setting/AccountSettingView.vue';
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
             path: '/event/show/:id',
             name: 'ShowEvent',
             component: ShowEventView
+        },
+          {
+            path: '/account_setting',
+            name: 'AccountSettingView',
+            component: AccountSettingView
         },
         
     ]

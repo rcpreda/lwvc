@@ -36,7 +36,8 @@
                                                     </svg>
                                                 </div>
                                                 <div class="ml-3">
-                                                    <p class="font-semibold">Account Settings</p>
+                                                     <router-link to="/account_setting"><p class="font-semibold">Account Settings</p></router-link>
+                                                    
                                                 </div>
                                             </a>
                                             <hr>
