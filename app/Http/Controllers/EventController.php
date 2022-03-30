@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventBookingSchedule;
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -204,6 +205,57 @@ class EventController extends Controller
             }
 
 
+    }
+
+    public function updateLink(Request $request){
+
+         $events = User::where('id','=',$request->id)->first();
+
+            if($events){
+
+                 User::where('id','=',$request->id)->update([
+
+                    'username'=> $request->newlink
+
+                 ]);
+                return response()->json([
+                'success' => true,
+                'message' => "successfully updated",
+                'data' => $events
+                ], 200);
+
+            }else{
+
+
+                return response()->json([
+                'success' => false,
+                'message' => "User not match",
+                'data' => $events
+                ], 200);
+
+            }
+    }
+
+    public function checkAvailable(Request $request){
+
+         $getUser = User::where('username','=',$request->link)->first();
+
+            if($getUser){
+
+                return response()->json([
+                'success' => true,
+                'data' => $getUser
+                ], 200);
+
+            }else{
+
+
+                return response()->json([
+                'success' => false,
+                'data' => $getUser
+                ], 200);
+
+            }
     }
 
   

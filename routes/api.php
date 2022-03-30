@@ -56,6 +56,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('/eventschedule', [EventController::class, 'storeEeventSchedule']);
+
+    Route::get('/updatelink/{id?}/{newlink?}', [EventController::class, 'updateLink']);
+    Route::get('/checkavailable/{link?}', [EventController::class, 'checkAvailable']);
+    Route::post('/updateProfile', [UserController::class, 'updateProfile']);
     // Route::post('/eventschedule/{eventschedule}', [EventController::class, 'storeEeventSchedule']);
 });
 

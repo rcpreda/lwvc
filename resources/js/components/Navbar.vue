@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                             <transition name="fade">
-                                <div v-show="dropDown" class="absolute right-0 w-full md:max-w-max md:w-screen mt-2 origin-top-right">
+                                <div v-show="dropDown" class="absolute right-0 w-full md:max-w-max md:w-screen mt-2 origin-top-right z-10">
                                     <div class="px-2 pt-2 pb-2 bg-white rounded-md shadow-lg">
                                         <div class="grid grid-cols-1 gap-1">
                                             <a class="flex row items-center rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">
