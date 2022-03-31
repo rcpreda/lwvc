@@ -986,4 +986,9 @@ class ScheduleController extends Controller
         }
 
     }
+
+    // public function getEventLinkPage(Request $request){
+
+        
+    // }
 }

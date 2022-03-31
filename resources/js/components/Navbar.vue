@@ -18,7 +18,9 @@
                         <div class="relative ml-4">
                             <div class="flex items-center">
                                 <div v-if="authUser" class="rounded-full flex items-center font-medium text-xl justify-center w-8 h-8 bg-blue-500 text-white">
-                                    {{ authUser.name.charAt(0) }}
+                                    <img v-if="authUser.profile_image!=null" :src="'/storage/profileimage/' + authUser.profile_image">
+                                    <span v-if="authUser.profile_image==null">{{ authUser.name.charAt(0) }}</span>
+                                    
                                 </div>
                                 <button @click="dropDown = !dropDown" class="flex items-center py-2 mt-2 text-sm font-semibold text-left md:w-auto md:inline md:mt-0 md:ml-2">
                                     <span>Account</span>
@@ -77,6 +79,8 @@ export default {
         ...mapGetters([
             'authUser'
         ])
+
+
     },
     methods: {
         ...mapActions([
@@ -90,6 +94,7 @@ export default {
             })
         }
     },
+
 }
 </script>
 

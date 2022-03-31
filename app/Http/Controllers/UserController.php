@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -30,19 +31,39 @@ class UserController extends Controller
 
         if($request->has('file')){
 
-            $uploadedFile = $request->file('file');
-            $filename = time().$uploadedFile->getClientOriginalName();
-
-            Storage::disk('local')->putFileAs(
-            'files',
-            $uploadedFile,
-            $filename
+            $rules = array(
+            'file' => 'mimes:jpeg,jpg,png,gif|max:5120' // max 5mb
             );
 
-            $data['profile_image'] = $filename;
+             $validator = Validator::make($request->all(), $rules);
+
+              if ($validator->fails()){
+
+                    return response()->json([
+                    "success" => false,
+                    "message" =>'Upload a jpeg,jpg,gif or png image with in 5mb.',
+                    "data" =>  '',
+                    ], 200);
+
+              }else{
+
+                    $uploadedFile = $request->file('file');
+                    $filename = time().$uploadedFile->getClientOriginalName();
+
+                    Storage::disk('public')->putFileAs(
+                    'profileimage',
+                    $uploadedFile,
+                    $filename
+                    );
+
+                    $data['profile_image'] = $filename;
+              }
+
+           
         }
 
         $data['name'] = $request->name;
+        $data['welcome_message'] = $request->welcomemessage;
 
         User::where('id',$userid)->update($data);
 
@@ -51,6 +72,7 @@ class UserController extends Controller
 
         return response()->json([
             "success" => true,
+            "message" => 'Update Successfully',
             "data" =>  $user,
         ], 200);
     }

@@ -19,8 +19,10 @@
                     <div class="border-b-2 py-4 flex justify-between gap-2">
                         <div class="flex items-center gap-2 text-sm">
                             <div>
-                                <div class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">
-                                    {{ (userName == null) ? '' : userName.charAt(0).toUpperCase() }}
+                                <div v-if="authUser" class="w-10 h-10 bg-blue-500 font-medium text-xl rounded-full flex justify-center text-white items-center">
+                                    {{ (authUser.profile_image == null) ? authUser.name.charAt(0).toUpperCase() : '' }}
+
+                                    <img v-if="authUser.profile_image!=null" :src="'/storage/profileimage/' + authUser.profile_image">
                                 </div>
                             </div>
                             <div class="flex flex-col">
@@ -226,6 +228,7 @@ import moment from "moment";
 export default {
     data(){
         return {
+            authUser:null,
             preLoader:true,
             dateRange: null,
             upcoming:true,
@@ -459,6 +462,10 @@ export default {
     },
     mounted() {
         var userData = JSON.parse(localStorage.getItem('auth-user'));
+
+        this.authUser = userData;
+
+        console.log("auth",this.authUser);
 
         console.log(userData);
         console.log(location.hostname);

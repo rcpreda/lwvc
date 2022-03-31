@@ -63,13 +63,16 @@
 							</div>
 							<p>JPG, GIF or PNG</p>
 							
-						</div>	
+						</div>
+						<small class="text-red-500 mx-2" v-show="validationErrorMessages.profile_image !== null">{{ validationErrorMessages.profile_image }}</small>	
 
 						<div class="w-full px-3 -mx-3 mb-6 md:mb-0">
 						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
 						Name
 						</label>
-						<input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Full Name" v-model="fullname">
+						<input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Full Name" v-model="fullname" :class="{'border-red-500' : validationErrorMessages.fullname !== null}">
+
+						<small class="text-red-500 mx-2" v-show="validationErrorMessages.fullname !== null">{{ validationErrorMessages.fullname }}</small>
 						<!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
 						</div>
 					<!-- 	<div class="w-full md:w-1/2 px-3">
@@ -84,6 +87,17 @@
 						Email
 						</label>
 						<input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight" type="text" v-model="authDetails.email" :readonly="true">
+						<!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
+						</div>
+
+						<div class="w-full px-3 -mx-3 mb-6 md:mb-0">
+						<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+						Welcome Message
+						</label>
+						<textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" :class="{'border-red-500' : validationErrorMessages.welcomemessage !== null}" type="text" v-model="welcomemessage" >
+							
+						</textarea> 
+						<small class="text-red-500 mx-2" v-show="validationErrorMessages.welcomemessage !== null">{{ validationErrorMessages.welcomemessage }}</small>
 						<!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
 						</div>
 						</div>
@@ -182,17 +196,21 @@ export default {
 	name:"AccountSettingView",
     data(){
         return { 
-           openTab: 1,
-           hostname:null,
-           newlink:"",
-           linkProcess:false,
-           url: null,
-           profileImage:null,
-           fullname:null,
-           authDetails:{},
-           validationErrorMessages: {
+        	welcomemessage:"",
+        	profileProcess:false,
+           	openTab: 1,
+           	hostname:null,
+           	newlink:"",
+           	linkProcess:false,
+           	url: null,
+           	profileImage:null,
+           	fullname:null,
+           	authDetails:{},
+           	validationErrorMessages: {
             
             newlink: null,
+            welcomemessage:null,
+            fullname:null,
             
            },
             successMessages: {
@@ -315,14 +333,88 @@ export default {
 		
 		},
 		updateProfile() {
+			var userData = JSON.parse(localStorage.getItem('auth-user'));
 			const formData = new FormData();
-			formData.append('file', this.profileImage);
+
+			console.log(this.profileImage);
+
+			if(this.profileImage!=null){
+
+				if(this.profileImage.size>1024*1024*1024*1024*1024){
+
+					this.validationErrorMessages.profileimage = "File size is greater than 5mb";
+					this.profileProcess = false;
+				}else{
+
+					this.validationErrorMessages.profileimage = null;
+					this.profileProcess = true;
+
+				}
+
+				formData.append('file', this.profileImage);
+
+			}
+			
 			formData.append('name', this.fullname);
+			formData.append('welcomemessage', this.welcomemessage);
 			const headers = { 'Content-Type': 'multipart/form-data' };
-			axios.post('/api/updateProfile', formData, { headers }).then((res) => {
+
+			this.profileProcess = true;
+
+			if(this.fullname==""){
+
+				 this.validationErrorMessages.fullname = "Please fill out this field.";
+				 this.profileProcess = false;
+
+
+			}else{
+				this.validationErrorMessages.fullname = null;
+				this.profileProcess = true;
+			}
+
+			if(this.welcomemessage==""){
+
+				 this.validationErrorMessages.welcomemessage = "Please fill out this field.";
+				 this.profileProcess = false;
+
+
+			}else{
+				this.validationErrorMessages.welcomemessage = null;
+				this.profileProcess = true;
+			}
+
+			if(this.profileProcess == true){
+
+
+					userData.welcome_message =  this.welcomemessage;
+					localStorage.setItem('auth-user', JSON.stringify(userData));
+
+				axios.post('/api/updateProfile', formData, { headers }).then((res) => {
 				
+				userData.profile_image =  res.data.data.profile_image;
+				localStorage.setItem('auth-user', JSON.stringify(userData));
+				this.url = '/storage/profileimage/'+userData.profile_image;
 				console.log(res);
+
+				if(res.data.success==false){
+
+					this.$dtoast.pop({
+                        preset: "error",
+                        heading: `Error!`,
+                        content: `Check your image properly.`,
+                        });
+				}else{
+
+					this.$dtoast.pop({
+                        preset: "success",
+                        heading: `Success!`,
+                        content: `Profile Updated`,
+                        });
+				}
 			});
+			}
+
+			
       	}
 
 
@@ -332,6 +424,10 @@ export default {
 
     	  this.hostname = window.location.host;
     	  var userData = JSON.parse(localStorage.getItem('auth-user'));
+    	  console.log(userData);
+    	  	this.fullname = userData.name;
+    	  	this.welcomemessage = userData.welcome_message;
+    	 	this.url = '/storage/profileimage/'+userData.profile_image;
 
     	  this.authDetails = userData;
         // this.$axios.get(`/api/schedule`).then( res => {

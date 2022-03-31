@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CreateEventView from '../views/event/Create.vue'
 import ScheduleEventView from '../views/event/Schedule.vue'
+import ScheduleLinkView from '../views/event/ScheduleLink.vue'
 import ScheduleConfirmView from '../views/event/ScheduleConfirm.vue'
 import ScheduleConfirmationView from '../views/event/Confirmed.vue'
 import DashboardView from '../views/event/Dashboard.vue'
@@ -48,6 +49,11 @@ export default new Router({
             path: '/schedule/:userid/:eventname',
             name: 'ScheduleEvent',
             component: ScheduleEventView 
+        },
+         {
+            path: '/schedule/:userid',
+            name: 'ScheduleLink',
+            component: ScheduleLinkView 
         },
         {
             path: '/confirm/event',
