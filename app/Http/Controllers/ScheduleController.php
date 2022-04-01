@@ -504,26 +504,55 @@ class ScheduleController extends Controller
 
         $username=$request->userid;
 
-        if($username){
+        if(isset($request->eventname)){
 
-            $user = User::where('username',$username)->first();
 
-            $getSchedule =Event::where('link',$request->eventname)->where('user_id',$user->id)->with(['eventschedule'])->first();
-            $getSchedule->userdetails = $user;
+            if($username){
 
-         return response()->json([
-            "success" => true,
-            "data" => $getSchedule
-        ], 201);
+                $user = User::where('username',$username)->first();
 
-        }else{
+                $getSchedule =Event::where('link',$request->eventname)->where('user_id',$user->id)->with(['eventschedule'])->first();
+                $getSchedule->userdetails = $user;
 
              return response()->json([
-                'success' => false,
-                'error'=>'Something went wrong'
-            ], 422);
+                "success" => true,
+                "data" => $getSchedule
+            ], 201);
+
+            }else{
+
+                 return response()->json([
+                    'success' => false,
+                    'error'=>'Something went wrong'
+                ], 422);
+
+            }
+        }else{
+
+
+              if($request->userid!=''){
+
+                $checkuser = User::where('username',$request->userid)->first();
+                if($checkuser){
+
+                    $getDetails = User::with(['Events'])->where('username',$request->userid)->get();
+
+                        return response()->json([
+                        'success' => true,
+                        'data' => $getDetails
+                        ],200);
+                }else{
+
+                    return response()->json([
+                    'success' => false,
+                    'message' => 'User not find'
+                    ], 200);
+                }
+            
+            }
 
         }
+
         
 
     }
@@ -987,8 +1016,30 @@ class ScheduleController extends Controller
 
     }
 
-    // public function getEventLinkPage(Request $request){
+    public function getEventLinkPage(Request $request){
 
+         
+
+        if($request->userid!=''){
+
+                $checkuser = User::where('username',$request->userid)->first();
+                if($checkuser){
+
+                    $getDetails = User::with(['Events'])->where('username',$request->userid)->get();
+
+                        return response()->json([
+                        'success' => true,
+                        'data' => $getDetails
+                        ],200);
+                }else{
+
+                    return response()->json([
+                    'success' => false,
+                    'message' => 'User not find'
+                    ], 200);
+                }
+            
+        }
         
-    // }
+    }
 }

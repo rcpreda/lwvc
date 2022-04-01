@@ -150,7 +150,7 @@
 			      <p>
 			       	Changing your URL will mean that all of your copied links will no longer work and will need to be updated.</p>
 			        <br />
-			        <label>{{hostname}}/<input class="shadow appearance-none border rounded w-52 ml-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" v-on:keyup="checkAvailable" id="link" v-model="newlink" type="text" placeholder="link" :class="{'border-red-500' : validationErrorMessages.newlink !== null, 'border-green-500' : successMessages.newlink !== null}" 
+			        <label>{{hostname}}/schedule/<input class="shadow appearance-none border rounded w-52 ml-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" v-on:keyup="checkAvailable" id="link" v-model="newlink" type="text" placeholder="link" :class="{'border-red-500' : validationErrorMessages.newlink !== null, 'border-green-500' : successMessages.newlink !== null}" 
 			        	></label>
 			        <small class="text-red-500 mx-2" v-show="validationErrorMessages.newlink !== null">{{ validationErrorMessages.newlink }}</small>
 			        <small class="text-green-500 mx-2" v-show="successMessages.newlink !== null">{{ successMessages.newlink }}</small>

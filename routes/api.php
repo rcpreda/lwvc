@@ -66,6 +66,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/checklogin', [ScheduleController::class, 'check']);
 Route::post('/schedule/slot-confirm', [ScheduleController::class, 'saveSlot']);
 Route::get('/schedule/{userid?}/{eventname?}', [ScheduleController::class, 'getEventDetails']);
-Route::get('/schedule/{userid?}', [ScheduleController::class, 'getEventLinkPage']);
+// Route::get('/schedule/{userid?}', [ScheduleController::class, 'getEventLinkPage']);
 Route::resource('cal', ScheduleController::class);
 Route::get('oauth', [ScheduleController::class,'oauth'])->name('oauthCallback');
